@@ -97,12 +97,10 @@ Each message should consist of the type of action and the description of the tas
 >- **chore**: Other changes than functionality or bug fixes, for example, when updating dependencies or other project configurations.
 
 ## Attribution
-This project uses code from [brainwave](https://github.com/adrianhajdin/brainwave)) by [Adrian Hajdin](https://github.com/adrianhajdin).
+This project uses code from [brainwave](https://github.com/adrianhajdin/brainwave) by [Adrian Hajdin](https://github.com/adrianhajdin).
 
 ## Authors✒️ 
 - **Gabriel Jeannot Viaña - CTO and Full-Stack Developer** -   <a title=Code>💻</a> <a title=Design>🎨</a> <a title=Documentation>📑</a>
 - **Camilo Osorio - Front-end Developer** - <a title=Code>💻</a> <a title=Design>🎨</a> <a title=Documentation>📑</a>
 - **Valentina Loaiza Mejia - Front-end Developer** -   <a title=Code>💻</a> <a title=Design>🎨</a> <a title=Documentation>📑</a>
-
-
-
+- **Andrea Saavedra Viveros - UX/UI & Content Creator** -   <a title=Code>💻</a> <a title=Design>🎨</a> <a title=Documentation>📑</a>
