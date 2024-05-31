@@ -132,3 +132,24 @@ export const requiredProducts = [
         url: "https://www.amazon.com/dp/B0B5XVQVJ9?ref=ppx_pop_mob_ap_share&th=1",
     },
 ]
+
+export const booths = [
+    {
+        id: 3,
+        photo: "https://s.alicdn.com/@sc04/kf/H681fd567429241fa9da5f79559e5fae3Z.jpg",
+        title: "Medium size standard booth",
+        description:
+            "Soundbox sound proof booth, great for your virtual assistance services with VideFace. Good quality materials. Medium size for greater user comfort.",
+        url: "",
+        price: "$1630"
+    },
+    {
+        id: 2,
+        photo: "https://s.alicdn.com/@sc04/kf/H681fd567429241fa9da5f79559e5fae3Z.jpg",
+        title: "Medium size full booth",
+        description:
+            "Contrary to the standard option, this booth includes a fan, two extractors and all the necessary adaptations for using VideFace",
+        url: "",
+        price: "$1830"
+    },
+]
