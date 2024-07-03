@@ -4,10 +4,13 @@ import PricingList from "./PricingList";
 import { LeftLine, RightLine } from "./design/Pricing";
 
 const Pricing = () => {
+    const currentDate = new Date();
+    const month = currentDate.toLocaleString("default", { month: "long" });
+
     return (
         <Section className="overflow-hidden" id="pricing">
             <div className="container relative z-2">
-                <Heading tag="Get started" title="Pricing plans for June 2024" />
+                <Heading tag="Get started" title={`Pricing plans for ${month} ${currentDate.getFullYear()}`} />
 
                 <div className="relative">
                     <PricingList />
