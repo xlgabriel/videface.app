@@ -72,7 +72,7 @@ const Contact = () => {
             htmlContactTemplate: emailContact,
         };
 
-        fetch("https://videfacecarinspection-jhyi.onrender.com/send-contact-email", {
+        fetch("https://videface-server-cars-postmark-mqx4ohbz2q-ue.a.run.app/send-contact-email", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
