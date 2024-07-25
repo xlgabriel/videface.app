@@ -19,7 +19,13 @@ export default function Card({ product }) {
             <div className="flex flex-col text-center items-center mt-4" style={{ minHeight: "35%" }}>
                 <h2 className="text-color-2 font-bold text-lg mb-2 mt-4">{product.title}</h2>
                 <p>{product.description}</p>
+                {product.price && (
+                    <div style={{ minHeight: "5%" }}>
+                        <p className="text-color-2 font-bold mt-4">{product.price}</p>
+                    </div>
+                )}
             </div>
+
             <div style={{ minHeight: "25%" }} className="w-full">
                 <Button className="w-full mt-14 z-10 rounded-lg " onClick={() => window.open(product.url)}>
                     BUY
@@ -36,5 +42,6 @@ Card.propTypes = {
         photo: PropTypes.string.isRequired,
         title: PropTypes.string.isRequired,
         description: PropTypes.string.isRequired,
+        price: PropTypes.string,
     }).isRequired,
 };
