@@ -4,7 +4,7 @@ const CompanyLogos = ({ className }) => {
     return (
         <div className={className}>
             <h5 className="tagline mb-4 text-center text-n-6 font-bold text-lg">
-                Since 2020, we are the world's first fully virtual car rental company.
+                Since 2020, we are building the world's first fully virtual car rental companies.
             </h5>
             <ul className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-6">
                 {companyLogos.map((logo, index) => (
