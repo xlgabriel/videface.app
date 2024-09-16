@@ -5,7 +5,7 @@ import { LeftLine, RightLine } from "./design/Pricing";
 
 const Pricing = () => {
     const currentDate = new Date();
-    const month = currentDate.toLocaleString("default", { month: "long" });
+    const month = currentDate.toLocaleString("en-US", { month: "long" });
 
     return (
         <Section className="overflow-hidden" id="pricing">
