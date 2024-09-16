@@ -13,6 +13,7 @@ import companyLogo3 from "./logo03.png";
 import companyLogo4 from "./logo04.png";
 import yourlogo from "./logo05.png";
 import companyLogo6 from "./logo06.png";
+import companyLogo7 from "./nordic.svg";
 import homeSmile from "./home-smile.png";
 import file02 from "./file-02.png";
 import searchMd from "./search-md.png";
@@ -108,6 +109,7 @@ export {
     companyLogo3,
     companyLogo4,
     companyLogo6,
+    companyLogo7,
     yourlogo,
     homeSmile,
     file02,

@@ -45,6 +45,7 @@ import {
     companyLogo3,
     companyLogo4,
     companyLogo6,
+    companyLogo7,
     yourlogo,
     benefitCard1,
     benefitCard2,
@@ -76,7 +77,15 @@ export const heroIcons = [homeSmile, file02, searchMd, plusSquareWhite];
 
 export const notificationImages = [notification4, notification3, notification2];
 
-export const companyLogos = [companyLogo1, companyLogo2, companyLogo3, companyLogo4, yourlogo, companyLogo6];
+export const companyLogos = [
+    companyLogo1,
+    companyLogo2,
+    companyLogo3,
+    companyLogo4,
+    yourlogo,
+    companyLogo6,
+    companyLogo7,
+];
 
 export const brainwaveServices = ["Location is not a problem", "24/7 assistance gets easier", "Absolute game changer"];
 
