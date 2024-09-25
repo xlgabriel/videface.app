@@ -9,7 +9,7 @@ export default function DocumentDownload() {
                     <button className="bg-blue-500 rounded px-4 py-2 text-white">Download run.bat</button>
                 </a>
 
-                <a href="/downloadFiles/videface_background.png" download="background.jpg">
+                <a href="/downloadFiles/videface_background.png" download="background.png">
                     <button className="bg-blue-500 rounded px-4 py-2 text-white">Download Background</button>
                 </a>
             </div>
