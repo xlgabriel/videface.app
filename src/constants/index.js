@@ -235,8 +235,8 @@ export const pricing = [
     {
         id: "2",
         title: "VideFace AutoKeys",
-        description: "Monthly prices per office.",
-        price1: "$165 each one",
+        description: "Price per office.",
+        price1: "$165 per month",
         price2: "No initial fee",
         price3: "No extra costs",
         features: [
