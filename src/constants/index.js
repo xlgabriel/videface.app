@@ -249,8 +249,8 @@ export const pricing = [
         id: "3",
         title: "VideFace Cars",
         description: "Monthly prices per office.",
-        price1: "200 Cars $249",
-        price2: "300 Cars $299",
+        price1: "200 Cars $199",
+        price2: "300 Cars $249",
         price3: "Every 100+ for $50",
         features: [
             "Full control of your cars and damages",
