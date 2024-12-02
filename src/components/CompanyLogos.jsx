@@ -46,7 +46,7 @@ const CompanyLogos = ({ className }) => {
     return (
         <div className={`${className} overflow-hidden relative`}>
             <h5 className="tagline mb-4 text-center text-n-6 font-bold text-lg">
-                Since 2020, we are building the world's first fully virtual car rental companies.
+                Since 2020, we are working together with some affiliates of brands like Zezgo, Economy and much more!
             </h5>
             <div
                 className="flex space-x-2 items-center overflow-hidden"
