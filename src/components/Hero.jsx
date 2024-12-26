@@ -62,7 +62,7 @@ const Hero = () => {
                         <strong>of remote assistance, vehicle inspections, keys management and more.</strong>
                     </p>
                     <Button href="#pricing" white>
-                        Get started now
+                        Get started
                     </Button>
                 </div>
                 <div className="relative max-w-[23rem] mx-auto md:max-w-5xl xl:mb-24">
