@@ -215,7 +215,7 @@ export const pricing = [
         price3: "Extra: $149 each",
         features: [
             "Every kiosk includes one user (agent, admin or both)",
-            "For each extra user you will pay $25 more per month",
+            "For each extra user you will pay $10 more per month",
             "Initial fee $499 per office + extra costs (if needed)",
         ],
     },
