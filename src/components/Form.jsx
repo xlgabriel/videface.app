@@ -23,7 +23,6 @@ const Form = () => {
         name: false,
         company: false,
         email: false,
-        message: false,
     });
 
     const updatedMessage = `Number of Cars: ${form.cars}. Message: ${form.message}`;
@@ -55,7 +54,7 @@ const Form = () => {
             message: form.message === "",
         };
 
-        if (newErrors.name || newErrors.company || newErrors.email || newErrors.message) {
+        if (newErrors.name || newErrors.company || newErrors.email) {
             hasErrors = true;
         }
 
@@ -136,7 +135,7 @@ const Form = () => {
                             {errors.name && <span className="text-color-5 text-sm">Please, write your name here.</span>}
                         </div>
                         <div className="mb-4">
-                            <label htmlFor="compa</label>ny" className="block mb-1">
+                            <label htmlFor="company" className="block mb-1">
                                 Company Name
                             </label>
                             <input
@@ -168,7 +167,7 @@ const Form = () => {
                                 onChange={handleChange}
                             />
                             {errors.email && (
-                                <span className="text-colo</div>r-5 text-sm">Don't forget to write your email.</span>
+                                <span className="text-color-5 text-sm">Don't forget to write your email.</span>
                             )}
                         </div>
                         <div className="mb-4">
@@ -184,11 +183,6 @@ const Form = () => {
                                 value={form.message}
                                 onChange={handleChange}
                             />
-                            {errors.message && (
-                                <span className="text-color-5 text-sm">
-                                    The message can't be empty. Please, say anything!
-                                </span>
-                            )}
                         </div>
                         <div className="mb-4">
                             <label htmlFor="cars" className="block mb-1">
@@ -196,7 +190,7 @@ const Form = () => {
                             </label>
                             <select
                                 id="cars"
-                                className="w-full p-2 border border-gray-300 rounded bg-n-7"
+                                className="w-full p-3 border border-gray-300 rounded bg-n-7 text-lg focus:outline-none focus:ring-2 focus:ring-blue-500 hover:cursor-pointer"
                                 value={form.cars}
                                 onChange={handleChange}
                             >
@@ -205,10 +199,11 @@ const Form = () => {
                                 <option value="200-500">200-500</option>
                                 <option value="500-1000">500-1000</option>
                                 <option value="1000+">1000+</option>
+                                <option value="other">Not specified</option>
                             </select>
                         </div>
                         <Button
-                            className={`w-full mb-6 mt-8 ${
+                            className={`w-full mb-6 mt-4 ${
                                 emailSent ? "bg-transparent cursor-not-allowed" : "bg-transparent hover:text-n-6"
                             }`}
                             disabled={emailSent}
