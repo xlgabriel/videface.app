@@ -102,24 +102,19 @@ export default function ContactEmailTemplate({ message }) {
         <>
             <div style={styles.contentContainer}>
                 <div style={styles.infoContainer}>
-                    <h3 style={styles.infoContainer.h3}>Thank you for contacting VideFace!</h3>
+                    <h3 style={styles.infoContainer.h3}>Thank you for connecting with VideFace!</h3>
                     <p style={styles.infoContainer.p}>
-                        We've successfully received your email and we're working on getting back to you as soon as
-                        possible. Don't hesitate to reach out to us if you feel that we can help you with anything else.
-                        In the meantime, here's some information you might find useful:
+                        We're thrilled to have had the chance to bring value to your company. Your interest in VideFace
+                        means a lot to us, and we're excited to explore how we can assist you further. Here's a quick
+                        recap of what we can offer:
                     </p>
                     <ul style={styles.infoContainer.ul}>
                         <li style={styles.infoContainer.li}>
-                            <strong>
-                                Our team will get back to you within 24 hours, but we usually respond much faster.
-                            </strong>{" "}
-                            In case you don't hear from us, please check your spam folder or contact us again. There's
-                            also a chance that you've contact us in a non-working hour or day, so please be patient.
+                            <strong>Our team is here to help you.</strong> If you have any additional questions or need
+                            more information, feel free to reach out to us anytime.
                         </li>
                         <li style={styles.infoContainer.li}>
-                            We're sure you are very curious about our services and how we can help you. We invite you to
-                            check out our social media profiles and our website to learn more about us. Here you have
-                            our{" "}
+                            Stay connected with us! Follow our{" "}
                             <a
                                 style={styles.infoContainer.a}
                                 href="https://linkedin.com/company/videface/"
@@ -127,7 +122,7 @@ export default function ContactEmailTemplate({ message }) {
                             >
                                 LinkedIn
                             </a>{" "}
-                            and our{" "}
+                            and{" "}
                             <a
                                 style={styles.infoContainer.a}
                                 href="https://instagram.com/videface.app/"
@@ -135,16 +130,15 @@ export default function ContactEmailTemplate({ message }) {
                             >
                                 Instagram
                             </a>{" "}
-                            profiles. Take a look at the message we got from you:
+                            profiles for updates, news, and more about our services.
                         </li>
                         <p style={styles.infoContainer.quotation}>"{message}"</p>
                     </ul>
                     <p style={styles.infoContainer.p}>
-                        We are happy to know you are interested in our services. We are always looking for ways to
-                        improve and we are sure that your feedback will help us to do so. We are looking forward to
-                        working with you and we hope to hear from you soon.
+                        We hope you enjoyed the event as much as we did! If you'd like to learn more about how VideFace
+                        can help you, don't hesitate to reach out. We're looking forward to staying in touch.
                     </p>
-                    <p style={styles.infoContainer.p}>Best regards,</p>
+                    <p style={styles.infoContainer.p}>Warm regards,</p>
                 </div>
                 <footer style={styles.footer}>
                     <div style={styles.footer.header}>
