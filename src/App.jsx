@@ -3,6 +3,7 @@ import Home from "./components/pages/Home";
 import Products from "./components/pages/Products";
 import PricingPage from "./components/pages/Pricing";
 import DocumentDownload from "./components/DocumentDownload";
+import Form from "./components/Form";
 
 const App = () => {
     return (
@@ -12,6 +13,7 @@ const App = () => {
                 <Route path="/products" element={<Products />}></Route>
                 <Route path="/pricing" element={<PricingPage />}></Route>
                 <Route path="/kiosk" element={<DocumentDownload />}></Route>
+                <Route path="/form" element={<Form />}></Route>
             </Routes>
         </div>
     );

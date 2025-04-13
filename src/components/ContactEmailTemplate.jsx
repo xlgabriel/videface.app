@@ -110,8 +110,20 @@ export default function ContactEmailTemplate({ message }) {
                     </p>
                     <ul style={styles.infoContainer.ul}>
                         <li style={styles.infoContainer.li}>
-                            <strong>Our team is here to help you.</strong> If you have any additional questions or need
-                            more information, feel free to reach out to us anytime.
+                            <strong>Reduce operational costs.</strong> Our solutions are designed to optimize your
+                            workflow and lower unnecessary expenses by up to 60%.
+                        </li>
+                        <li style={styles.infoContainer.li}>
+                            <strong>Improve service speed and availability.</strong> With 24/7 virtual attention and
+                            automated processes, your customers enjoy faster service and shorter lines.
+                        </li>
+                        <li style={styles.infoContainer.li}>
+                            <strong>Enhance transparency.</strong> Get full traceability of every interaction with clear
+                            evidence and logs.
+                        </li>
+                        <li style={styles.infoContainer.li}>
+                            <strong>Scale efficiently.</strong> Whether you’re in the U.S., Europe, or beyond, our
+                            modular approach grows with your needs.
                         </li>
                         <li style={styles.infoContainer.li}>
                             Stay connected with us! Follow our{" "}
@@ -134,10 +146,7 @@ export default function ContactEmailTemplate({ message }) {
                         </li>
                         <p style={styles.infoContainer.quotation}>"{message}"</p>
                     </ul>
-                    <p style={styles.infoContainer.p}>
-                        We hope you enjoyed the event as much as we did! If you'd like to learn more about how VideFace
-                        can help you, don't hesitate to reach out. We're looking forward to staying in touch.
-                    </p>
+                    <p style={styles.infoContainer.p}>We're looking forward to staying in touch.</p>
                     <p style={styles.infoContainer.p}>Warm regards,</p>
                 </div>
                 <footer style={styles.footer}>
