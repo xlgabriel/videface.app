@@ -14,7 +14,7 @@ import {
     chromecast,
     disc02,
     discord,
-    discordBlack,
+    // discordBlack,
     facebook,
     figma,
     file02,
@@ -87,9 +87,19 @@ export const companyLogos = [
     companyLogo7,
 ];
 
-export const brainwaveServices = ["Location is not a problem", "24/7 assistance gets easier", "Absolute game changer"];
+export const brainwaveServices = [
+    "Location is not a problem",
+    "24/7 assistance gets easier",
+    "Absolute game changer",
+];
 
-export const brainwaveServicesIcons = [recording03, recording01, disc02, chromecast, sliders04];
+export const brainwaveServicesIcons = [
+    recording03,
+    recording01,
+    disc02,
+    chromecast,
+    sliders04,
+];
 
 export const roadmap = [
     {
@@ -209,7 +219,8 @@ export const pricing = [
     {
         id: "0",
         title: "VideFace Calls",
-        description: "Monthly prices per office.",
+        description:
+            "Real time videocalls, unlimited connections between agents and clients and easy management of your kiosks.",
         price1: "2 Kiosks $649",
         price2: "3 Kiosks $849",
         price3: "Extra: $149 each",
@@ -220,22 +231,24 @@ export const pricing = [
         ],
     },
     {
-        id: "1",
-        title: "Full VideFace",
-        description: "VideFace Calls + VideFace Cars and more!",
-        price1: "Previous prices",
-        price2: "Get new features",
-        price3: "No car's initial fee",
+        id: "3",
+        title: "SmartLocker + KeyDrop",
+        description:
+            "Give and receive the keys smoothly without the need of agents in the office.",
+        price1: "200 Cars $249",
+        price2: "300 Cars $299",
+        price3: "Every 100+ for $50",
         features: [
-            "Get first the new features we constantly add to our software",
-            "It's easier to manage everything in one place. Definitely worth it!",
-            "Priority support to solve issues quickly",
+            "No initial fee for this service",
+            "Real-time key delivery for clients",
+            "Easy key drop off by carwasher",
         ],
     },
     {
         id: "2",
         title: "VideFace Cars",
-        description: "Monthly prices per office.",
+        description:
+            "Manage every car easily. Avoid losing chargebacks with the car inspection and walk around.",
         price1: "200 Cars $249",
         price2: "300 Cars $299",
         price3: "Every 100+ for $50",
@@ -243,6 +256,20 @@ export const pricing = [
             "Full control of your cars, damages, photos and more",
             "Car Inspection Service included in this plan",
             "One global initial fee of $499 for all your cars",
+        ],
+    },
+    {
+        id: "1",
+        title: "Full VideFace",
+        description:
+            "Fully virtualize your office by using all our services. Unlock the full potential of VideFace",
+        price1: "Previous prices",
+        price2: "Get new features",
+        price3: "No car's initial fee",
+        features: [
+            "Get first the new features we constantly add to our software",
+            "It's easier to manage everything in one place. Definitely worth it!",
+            "Priority support to solve issues quickly",
         ],
     },
 ];

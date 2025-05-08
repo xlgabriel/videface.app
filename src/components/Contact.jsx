@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
 import Button from "./Button";
 import Heading from "./Heading";
 import Section from "./Section";
@@ -25,7 +25,9 @@ const Contact = () => {
         message: false,
     });
 
-    const emailContact = ReactDOMServer.renderToString(<ContactEmailTemplate message={form.message} />);
+    const emailContact = ReactDOMServer.renderToString(
+        <ContactEmailTemplate message={form.message} />
+    );
     const emailConfig = {
         subject: "Thank you for contacting VideFace!",
         from: "VideFace",
@@ -51,7 +53,12 @@ const Contact = () => {
             message: form.message === "",
         };
 
-        if (newErrors.name || newErrors.company || newErrors.email || newErrors.message) {
+        if (
+            newErrors.name ||
+            newErrors.company ||
+            newErrors.email ||
+            newErrors.message
+        ) {
             hasErrors = true;
         }
 
@@ -72,13 +79,16 @@ const Contact = () => {
             htmlContactTemplate: emailContact,
         };
 
-        fetch("https://videface-backend-166917106706.us-east1.run.app/api/v1/cars/inspections/emails/contact", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(data),
-        })
+        fetch(
+            "https://videface-backend-166917106706.us-east1.run.app/api/v1/cars/inspections/emails/contact",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+            }
+        )
             .then((response) => response.json())
             .then(
                 () => {
@@ -117,13 +127,19 @@ const Contact = () => {
                                 id="name"
                                 type="text"
                                 className={`w-full p-2 border ${
-                                    errors.name ? "border-n-6" : "border-gray-300"
+                                    errors.name
+                                        ? "border-n-6"
+                                        : "border-gray-300"
                                 } rounded bg-n-7`}
                                 placeholder="Name"
                                 value={form.name}
                                 onChange={handleChange}
                             />
-                            {errors.name && <span className="text-color-5 text-sm">Please, write your name here.</span>}
+                            {errors.name && (
+                                <span className="text-color-5 text-sm">
+                                    Please, write your name here.
+                                </span>
+                            )}
                         </div>
                         <div className="mb-4">
                             <label htmlFor="company" className="block mb-1">
@@ -133,14 +149,18 @@ const Contact = () => {
                                 id="company"
                                 type="text"
                                 className={`w-full p-2 border ${
-                                    errors.company ? "border-n-6" : "border-gray-300"
+                                    errors.company
+                                        ? "border-n-6"
+                                        : "border-gray-300"
                                 } rounded bg-n-7`}
                                 placeholder="Company Name"
                                 value={form.company}
                                 onChange={handleChange}
                             />
                             {errors.company && (
-                                <span className="text-color-5 text-sm">Please, write your company's name here.</span>
+                                <span className="text-color-5 text-sm">
+                                    Please, write your company&#39;s name here.
+                                </span>
                             )}
                         </div>
                         <div className="mb-4">
@@ -151,14 +171,18 @@ const Contact = () => {
                                 id="email"
                                 type="email"
                                 className={`w-full p-2 border ${
-                                    errors.email ? "border-n-6" : "border-gray-300"
+                                    errors.email
+                                        ? "border-n-6"
+                                        : "border-gray-300"
                                 } rounded bg-n-7`}
                                 placeholder="Email"
                                 value={form.email}
                                 onChange={handleChange}
                             />
                             {errors.email && (
-                                <span className="text-color-5 text-sm">Don't forget to write your email.</span>
+                                <span className="text-color-5 text-sm">
+                                    Don&#39;t forget to write your email.
+                                </span>
                             )}
                         </div>
                         <div className="mb-4">
@@ -168,7 +192,9 @@ const Contact = () => {
                             <textarea
                                 id="message"
                                 className={`w-full p-2 border ${
-                                    errors.message ? "border-n-6" : "border-gray-300"
+                                    errors.message
+                                        ? "border-n-6"
+                                        : "border-gray-300"
                                 } rounded bg-n-7 resize-none h-24`}
                                 placeholder="Message"
                                 value={form.message}
@@ -176,28 +202,41 @@ const Contact = () => {
                             />
                             {errors.message && (
                                 <span className="text-color-5 text-sm">
-                                    The message can't be empty. Please, say anything!
+                                    The message can&#39;t be empty. Please, say
+                                    anything!
                                 </span>
                             )}
                         </div>
                         <Button
                             className={`w-full mb-6 mt-8 ${
-                                emailSent ? "bg-transparent cursor-not-allowed" : "bg-transparent hover:text-n-6"
+                                emailSent
+                                    ? "bg-transparent cursor-not-allowed"
+                                    : "bg-transparent hover:text-n-6"
                             }`}
                             disabled={emailSent}
                             onClick={handleSubmit}
                         >
-                            {loading ? "Sending..." : emailSent ? "Email sent successfully!" : "Send"}
+                            {loading
+                                ? "Sending..."
+                                : emailSent
+                                ? "Email sent successfully!"
+                                : "Send"}
                         </Button>
                         <p className="text-sm text-center">
                             You can also email to{" "}
-                            <a href="mailto:contact@videface.app" className="text-blue-500">
+                            <a
+                                href="mailto:contact@videface.app"
+                                className="text-blue-500"
+                            >
                                 contact@videface.app
                             </a>
                         </p>
                         <p className="text-sm text-center mt-1">
                             Or give us a call:{" "}
-                            <a href="tel:+14075586889" className="text-blue-500">
+                            <a
+                                href="tel:+14075586889"
+                                className="text-blue-500"
+                            >
                                 +1 407 558 6889
                             </a>
                         </p>
@@ -215,7 +254,12 @@ const Contact = () => {
                         />
                     </div>
                 </div>
-                <div className={`relative ${isMobile ? "-top-[26%]" : "-top-[52%]"}`} style={{ zIndex: -1 }}>
+                <div
+                    className={`relative ${
+                        isMobile ? "-top-[26%]" : "-top-[52%]"
+                    }`}
+                    style={{ zIndex: -1 }}
+                >
                     <BackgroundCircles />
                 </div>
             </div>

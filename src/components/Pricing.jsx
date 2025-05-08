@@ -10,7 +10,10 @@ const Pricing = () => {
     return (
         <Section className="overflow-hidden" id="pricing">
             <div className="container relative z-2">
-                <Heading tag="Get started" title={`Pricing plans for ${month} ${currentDate.getFullYear()}`} />
+                <Heading
+                    tag="Get started"
+                    title={`Pricing plans for ${month} ${currentDate.getFullYear()}`}
+                />
 
                 <div className="relative">
                     <PricingList />
@@ -20,7 +23,8 @@ const Pricing = () => {
 
                 <div className="flex justify-center mt-10 pb-10">
                     <a className="text-s font-code font-bold tracking-wider uppercase border-b">
-                        More features and plans will be available soon! This is just the beginning.
+                        More features and plans will be available soon! This is
+                        just the beginning.
                     </a>
                 </div>
             </div>

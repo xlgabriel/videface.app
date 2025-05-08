@@ -1,4 +1,5 @@
 import ButtonGradient from "../../assets/svg/ButtonGradient";
+import Contact from "../Contact";
 import Footer from "../Footer";
 import Header from "../Header";
 import Pricing from "../Pricing";
@@ -11,6 +12,9 @@ export default function PricingPage() {
                 <Header />
                 <Pricing />
                 <PricingContainer />
+                <div id="contact">
+                    <Contact />
+                </div>
                 <Footer />
             </div>
 
