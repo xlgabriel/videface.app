@@ -1,4 +1,3 @@
-import react from "react";
 import Button from "../Button";
 import PropTypes from "prop-types";
 

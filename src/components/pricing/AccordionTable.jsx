@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function AccordionTable({ rowData }) {
     return (
         <div className="p-4">
