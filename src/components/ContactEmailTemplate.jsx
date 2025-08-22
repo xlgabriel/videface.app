@@ -1,4 +1,4 @@
-export default function ContactEmailTemplate({ message }) {
+export default function ContactEmailTemplate({ name, email, company, message }) {
     const year = new Date().getFullYear();
     const styles = {
         contentContainer: {
@@ -52,17 +52,31 @@ export default function ContactEmailTemplate({ message }) {
                 color: "#0070f3",
                 textDecoration: "none",
             },
-            quotation: {
-                fontSize: "14px",
-                fontStyle: "italic",
-                textAlign: "center",
-                marginTop: "20px",
-                marginBottom: "20px",
+            detailsContainer: {
+                display: "table",
+                width: "100%",
+                borderCollapse: "collapse",
+                marginTop: "1.5em",
+                marginBottom: "1.5em",
+            },
+            detailRow: {
+                display: "table-row",
+                borderBottom: "1px solid #ddd",
+            },
+            detailCellLabel: {
+                display: "table-cell",
+                fontWeight: "600",
+                padding: "8px 16px",
                 color: "#555555",
-                textDecoration: "none",
+                width: "120px",
+                verticalAlign: "top",
+            },
+            detailCellValue: {
+                display: "table-cell",
+                padding: "8px 16px",
+                color: "#333333",
             },
         },
-
         footer: {
             fontFamily: "'Geist', sans-serif",
             display: "block",
@@ -131,6 +145,7 @@ export default function ContactEmailTemplate({ message }) {
                                 style={styles.infoContainer.a}
                                 href="https://linkedin.com/company/videface/"
                                 target="_blank"
+                                rel="noreferrer"
                             >
                                 LinkedIn
                             </a>{" "}
@@ -139,25 +154,48 @@ export default function ContactEmailTemplate({ message }) {
                                 style={styles.infoContainer.a}
                                 href="https://instagram.com/videface.app/"
                                 target="_blank"
+                                rel="noreferrer"
                             >
                                 Instagram
                             </a>{" "}
                             profiles for updates, news, and more about our services.
                         </li>
-                        <p style={styles.infoContainer.quotation}>"{message}"</p>
                     </ul>
+
+                    <div
+                        style={{
+                            marginTop: "1.5em",
+                            marginBottom: "1.5em",
+                            fontFamily: "'Geist', sans-serif",
+                            color: "#333",
+                            fontSize: "16px",
+                            lineHeight: "1.5",
+                        }}
+                    >
+                        <div style={{ marginBottom: "12px" }}>
+                            <strong style={{ display: "inline-block", width: "100px", color: "#555" }}>Name:</strong>
+                            <span>{name}</span>
+                        </div>
+                        <div style={{ marginBottom: "12px" }}>
+                            <strong style={{ display: "inline-block", width: "100px", color: "#555" }}>Company:</strong>
+                            <span>{company}</span>
+                        </div>
+                        <div style={{ marginBottom: "12px" }}>
+                            <strong style={{ display: "inline-block", width: "100px", color: "#555" }}>Email:</strong>
+                            <span>{email}</span>
+                        </div>
+                        <div style={{ marginBottom: "12px" }}>
+                            <strong style={{ display: "inline-block", width: "100px", color: "#555" }}>Message:</strong>
+                            <span style={{ whiteSpace: "pre-wrap" }}>{message}</span>
+                        </div>
+                    </div>
+
                     <p style={styles.infoContainer.p}>We're looking forward to staying in touch.</p>
                     <p style={styles.infoContainer.p}>Warm regards,</p>
                 </div>
                 <footer style={styles.footer}>
                     <div style={styles.footer.header}>
-                        <a
-                            style={styles.footer.a}
-                            href="https://videface.app/"
-                            target="_blank"
-                            data-saferedirecturl="https://videface.app/"
-                            rel="noreferrer nowrapper"
-                        >
+                        <a style={styles.footer.a} href="https://videface.app/" target="_blank" rel="noreferrer">
                             <img style={styles.footer.img} src="https://i.imgur.com/GMVirFc.png" alt="VidefaceLogo" />
                         </a>
                     </div>
