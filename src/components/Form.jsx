@@ -15,6 +15,7 @@ const Form = () => {
         email: "",
         message: "",
         cars: "<100",
+        phone: "+1",
     });
 
     const [loading, setLoading] = useState(false);
@@ -25,7 +26,7 @@ const Form = () => {
         email: false,
     });
 
-    const updatedMessage = `Number of Cars: ${form.cars}. Message: ${form.message}`;
+    const updatedMessage = `Number of Cars: ${form.cars}. Phone: ${form.phone}. Message: ${form.message}`;
 
     const emailContact = ReactDOMServer.renderToString(<ContactEmailTemplate message={updatedMessage} />);
     const emailConfig = {
@@ -69,6 +70,7 @@ const Form = () => {
         const data = {
             name: form.name,
             email: form.email,
+            phone: form.phone,
             companyId: "VideFace",
             office: "Webpage",
             emailConfig: emailConfig,
@@ -94,9 +96,9 @@ const Form = () => {
                         email: "",
                         message: "",
                         cars: "<100",
+                        phone: "+1",
                     });
 
-                    // Reset emailSent state after 3 seconds
                     setTimeout(() => {
                         setEmailSent(false);
                     }, 3000);
@@ -169,6 +171,19 @@ const Form = () => {
                             {errors.email && (
                                 <span className="text-color-5 text-sm">Don't forget to write your email.</span>
                             )}
+                        </div>
+                        <div className="mb-4">
+                            <label htmlFor="phone" className="block mb-1">
+                                Phone Number
+                            </label>
+                            <input
+                                id="phone"
+                                type="tel"
+                                className="w-full p-2 border border-gray-300 rounded bg-n-7"
+                                placeholder="+1 555 555 5555"
+                                value={form.phone}
+                                onChange={handleChange}
+                            />
                         </div>
                         <div className="mb-4">
                             <label htmlFor="message" className="block mb-1">

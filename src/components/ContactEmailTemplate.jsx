@@ -1,4 +1,4 @@
-export default function ContactEmailTemplate({ name, email, company, message }) {
+export default function ContactEmailTemplate({ name, email, company, message, phone }) {
     const year = new Date().getFullYear();
     const styles = {
         contentContainer: {
@@ -172,21 +172,46 @@ export default function ContactEmailTemplate({ name, email, company, message }) 
                             lineHeight: "1.5",
                         }}
                     >
-                        <div style={{ marginBottom: "12px" }}>
-                            <strong style={{ display: "inline-block", width: "100px", color: "#555" }}>Name:</strong>
-                            <span>{name}</span>
-                        </div>
-                        <div style={{ marginBottom: "12px" }}>
-                            <strong style={{ display: "inline-block", width: "100px", color: "#555" }}>Company:</strong>
-                            <span>{company}</span>
-                        </div>
-                        <div style={{ marginBottom: "12px" }}>
-                            <strong style={{ display: "inline-block", width: "100px", color: "#555" }}>Email:</strong>
-                            <span>{email}</span>
-                        </div>
-                        <div style={{ marginBottom: "12px" }}>
-                            <strong style={{ display: "inline-block", width: "100px", color: "#555" }}>Message:</strong>
-                            <span style={{ whiteSpace: "pre-wrap" }}>{message}</span>
+                        <div
+                            style={{
+                                marginTop: "1.5em",
+                                marginBottom: "1.5em",
+                                fontFamily: "'Geist', sans-serif",
+                                color: "#333",
+                                fontSize: "16px",
+                                lineHeight: "1.5",
+                            }}
+                        >
+                            <div style={{ marginBottom: "12px" }}>
+                                <strong style={{ display: "inline-block", width: "100px", color: "#555" }}>
+                                    Name:
+                                </strong>
+                                <span>{name}</span>
+                            </div>
+                            <div style={{ marginBottom: "12px" }}>
+                                <strong style={{ display: "inline-block", width: "100px", color: "#555" }}>
+                                    Company:
+                                </strong>
+                                <span>{company}</span>
+                            </div>
+                            <div style={{ marginBottom: "12px" }}>
+                                <strong style={{ display: "inline-block", width: "100px", color: "#555" }}>
+                                    Email:
+                                </strong>
+                                <span>{email}</span>
+                            </div>
+                            <div style={{ marginBottom: "12px" }}>
+                                <strong style={{ display: "inline-block", width: "100px", color: "#555" }}>
+                                    Phone:
+                                </strong>
+                                <span style={{ whiteSpace: "pre-wrap" }}>{phone}</span>
+                            </div>
+                            <div style={{ marginBottom: "12px" }}>
+                                <strong style={{ display: "inline-block", width: "100px", color: "#555" }}>
+                                    Message:
+                                </strong>
+                                <span style={{ whiteSpace: "pre-wrap" }}>{message}</span>
+                            </div>
                         </div>
                     </div>
 
