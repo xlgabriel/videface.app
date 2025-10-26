@@ -26,9 +26,18 @@ const Form = () => {
         email: false,
     });
 
-    const updatedMessage = `Number of Cars: ${form.cars}. Phone: ${form.phone}. Message: ${form.message}`;
+    // ✅ En lugar de concatenar todo en un solo string,
+    // pasamos todos los valores individualmente al template
+    const emailContact = ReactDOMServer.renderToString(
+        <ContactEmailTemplate
+            name={form.name}
+            email={form.email}
+            company={form.company}
+            phone={form.phone}
+            message={`Number of Cars: ${form.cars}\n\n${form.message}`}
+        />
+    );
 
-    const emailContact = ReactDOMServer.renderToString(<ContactEmailTemplate message={updatedMessage} />);
     const emailConfig = {
         subject: "Thank you for contacting VideFace!",
         from: "VideFace",
