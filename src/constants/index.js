@@ -87,19 +87,9 @@ export const companyLogos = [
     companyLogo7,
 ];
 
-export const brainwaveServices = [
-    "Location is not a problem",
-    "24/7 assistance gets easier",
-    "Absolute game changer",
-];
+export const brainwaveServices = ["Location is not a problem", "24/7 assistance gets easier", "Absolute game changer"];
 
-export const brainwaveServicesIcons = [
-    recording03,
-    recording01,
-    disc02,
-    chromecast,
-    sliders04,
-];
+export const brainwaveServicesIcons = [recording03, recording01, disc02, chromecast, sliders04];
 
 export const roadmap = [
     {
@@ -225,21 +215,20 @@ export const pricing = [
         price2: "3 Kiosks $849",
         price3: "Extra: $149 each",
         features: [
-            "Every kiosk includes one user (agent, admin or both)",
-            "For each extra user you will pay $10 more per month",
-            "Initial fee $499 per office + extra costs (if needed)",
+            "Live Translation, Subtitles and Recording included",
+            "Document, signature and rating features included",
+            "Assistance to set up your kiosks and agents",
         ],
     },
     {
         id: "3",
         title: "SmartLocker + KeyDrop",
-        description:
-            "Give and receive the keys smoothly without the need of agents in the office.",
+        description: "Give and receive the keys smoothly without the need of agents in the office.",
         price1: "200 Cars $249",
         price2: "300 Cars $299",
         price3: "Every 100+ for $50",
         features: [
-            "No initial fee for this service",
+            "Record of all key movements",
             "Real-time key delivery for clients",
             "Easy key drop off by carwasher",
         ],
@@ -247,29 +236,27 @@ export const pricing = [
     {
         id: "2",
         title: "VideFace Cars",
-        description:
-            "Manage every car easily. Avoid losing chargebacks with the car inspection and walk around.",
+        description: "Manage every car easily. Avoid losing chargebacks with the car inspection and walk around.",
         price1: "200 Cars $249",
         price2: "300 Cars $299",
         price3: "Every 100+ for $50",
         features: [
             "Full control of your cars, damages, photos and more",
-            "Car Inspection Service included in this plan",
-            "One global initial fee of $499 for all your cars",
+            "Car Inspection, Pickup and Return in real time",
+            "No more staff needed, no more misunderstandings",
         ],
     },
     {
         id: "1",
         title: "Full VideFace",
-        description:
-            "Fully virtualize your office by using all our services. Unlock the full potential of VideFace",
+        description: "Fully virtualize your office by using all our services. Unlock the full potential of VideFace",
         price1: "Previous prices",
         price2: "Get new features",
         price3: "No car's initial fee",
         features: [
             "Get first the new features we constantly add to our software",
             "It's easier to manage everything in one place. Definitely worth it!",
-            "Priority support to solve issues quickly",
+            "Priority support and assistance for any needs.",
         ],
     },
 ];
