@@ -77,7 +77,6 @@ const Hero = () => {
                                 <LazyLoad>
                                     <div className={`absolute inset-2 border z-1`}>
                                         <ReactPlayer
-                                            //TODO: replace with actual video
                                             url={"https://www.youtube.com/watch?v=4D7BTr77k1Y"}
                                             width="100%"
                                             height="100%"
