@@ -39,13 +39,16 @@ const Contact = () => {
     const emailConfig = {
         subject: "Thank you for contacting VideFace!",
         from: "VideFace",
-        receiverEmails: [
-            "videfaceapp@gmail.com",
-            "ariel@videface.com",
-            "nathalia.benitez@videface.app",
-            form.email, // el cliente que escribió
-        ],
+        receiverEmail1: "videfaceapp@gmail.com",
+        receiverEmail2: form.email,
     };
+
+    //receiverEmails: [
+    //        "videfaceapp@gmail.com",
+    //        "ariel@videface.com",
+    //        "nathalia.benitez@videface.app",
+    //        form.email, // el cliente que escribió
+    //    ],
 
     const handleChange = (e) => {
         const { id, value } = e.target;

@@ -37,9 +37,7 @@ const Hero = () => {
         >
             <div className="container relative" ref={parallaxRef}>
                 <div className="relative z-1 max-w-[62rem] mx-auto text-center mb-[3.875rem] md:mb-20 lg:mb-[6.25rem]">
-                    <h1 className="h2 mb-2">
-                        Explore the Revolution of Virtual Assistance: {` `}
-                    </h1>
+                    <h1 className="h2 mb-2">Explore the Revolution of Virtual Assistance: {` `}</h1>
                     <span className="inline-block relative h1 mb-12">
                         <span
                             style={{
@@ -61,10 +59,7 @@ const Hero = () => {
                     </span>
                     <p className="body-1 max-w-3xl mx-auto mb-6 text-n-2 lg:mb-8">
                         Seamless experience that gives all the advantages{" "}
-                        <strong>
-                            of remote assistance, vehicle inspections, keys
-                            management and more.
-                        </strong>
+                        <strong>of remote assistance, vehicle inspections, keys management and more.</strong>
                     </p>
                     <Button href="#pricing" white>
                         Get started
@@ -77,17 +72,13 @@ const Hero = () => {
 
                             <div className="aspect-[33/40] rounded-b-[0.9rem] overflow-hidden md:aspect-[688/490] lg:aspect-[1024/490]">
                                 <div className="absolute inset-0 flex items-center justify-center">
-                                    <p className="text-black text-4xl">
-                                        Welcome.
-                                    </p>
+                                    <p className="text-black text-4xl">Welcome.</p>
                                 </div>
                                 <LazyLoad>
-                                    <div
-                                        className={`absolute inset-2 border z-1`}
-                                    >
+                                    <div className={`absolute inset-2 border z-1`}>
                                         <ReactPlayer
                                             //TODO: replace with actual video
-                                            url={"https://youtu.be/LMfssEIq6dE"}
+                                            url={"https://www.youtube.com/watch?v=4D7BTr77k1Y"}
                                             width="100%"
                                             height="100%"
                                             controls={true}
@@ -100,9 +91,7 @@ const Hero = () => {
                                 {showGenerating && (
                                     <Generating
                                         className={`z-1 absolute left-4 right-4 bottom-5 md:left-1/2 md:right-auto md:bottom-8 md:w-[31rem] md:-translate-x-1/2 transition-opacity ${
-                                            isPlaying
-                                                ? "opacity-0"
-                                                : "opacity-100"
+                                            isPlaying ? "opacity-0" : "opacity-100"
                                         }`}
                                     />
                                 )}
@@ -113,21 +102,14 @@ const Hero = () => {
                                 >
                                     {heroIcons.map((icon, index) => (
                                         <li className="p-5" key={index}>
-                                            <img
-                                                src={icon}
-                                                width={24}
-                                                height={25}
-                                                alt={icon}
-                                            />
+                                            <img src={icon} width={24} height={25} alt={icon} />
                                         </li>
                                     ))}
                                 </ul>
 
                                 <Notification
                                     className={`z-1 hidden absolute -right-[5.5rem] bottom-[11rem] w-[18rem] xl:flex transition-opacity ${
-                                        isPlaying
-                                            ? "opacity-0 z-0"
-                                            : "opacity-100 z-1"
+                                        isPlaying ? "opacity-0 z-0" : "opacity-100 z-1"
                                     }`}
                                     title="How can I help you?"
                                 />
@@ -137,13 +119,7 @@ const Hero = () => {
                         <Gradient />
                     </div>
                     <div className="absolute -top-[54%] left-1/2 w-[234%] -translate-x-1/2 md:-top-[46%] md:w-[138%] lg:-top-[104%] opacity-20">
-                        <img
-                            src={gradient}
-                            className="w-full"
-                            width={1440}
-                            height={1800}
-                            alt="hero"
-                        />
+                        <img src={gradient} className="w-full" width={1440} height={1800} alt="hero" />
                     </div>
 
                     <BackgroundCircles />
