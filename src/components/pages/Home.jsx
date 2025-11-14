@@ -7,12 +7,14 @@ import Hero from "../Hero";
 import Pricing from "../Pricing";
 import Contact from "../Contact";
 import Services from "../Services";
+import Announcement from "../Announcement";
 
 export default function Home() {
     return (
         <>
             <div className="pt-[4.75rem] lg:pt-[5.25rem] overflow-hidden">
                 <Header />
+                <Announcement />
                 <Hero />
                 <Benefits />
                 <Collaboration />
