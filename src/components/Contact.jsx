@@ -36,16 +36,23 @@ const Contact = () => {
         />
     );
 
+    //const emailConfig = {
+    //    subject: "Thank you for contacting VideFace!",
+    //    from: "VideFace",
+    //    receiverEmails: [
+    //        "videfaceapp@gmail.com",
+    //        "ariel@videface.com",
+    //        "nathalia.benitez@videface.app",
+    //        form.email, // el cliente que escribió
+    //    ],
+    //
+    //};
+
     const emailConfig = {
         subject: "Thank you for contacting VideFace!",
         from: "VideFace",
-        receiverEmails: [
-            "videfaceapp@gmail.com",
-            "ariel@videface.com",
-            "nathalia.benitez@videface.app",
-            form.email, // el cliente que escribió
-        ],
-
+        receiverEmail1: "videfaceapp@gmail.com",
+        receiverEmail2: form.email,
     };
 
     const handleChange = (e) => {
@@ -134,8 +141,9 @@ const Contact = () => {
                             <input
                                 id="name"
                                 type="text"
-                                className={`w-full p-2 border ${errors.name ? "border-n-6" : "border-gray-300"
-                                    } rounded bg-n-7`}
+                                className={`w-full p-2 border ${
+                                    errors.name ? "border-n-6" : "border-gray-300"
+                                } rounded bg-n-7`}
                                 placeholder="Name"
                                 value={form.name}
                                 onChange={handleChange}
@@ -149,8 +157,9 @@ const Contact = () => {
                             <input
                                 id="company"
                                 type="text"
-                                className={`w-full p-2 border ${errors.company ? "border-n-6" : "border-gray-300"
-                                    } rounded bg-n-7`}
+                                className={`w-full p-2 border ${
+                                    errors.company ? "border-n-6" : "border-gray-300"
+                                } rounded bg-n-7`}
                                 placeholder="Company Name"
                                 value={form.company}
                                 onChange={handleChange}
@@ -168,8 +177,9 @@ const Contact = () => {
                             <input
                                 id="email"
                                 type="email"
-                                className={`w-full p-2 border ${errors.email ? "border-n-6" : "border-gray-300"
-                                    } rounded bg-n-7`}
+                                className={`w-full p-2 border ${
+                                    errors.email ? "border-n-6" : "border-gray-300"
+                                } rounded bg-n-7`}
                                 placeholder="Email"
                                 value={form.email}
                                 onChange={handleChange}
@@ -197,8 +207,9 @@ const Contact = () => {
                             </label>
                             <textarea
                                 id="message"
-                                className={`w-full p-2 border ${errors.message ? "border-n-6" : "border-gray-300"
-                                    } rounded bg-n-7 resize-none h-24`}
+                                className={`w-full p-2 border ${
+                                    errors.message ? "border-n-6" : "border-gray-300"
+                                } rounded bg-n-7 resize-none h-24`}
                                 placeholder="Message"
                                 value={form.message}
                                 onChange={handleChange}
@@ -210,8 +221,9 @@ const Contact = () => {
                             )}
                         </div>
                         <Button
-                            className={`w-full mb-6 mt-8 ${emailSent ? "bg-transparent cursor-not-allowed" : "bg-transparent hover:text-n-6"
-                                }`}
+                            className={`w-full mb-6 mt-8 ${
+                                emailSent ? "bg-transparent cursor-not-allowed" : "bg-transparent hover:text-n-6"
+                            }`}
                             disabled={emailSent}
                             onClick={handleSubmit}
                         >
