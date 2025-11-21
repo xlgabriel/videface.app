@@ -34,7 +34,7 @@ export default function Announcement() {
                         <path d="M12 2L1 21h22L12 2zm1 15h-2v-2h2v2zm0-4h-2v-4h2v4z" />
                     </svg>
 
-                    <p className="text-center">Take advantage of our current rates before new year!</p>
+                    <p className="text-center">Our prices will increase starting November 15th 2025.</p>
 
                     <button onClick={() => setOpen(false)} className="ml-3 hover:opacity-70 transition">
                         <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
