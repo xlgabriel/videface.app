@@ -341,6 +341,6 @@ export const socials = [
         id: "4",
         title: "Mail",
         iconUrl: telegram,
-        url: "mailto:contact@videface.app",
+        url: "mailto:contact@videface.com",
     },
 ];

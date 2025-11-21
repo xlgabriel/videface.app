@@ -41,9 +41,20 @@ const Form = () => {
     const emailConfig = {
         subject: "Thank you for contacting VideFace!",
         from: "VideFace",
-        receiverEmail1: "videfaceapp@gmail.com",
-        receiverEmail2: form.email,
+        receiverEmails: [
+            "videfaceapp@gmail.com",
+            "ariel@videface.com",
+            "nathalia.benitez@videface.app",
+            form.email, // el cliente que escribió
+        ],
     };
+
+    //const emailConfig = {
+    //    subject: "Thank you for contacting VideFace!",
+    //    from: "VideFace",
+    //    receiverEmail1: "videfaceapp@gmail.com",
+    //    receiverEmail2: form.email,
+    //};
 
     const handleChange = (e) => {
         const { id, value } = e.target;
@@ -237,8 +248,8 @@ const Form = () => {
                         </Button>
                         <p className="text-sm text-center">
                             You can also email to{" "}
-                            <a href="mailto:contact@videface.app" className="text-blue-500">
-                                contact@videface.app
+                            <a href="mailto:contact@videface.com" className="text-blue-500">
+                                contact@videface.com
                             </a>
                         </p>
                         <p className="text-sm text-center mt-1">
