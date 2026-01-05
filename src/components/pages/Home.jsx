@@ -3,7 +3,8 @@ import Benefits from "../Benefits";
 import Collaboration from "../Collaboration";
 import Footer from "../Footer";
 import Header from "../Header";
-import Hero from "../Hero";
+import Hero from "./homeComponents/Hero";
+import Experiences from "./homeComponents/Experiences";
 import Pricing from "../Pricing";
 import Contact from "../Contact";
 import Services from "../Services";
@@ -16,9 +17,10 @@ export default function Home() {
                 <Header />
                 <Announcement />
                 <Hero />
+                <Experiences />
+                <Services />
                 <Benefits />
                 <Collaboration />
-                <Services />
                 <Pricing />
                 <div id="contact">
                     <Contact />

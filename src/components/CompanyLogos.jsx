@@ -44,10 +44,10 @@ const CompanyLogos = ({ className }) => {
     }, [logoWidth]);
 
     return (
-        <div className={`${className} overflow-hidden relative`}>
-            <h5 className="tagline mb-4 text-center text-n-6 font-bold text-lg">
+        <div className={`${className} overflow-hidden relative bg-white rounded-3xl shadow-lg shadow-blue-400`}>
+{/*             <h5 className="tagline mb-4 text-center text-n-6 font-bold text-lg">
                 Since 2020, we are working together with some affiliates of brands like Zezgo, Economy and much more!
-            </h5>
+            </h5> */}
             <div
                 className="flex space-x-2 items-center overflow-hidden"
                 ref={carouselRef}
@@ -62,7 +62,7 @@ const CompanyLogos = ({ className }) => {
                     </div>
                 ))}
             </div>
-            <h5 className="tagline mb-4 mt-4 text-center text-n-1 font-bold">Your company soon.</h5>
+            {/* <h5 className="tagline mb-4 mt-4 text-center text-n-1 font-bold">Your company soon.</h5> */}
         </div>
     );
 };

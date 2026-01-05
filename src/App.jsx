@@ -4,18 +4,22 @@ import Products from "./components/pages/Products";
 import PricingPage from "./components/pages/Pricing";
 import DocumentDownload from "./components/DocumentDownload";
 import Form from "./components/Form";
+import DottedBackground from "./components/DottedBackground";
 
 const App = () => {
     return (
-        <div className=" h-[100dvh] w-[100vw] font-primary bg-pageMainBackground overflow-x-hidden">
-            <Routes>
-                <Route path="/*" element={<Home />} />
-                <Route path="/products" element={<Products />}></Route>
-                <Route path="/pricing" element={<PricingPage />}></Route>
-                <Route path="/kiosk" element={<DocumentDownload />}></Route>
-                <Route path="/form" element={<Form />}></Route>
-            </Routes>
-        </div>
+        <>
+            <DottedBackground spacing={30} size={0.7} opacity={0.18} color="0,0,0" speed={1} />
+            <div className="font-primary bg-transparent overflow-x-hidden">
+                <Routes>
+                    <Route path="/*" element={<Home />} />
+                    <Route path="/products" element={<Products />}></Route>
+                    <Route path="/pricing" element={<PricingPage />}></Route>
+                    <Route path="/kiosk" element={<DocumentDownload />}></Route>
+                    <Route path="/form" element={<Form />}></Route>
+                </Routes>
+            </div>
+        </>
     );
 };
 
