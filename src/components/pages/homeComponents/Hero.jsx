@@ -18,7 +18,7 @@ const Hero = () => {
                             href="#demo"
                             color="bg-[#0A6CFF]"
                             textColor="text-white"
-                            size="md"
+                            size="lg"
                             className="shadow-lg"
                         >
                             REQUEST A DEMO

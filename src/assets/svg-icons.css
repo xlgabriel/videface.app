@@ -1,0 +1,50 @@
+.iconBase {
+    -webkit-mask-image: var(--svg);
+    mask-image: var(--svg);
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+    @apply size-[32px] block bg-current;
+}
+
+.icon-acoustic-cabin {
+    --svg: url("../assets/svg/Acoustic-cabin.svg");
+    @apply iconBase;
+}
+.icon-agent-support {
+    --svg: url("../assets/svg/Agent-support.svg");
+    @apply iconBase;
+}
+.icon-car-system {
+    --svg: url("../assets/svg/Car-system.svg");
+    @apply iconBase;
+}
+.icon-key {
+    --svg: url("../assets/svg/Key.svg");
+    @apply iconBase;
+}
+.icon-kiosk {
+    --svg: url("../assets/svg/Kiosk.svg");
+    @apply iconBase;
+}
+.icon-locker-key {
+    --svg: url("../assets/svg/Locker-key.svg");
+    @apply iconBase;
+}
+.icon-productivity {
+    --svg: url("../assets/svg/productivity.svg");
+    @apply iconBase;
+}
+.icon-reduce {
+    --svg: url("../assets/svg/reduce.svg");
+    @apply iconBase;
+}
+.icon-translation {
+    --svg: url("../assets/svg/translation.svg");
+    @apply iconBase;
+}
+.icon-virtual-assistants {
+    --svg: url("../assets/svg/Virtual-assistants.svg");
+    @apply iconBase;
+}
