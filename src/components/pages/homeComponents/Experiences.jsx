@@ -22,12 +22,11 @@ const Experiences = () => {
     <section className="relative w-full overflow-hidden pb-20 pt-52">
       {/* Fondo: rectángulo con arco redondeado arriba */}
       <div
-        className="pointer-events-none absolute left-0 top-0 h-full w-[100vw] shadow-2xl"
+        className="pointer-events-none absolute left-0 top-0 h-full w-[100vw]"
         style={{
           background: "linear-gradient(180deg, #0A6CFF 0%, #064199 100%)",
           borderTopLeftRadius: "50% 800px",
           borderTopRightRadius: "50% 800px",
-          boxShadow: "0 16px 64px 0 rgba(10, 108, 255, 0.25)",
         }}
       />
 
