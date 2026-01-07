@@ -1,3 +1,4 @@
+
 .iconBase {
     -webkit-mask-image: var(--svg);
     mask-image: var(--svg);
@@ -48,3 +49,38 @@
     --svg: url("../assets/svg/Virtual-assistants.svg");
     @apply iconBase;
 }
+
+.icon-meda {
+    --svg: url("../assets/svg/meda.svg");
+    @apply iconBase;
+}
+.icon-verified {
+    --svg: url("../assets/svg/verified.svg");
+    @apply iconBase;
+}
+
+.icon-user {
+    --svg: url("../assets/svg/user.svg");
+    @apply iconBase;
+}
+
+.icon-email {
+    --svg: url("../assets/svg/email-account.svg");
+    @apply iconBase;
+}
+
+.icon-linkedin {
+    --svg: url("../assets/svg/linkedin.svg");
+    @apply iconBase;
+}
+
+.icon-youtube {
+    --svg: url("../assets/svg/play.svg");
+    @apply iconBase;
+}
+
+.icon-instagram {
+    --svg: url("../assets/svg/camera.svg");
+    @apply iconBase;
+}
+

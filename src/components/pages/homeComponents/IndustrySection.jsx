@@ -34,7 +34,7 @@ export default function IndustrySection() {
                     </span>
                 </h2>
 
-                <p className="mt-4 text-center text-lg text-n-1/70">
+                <p className="mt-4 text-center text-2xl text-n-1/70">
                     Made to fit your team &amp; industry
                 </p>
             </div>

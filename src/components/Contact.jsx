@@ -1,11 +1,9 @@
 import { useRef, useState } from "react";
-import Button from "./Button";
-import Heading from "./Heading";
 import Section from "./Section";
-import { gradient } from "../assets";
 import { BackgroundCircles } from "./design/Hero";
 import ReactDOMServer from "react-dom/server";
 import ContactEmailTemplate from "./ContactEmailTemplate";
+import Footer from "./Footer";
 
 const Contact = () => {
     const formRef = useRef();
@@ -14,7 +12,8 @@ const Contact = () => {
         company: "",
         email: "",
         message: "",
-        phone: "+1",
+        phoneCountry: "+1",
+        phoneNumber: "",
     });
 
     const [loading, setLoading] = useState(false);
@@ -26,13 +25,15 @@ const Contact = () => {
         message: false,
     });
 
+    const phoneFull = `${form.phoneCountry}${form.phoneNumber?.trim() ? ` ${form.phoneNumber.trim()}` : ""}`;
+
     const emailContact = ReactDOMServer.renderToString(
         <ContactEmailTemplate
             message={form.message}
             name={form.name}
             email={form.email}
             company={form.company}
-            phone={form.phone}
+            phone={phoneFull}
         />
     );
 
@@ -88,7 +89,7 @@ const Contact = () => {
         const data = {
             name: form.name,
             email: form.email,
-            phone: form.phone,
+            phone: phoneFull,
             companyId: "VideFace",
             office: "Webpage",
             emailConfig: emailConfig,
@@ -113,7 +114,8 @@ const Contact = () => {
                         company: "",
                         email: "",
                         message: "",
-                        phone: "+1",
+                        phoneCountry: "+1",
+                        phoneNumber: "",
                     });
                 },
                 (error) => {
@@ -125,137 +127,169 @@ const Contact = () => {
             );
     };
 
-    const isMobile = window.innerWidth <= 768;
-
     return (
-        <Section crosses>
-            <div className="flex flex-col justify-center items-center h-screen">
-                <Heading tag="Don't be shy" title="Contact us!" />
-                <div className="bg-n-14 border border-n-6 rounded-[2rem] p-8 rounded-lg shadow-md max-w-md w-full">
-                    <form ref={formRef} onSubmit={handleSubmit}>
-                        <div className="mb-4">
-                            <label htmlFor="name" className="block mb-1">
-                                Your Name
-                            </label>
-                            <input
-                                id="name"
-                                type="text"
-                                className={`w-full p-2 border ${
-                                    errors.name ? "border-n-6" : "border-gray-300"
-                                } rounded bg-n-7`}
-                                placeholder="Name"
-                                value={form.name}
-                                onChange={handleChange}
-                            />
-                            {errors.name && <span className="text-color-5 text-sm">Please, write your name here.</span>}
-                        </div>
-                        <div className="mb-4">
-                            <label htmlFor="company" className="block mb-1">
-                                Company Name
-                            </label>
-                            <input
-                                id="company"
-                                type="text"
-                                className={`w-full p-2 border ${
-                                    errors.company ? "border-n-6" : "border-gray-300"
-                                } rounded bg-n-7`}
-                                placeholder="Company Name"
-                                value={form.company}
-                                onChange={handleChange}
-                            />
-                            {errors.company && (
-                                <span className="text-color-5 text-sm">
-                                    Please, write your company&#39;s name here.
-                                </span>
-                            )}
-                        </div>
-                        <div className="mb-4">
-                            <label htmlFor="email" className="block mb-1">
-                                Your Email
-                            </label>
-                            <input
-                                id="email"
-                                type="email"
-                                className={`w-full p-2 border ${
-                                    errors.email ? "border-n-6" : "border-gray-300"
-                                } rounded bg-n-7`}
-                                placeholder="Email"
-                                value={form.email}
-                                onChange={handleChange}
-                            />
-                            {errors.email && (
-                                <span className="text-color-5 text-sm">Don&#39;t forget to write your email.</span>
-                            )}
-                        </div>
-                        <div className="mb-4">
-                            <label htmlFor="phone" className="block mb-1">
-                                Phone Number
-                            </label>
-                            <input
-                                id="phone"
-                                type="tel"
-                                className="w-full p-2 border border-gray-300 rounded bg-n-7"
-                                placeholder="+1 555 555 5555"
-                                value={form.phone}
-                                onChange={handleChange}
-                            />
-                        </div>
-                        <div className="mb-4">
-                            <label htmlFor="message" className="block mb-1">
-                                Tell us about your wants and needs
-                            </label>
-                            <textarea
-                                id="message"
-                                className={`w-full p-2 border ${
-                                    errors.message ? "border-n-6" : "border-gray-300"
-                                } rounded bg-n-7 resize-none h-24`}
-                                placeholder="Message"
-                                value={form.message}
-                                onChange={handleChange}
-                            />
-                            {errors.message && (
-                                <span className="text-color-5 text-sm">
-                                    The message can&#39;t be empty. Please, say anything!
-                                </span>
-                            )}
-                        </div>
-                        <Button
-                            className={`w-full mb-6 mt-8 ${
-                                emailSent ? "bg-transparent cursor-not-allowed" : "bg-transparent hover:text-n-6"
-                            }`}
-                            disabled={emailSent}
-                            onClick={handleSubmit}
-                        >
-                            {loading ? "Sending..." : emailSent ? "Email sent successfully!" : "Send"}
-                        </Button>
-                        <p className="text-sm text-center">
-                            You can also email to{" "}
-                            <a href="mailto:contact@videface.com" className="text-blue-500">
-                                contact@videface.com
-                            </a>
-                        </p>
-                        <p className="text-sm text-center mt-1">
-                            Or give us a call:{" "}
-                            <a href="tel:+14075586889" className="text-blue-500">
-                                +1 407 558 6889
-                            </a>
-                        </p>
-                    </form>
-                    <div
-                        className="absolute -top-[54%] left-1/2 w-[234%] -translate-x-1/2 md:-top-[50%] md:w-[95%] lg:-top-[12%] opacity-25 "
-                        style={{ zIndex: -1 }}
-                    >
-                        <img
-                            src={gradient}
-                            className="w-full"
-                            width={1440}
-                            height={1800}
-                            alt="contact gradient background"
-                        />
-                    </div>
+        <Section customPaddings="py-0">
+            <div className="relative min-h-screen overflow-hidden">
+                <div
+                    className="absolute inset-0"
+                    style={{
+                        background: "linear-gradient(180deg, #0A6CFF 0%, #064199 100%)",
+                    }}
+                />
+
+                <div className="absolute inset-0 pointer-events-none opacity-50">
+                    <BackgroundCircles className="absolute left-1/2 top-1/2 w-[78rem] aspect-square -translate-x-1/2 -translate-y-1/2" />
                 </div>
-                <div className={`relative ${isMobile ? "-top-[26%]" : "-top-[52%]"}`} style={{ zIndex: -1 }}>
-                    <BackgroundCircles />
+
+                <div className="relative z-10 flex min-h-screen flex-col">
+                    <div className="flex flex-1 flex-col items-center justify-center px-4 pt-44 pb-14">
+                        <h2 className="text-center text-white font-semibold text-4xl md:text-6xl tracking-tight mb-10">
+                            Contact us!
+                        </h2>
+
+                        <div className="w-full max-w-[440px] rounded-2xl border border-white/20 bg-white/15 shadow-black/30 shadow-xl">
+                            <div className="p-7 md:p-8">
+                                <form ref={formRef} onSubmit={handleSubmit}>
+                                    <div className="mb-5">
+                                        <label htmlFor="name" className="block text-white/90 font-semibold text-sm mb-2">
+                                            Your Name
+                                        </label>
+                                        <input
+                                            id="name"
+                                            type="text"
+                                            placeholder="Name"
+                                            className={`w-full h-10 rounded-md bg-white px-3 text-sm text-slate-900 outline-none ${
+                                                errors.name
+                                                    ? "ring-2 ring-red-200"
+                                                    : "ring-1 ring-white/40 focus:ring-2 focus:ring-white/70"
+                                            }`}
+                                            value={form.name}
+                                            onChange={handleChange}
+                                        />
+                                        {errors.name && (
+                                            <span className="mt-2 block text-xs text-red-100">
+                                                Please, write your name here.
+                                            </span>
+                                        )}
+                                    </div>
+
+                                    <div className="mb-5">
+                                        <label htmlFor="company" className="block text-white/90 font-semibold text-sm mb-2">
+                                            Company Name
+                                        </label>
+                                        <input
+                                            id="company"
+                                            type="text"
+                                            placeholder="Company Name"
+                                            className={`w-full h-10 rounded-md bg-white px-3 text-sm text-slate-900 outline-none ${
+                                                errors.company
+                                                    ? "ring-2 ring-red-200"
+                                                    : "ring-1 ring-white/40 focus:ring-2 focus:ring-white/70"
+                                            }`}
+                                            value={form.company}
+                                            onChange={handleChange}
+                                        />
+                                        {errors.company && (
+                                            <span className="mt-2 block text-xs text-red-100">
+                                                Please, write your company&#39;s name here.
+                                            </span>
+                                        )}
+                                    </div>
+
+                                    <div className="mb-5">
+                                        <label htmlFor="email" className="block text-white/90 font-semibold text-sm mb-2">
+                                            Your Email
+                                        </label>
+                                        <input
+                                            id="email"
+                                            type="email"
+                                            placeholder="Email"
+                                            className={`w-full h-10 rounded-md bg-white px-3 text-sm text-slate-900 outline-none ${
+                                                errors.email
+                                                    ? "ring-2 ring-red-200"
+                                                    : "ring-1 ring-white/40 focus:ring-2 focus:ring-white/70"
+                                            }`}
+                                            value={form.email}
+                                            onChange={handleChange}
+                                        />
+                                        {errors.email && (
+                                            <span className="mt-2 block text-xs text-red-100">
+                                                Don&#39;t forget to write your email.
+                                            </span>
+                                        )}
+                                    </div>
+
+                                    <div className="mb-5">
+                                        <label htmlFor="phoneNumber" className="block text-white/90 font-semibold text-sm mb-2">
+                                            Phone Number
+                                        </label>
+                                        <div className="flex gap-3">
+                                            <select
+                                                id="phoneCountry"
+                                                className="h-10 w-[132px] rounded-md bg-white px-2 text-sm text-slate-900 outline-none ring-1 ring-white/40 focus:ring-2 focus:ring-white/70"
+                                                value={form.phoneCountry}
+                                                onChange={handleChange}
+                                                aria-label="Country code"
+                                            >
+                                                <option value="+1">🇺🇸 +1</option>
+                                                <option value="+52">🇲🇽 +52</option>
+                                                <option value="+57">🇨🇴 +57</option>
+                                                <option value="+34">🇪🇸 +34</option>
+                                                <option value="+54">🇦🇷 +54</option>
+                                                <option value="+56">🇨🇱 +56</option>
+                                            </select>
+                                            <input
+                                                id="phoneNumber"
+                                                type="tel"
+                                                className="w-full h-10 rounded-md bg-white px-3 text-sm text-slate-900 outline-none ring-1 ring-white/40 focus:ring-2 focus:ring-white/70"
+                                                placeholder="Phone number"
+                                                value={form.phoneNumber}
+                                                onChange={handleChange}
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div className="mb-6">
+                                        <label htmlFor="message" className="block text-white/90 font-semibold text-sm mb-2">
+                                            Tell us about your wants and needs
+                                        </label>
+                                        <textarea
+                                            id="message"
+                                            placeholder="Message"
+                                            className={`w-full h-28 rounded-md bg-white px-3 py-2 text-sm text-slate-900 outline-none resize-none ${
+                                                errors.message
+                                                    ? "ring-2 ring-red-200"
+                                                    : "ring-1 ring-white/40 focus:ring-2 focus:ring-white/70"
+                                            }`}
+                                            value={form.message}
+                                            onChange={handleChange}
+                                        />
+                                        {errors.message && (
+                                            <span className="mt-2 block text-xs text-red-100">
+                                                The message can&#39;t be empty. Please, say anything!
+                                            </span>
+                                        )}
+                                    </div>
+
+                                    <div className="flex justify-center">
+                                        <button
+                                            type="submit"
+                                            disabled={emailSent}
+                                            className={`h-10 w-36 rounded-md border border-white/40 text-white font-semibold tracking-wide uppercase text-sm transition-colors ${
+                                                emailSent
+                                                    ? "opacity-60 cursor-not-allowed"
+                                                    : "hover:bg-white/10"
+                                            }`}
+                                        >
+                                            {loading ? "Sending..." : emailSent ? "Sent" : "Send"}
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <Footer />
                 </div>
             </div>
         </Section>

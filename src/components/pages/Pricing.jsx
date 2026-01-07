@@ -2,7 +2,7 @@ import ButtonGradient from "../../assets/svg/ButtonGradient";
 import Contact from "../Contact";
 import Footer from "../Footer";
 import Header from "../Header";
-import Pricing from "../Pricing";
+import Pricing from "./homeComponents/Pricing";
 import PricingContainer from "../pricing/PricingContainer";
 
 export default function PricingPage() {

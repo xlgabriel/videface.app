@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import { BackgroundCircles } from "../../design/Hero";
 import ExperienceCard from "./ExperienceCard";
 
@@ -18,6 +19,47 @@ const EXPERIENCES = [
 ];
 
 const Experiences = () => {
+  const titleRef = useRef(null);
+  const [glowAmount, setGlowAmount] = useState(0);
+
+  useEffect(() => {
+    const el = titleRef.current;
+    if (!el) return;
+
+    let rafId = 0;
+
+    const clamp01 = (v) => Math.max(0, Math.min(1, v));
+    const smoothstep = (t) => t * t * (3 - 2 * t);
+
+    const update = () => {
+      rafId = 0;
+      const rect = el.getBoundingClientRect();
+      const viewportCenter = window.innerHeight / 2;
+      const titleCenter = rect.top + rect.height / 2;
+      const distance = Math.abs(titleCenter - viewportCenter);
+
+      // Near = strongly glowing, Far = fully gradient
+      const near = 130;
+      const far = 260;
+      const t = clamp01(1 - (distance - near) / (far - near));
+      setGlowAmount(smoothstep(t));
+    };
+
+    const onScrollOrResize = () => {
+      if (rafId) return;
+      rafId = window.requestAnimationFrame(update);
+    };
+
+    update();
+    window.addEventListener("scroll", onScrollOrResize, { passive: true });
+    window.addEventListener("resize", onScrollOrResize);
+    return () => {
+      window.removeEventListener("scroll", onScrollOrResize);
+      window.removeEventListener("resize", onScrollOrResize);
+      rafId && window.cancelAnimationFrame(rafId);
+    };
+  }, []);
+
   return (
     <>
       <section className="relative w-full overflow-hidden pb-20 pt-52">
@@ -32,7 +74,7 @@ const Experiences = () => {
         />
 
         {/* Partículas centradas */}
-        <div className="pointer-events-none absolute left-1/2 top-[90px] h-[900px] w-[900px] -translate-x-1/2 z-20">
+        <div className="pointer-events-none opacity-50 absolute left-1/2 top-[90px] h-[900px] w-[900px] -translate-x-1/2 z-20">
           <BackgroundCircles
             className="absolute inset-0 rounded-full border border-white/10"
           />
@@ -42,31 +84,44 @@ const Experiences = () => {
 
 
 
-          <h2 className="experience-title text-center text-4xl font-medium leading-tight md:text-5xl">
-            <span
-              className="experience-title__text"
-              style={{
-                background: 'linear-gradient(90deg, #FFFFFF 66%, #007FFF 90%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                color: 'transparent',
-                display: 'inline-block',
-                transition: 'filter 300ms ease, color 300ms ease',
-              }}
-            >
-              Driving Smarter Customer<br />
-              Experiences, <span className="font-bold">Every Day</span>
-            </span>
+          <h2
+            ref={titleRef}
+            className="experience-title text-center text-4xl font-medium leading-tight md:text-5xl"
+          >
+            <span className="relative inline-block">
+              <span
+                aria-hidden
+                style={{
+                  background: "linear-gradient(90deg, #FFFFFF 66%, #007FFF 90%)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  color: "transparent",
+                  display: "inline-block",
+                  opacity: 1 - glowAmount,
+                  transition: "opacity 280ms ease",
+                }}
+              >
+                Driving Smarter Customer<br />
+                Experiences, <span className="font-bold">Every Day</span>
+              </span>
 
-            <style>{`
-              .experience-title:hover .experience-title__text {
-                background: none !important;
-                -webkit-background-clip: initial !important;
-                -webkit-text-fill-color: #fff !important;
-                color: #fff !important;
-                filter: drop-shadow(0 0 18px rgba(255, 255, 255, 0.9)) brightness(1.2);
-              }
-            `}</style>
+              <span
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  color: "#fff",
+                  WebkitTextFillColor: "#fff",
+                  opacity: glowAmount,
+                  transition: "opacity 280ms ease",
+                  filter:
+                    "drop-shadow(0 0 18px rgba(255, 255, 255, 0.9)) brightness(1.15)",
+                  pointerEvents: "none",
+                }}
+              >
+                Driving Smarter Customer<br />
+                Experiences, <span className="font-bold">Every Day</span>
+              </span>
+            </span>
           </h2>
 
           <div className="mt-24 grid w-full max-w-[920px] grid-cols-1 justify-items-center gap-10 sm:grid-cols-2 lg:grid-cols-3">

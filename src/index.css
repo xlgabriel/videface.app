@@ -24,6 +24,40 @@
   }
 }
 
+@keyframes pricingNeonGlow {
+  0%,
+  100% {
+    opacity: 0.7;
+    filter: blur(7px);
+    transform: scale(0.995);
+  }
+  50% {
+    opacity: 0.2;
+    filter: blur(8px);
+    transform: scale(0.99);
+  }
+}
+
+.pricing-neon {
+  position: relative;
+}
+
+.pricing-neon::before {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: 1.25rem;
+  background: linear-gradient(180deg, #1486FF 0%, #0C5099 100%);
+  opacity: 0.5;
+  filter: blur(10px);
+  z-index: -1;
+  animation: pricingNeonGlow 2.6s ease-in-out infinite;  transition: opacity 400ms ease-in-out, filter 400ms ease-in-out;
+}
+
+.pricing-neon:hover::before {
+  opacity: 0.42;
+  filter: blur(10px);}
+
 .rotate-45 {
   @apply rotate-[45deg]
 }
