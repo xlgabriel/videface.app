@@ -94,7 +94,10 @@ import youtube from "./socials/youtube.svg";
 
 import message1 from "./message1.webp";
 
+import logowhite from "./LogoWhite.png";
+
 export {
+    logowhite,
     brainwave,
     check,
     check2,

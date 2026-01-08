@@ -121,3 +121,19 @@
 .-rotate-360 {
   @apply rotate-[-360deg]
 }
+
+@keyframes headerBarDrop {
+  0% {
+    transform: translateX(-50%) translateY(-120%);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+}
+
+.headerbar-enter {
+  will-change: transform;
+  animation: headerBarDrop 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
