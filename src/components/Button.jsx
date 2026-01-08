@@ -26,6 +26,7 @@ const Button = ({
   size = 'md',
   shadow = 'shadow-md',
   rounded = 'rounded-lg',
+  boxShadow,
   ...rest
 }) => {
   const classes = [
@@ -40,10 +41,12 @@ const Button = ({
     color,
     textColor,
     SIZE_MAP[size] || SIZE_MAP.md,
-    'shadow-[0_4px_10px_0_#007FFFcc]', // sombra azul compacta
+    !boxShadow && 'shadow-[0_4px_10px_0_#007FFFcc]', // sombra azul compacta por defecto
     rounded,
     className,
-  ].join(' ');
+  ].filter(Boolean).join(' ');
+
+  const style = boxShadow ? { boxShadow } : undefined;
 
   const content = (
     <span className="relative z-10 w-full text-center">{children}</span>
@@ -52,7 +55,8 @@ const Button = ({
     return (
       <a
         href={href}
-        className={classes + ' hover:bg-blue-400'}
+        className={classes}
+        style={style}
         {...rest}
       >
         {content}
@@ -61,7 +65,8 @@ const Button = ({
   }
   return (
     <button
-      className={classes + ' hover:bg-blue-400'}
+      className={classes}
+      style={style}
       onClick={onClick}
       type="button"
       {...rest}
