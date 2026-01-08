@@ -51,13 +51,20 @@ const Header = () => {
                     style={{ ...headerGlassStyle, animationDelay: '0s' }}
                 >
                     <div className="flex items-center px-5 lg:px-7.5 xl:px-10 max-lg:py-4">
-                        <a className="block w-[12rem]" href="/home/#hero">
+                        <a className="block w-[12rem]" href="/home/#hero"
+                            onMouseEnter={e => {
+                                e.currentTarget.querySelector('img').style.filter = 'drop-shadow(0 0 16px rgba(255,255,255,1))';
+                            }}
+                            onMouseLeave={e => {
+                                e.currentTarget.querySelector('img').style.filter = 'drop-shadow(0 0 4px rgba(255,255,255,0.7))';
+                            }}
+                        >
                             <img
                                 src={brainwave}
                                 width={190}
                                 height={40}
                                 alt="Brainwave"
-                                style={{ filter: "drop-shadow(0 0 4px rgba(255,255,255,0.7))" }}
+                                style={{ filter: "drop-shadow(0 0 4px rgba(255,255,255,0.7))", transition: "filter 0.35s cubic-bezier(0.4,0,0.2,1)" }}
                             />
                         </a>
 
@@ -73,7 +80,7 @@ const Header = () => {
                                         } px-6 py-6 lg:-mr-0.25 lg:font-semibold ${
                                             item.url === location.hash ? "z-2 lg:text-white" : "lg:text-white"
                                         } lg:leading-5 xl:px-12 lowercase`}
-                                        style={{ textTransform: "none" }}
+                                        style={{ textTransform: "none", transition: "color 0.3s cubic-bezier(0.4,0,0.2,1), text-shadow 0.3s cubic-bezier(0.4,0,0.2,1)" }}
                                     >
                                         {item.title}
                                     </a>
@@ -85,7 +92,7 @@ const Header = () => {
                             <a
                                 href="#contact"
                                 className="hidden lg:flex text-md font-bold text-white px-6 py-6 lg:leading-5 hover:text-white lg:hover:text-white hover:[text-shadow:0_0_14px_rgba(255,255,255,0.85)] xl:px-12 transition-colors lowercase"
-                                style={{ textTransform: "none" }}
+                                style={{ textTransform: "none", transition: "color 0.3s cubic-bezier(0.4,0,0.2,1), text-shadow 0.3s cubic-bezier(0.4,0,0.2,1)" }}
                             >
                                 Contact us
                             </a>
@@ -131,7 +138,7 @@ const Header = () => {
                                 className={`block text-md text-white font-medium transition-colors hover:text-white hover:[text-shadow:0_0_14px_rgba(255,255,255,0.85)] px-6 py-4 lowercase ${
                                     item.onlyMobile ? "" : ""
                                 }`}
-                                style={{ textTransform: "none" }}
+                                style={{ textTransform: "none", transition: "color 0.3s cubic-bezier(0.4,0,0.2,1), text-shadow 0.3s cubic-bezier(0.4,0,0.2,1)" }}
                             >
                                 {item.title}
                             </a>
@@ -141,7 +148,7 @@ const Header = () => {
                             href="#contact"
                             onClick={handleClick}
                             className="block text-md text-white font-bold transition-colors hover:text-white hover:[text-shadow:0_0_14px_rgba(255,255,255,0.85)] px-6 py-4"
-                            style={{ textTransform: "none" }}
+                            style={{ textTransform: "none", transition: "color 0.3s cubic-bezier(0.4,0,0.2,1), text-shadow 0.3s cubic-bezier(0.4,0,0.2,1)" }}
                         >
                             Contact us
                         </a>
