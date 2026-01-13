@@ -1,7 +1,7 @@
 import { companyLogos } from "../constants";
 import { useEffect, useRef, useState } from "react";
 
-const CompanyLogos = ({ className }) => {
+const CompanyLogos = ({ className = "" }) => {
     const carouselRef = useRef(null);
     const [logoWidth, setLogoWidth] = useState(270);
 
@@ -49,16 +49,20 @@ const CompanyLogos = ({ className }) => {
                 Since 2020, we are working together with some affiliates of brands like Zezgo, Economy and much more!
             </h5> */}
             <div
-                className="flex space-x-2 items-center overflow-hidden"
+                className="flex space-x-0 sm:space-x-20 items-center overflow-hidden"
                 ref={carouselRef}
                 style={{ scrollBehavior: "smooth", display: "flex", width: "100%" }}
             >
                 {[...companyLogos, ...companyLogos].map((logo, index) => (
                     <div
-                        className="flex-none md:w-1/3 lg:w-1/5 w-1/2 flex justify-center items-center h-[8.5rem]"
+                        className="flex-none md:w-1/3 lg:w-1/5 w-1/2 flex justify-center items-center h-[8rem] sm:h-[10rem]"
                         key={index}
                     >
-                        <img src={logo} width={156} height={32} alt={`Logo ${index}`} />
+                        <img
+                            src={logo}
+                            alt={`Logo ${index}`}
+                            className="h-auto w-[150px] sm:w-[180px] md:w-[190px] lg:w-[200px]"
+                        />
                     </div>
                 ))}
             </div>

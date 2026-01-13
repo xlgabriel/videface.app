@@ -147,7 +147,7 @@ const Contact = () => {
                             Contact us!
                         </h2>
 
-                        <div className="w-full max-w-[440px] rounded-2xl border border-white/20 bg-white/15 shadow-black/30 shadow-xl">
+                        <div className="w-full max-w-[440px] rounded-2xl border border-white/20 bg-blue-200/20  shadow-black/30 shadow-xl">
                             <div className="p-7 md:p-8">
                                 <form ref={formRef} onSubmit={handleSubmit}>
                                     <div className="mb-5">

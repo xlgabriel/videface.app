@@ -95,6 +95,35 @@ import youtube from "./socials/youtube.svg";
 import message1 from "./message1.webp";
 
 import logowhite from "./LogoWhite.png";
+import Economy from "./LogosCompanies/Economy.png";
+import Mex from "./LogosCompanies/Mex.png";
+import Awreck from "./LogosCompanies/Awreck.png";
+import RC from "./LogosCompanies/RC.png";
+import Nextcar from "./LogosCompanies/Nextcar.png";
+import Nu from "./LogosCompanies/Nu.png";
+import Routes from "./LogosCompanies/Routes.png";
+import priceless from "./LogosCompanies/priceless.png";
+import Wheego from "./LogosCompanies/Wheego.png";
+import Flexways from "./LogosCompanies/Flexways.png";
+import Zezgo from "./LogosCompanies/Zezgo.png";
+import Flextogo from "./LogosCompanies/Flextogo.png";
+import Zoom from "./LogosCompanies/Zoom.png";
+import Carwiz from "./LogosCompanies/Carwiz.png";
+import Autounion from "./LogosCompanies/Autounion.png";
+import york from "./LogosCompanies/york.png";
+import ACO from "./LogosCompanies/ACO.png";
+import tht from "./LogosCompanies/tht.png";
+import cargreen from "./LogosCompanies/cargreen.png";
+import Colusa from "./LogosCompanies/Colusa.png";
+import oneswitch from "./LogosCompanies/oneswitch.png";
+import Clubs from "./LogosCompanies/Clubs.png";
+import Nordic from "./LogosCompanies/Nordic.png";
+import amerirent from "./LogosCompanies/amerirent.png";
+import Cafe from "./LogosCompanies/Cafe.png";
+import Tarpon from "./LogosCompanies/4.png";
+import seven24 from "./LogosCompanies/24seven.png";
+import Nola from "./LogosCompanies/Nola.png";
+import Flex from "./LogosCompanies/Flex.png";
 
 export {
     logowhite,
@@ -183,4 +212,34 @@ export {
     lightmode,
     darkmode,
     message1,
+    // LogosCompanies
+    Economy,
+    Mex,
+    Awreck,
+    RC,
+    Nextcar,
+    Nu,
+    Routes,
+    priceless,
+    Wheego,
+    Flexways,
+    Zezgo,
+    Flextogo,
+    Zoom,
+    Carwiz,
+    Autounion,
+    york,
+    ACO,
+    tht,
+    cargreen,
+    Colusa,
+    oneswitch,
+    Clubs,
+    Nordic,
+    amerirent,
+    Cafe,
+    Tarpon,
+    seven24,
+    Nola,
+    Flex,
 };

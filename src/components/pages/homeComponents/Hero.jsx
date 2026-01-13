@@ -9,6 +9,8 @@ import { useEffect, useRef, useState } from "react";
 const Hero = () => {
     const heroRef = useRef(null);
     const [scrollProgress, setScrollProgress] = useState(0);
+    const companyLogosRef = useRef(null);
+    const companyLogosRafRef = useRef(0);
 
     useEffect(() => {
         let rafId = 0;
@@ -41,6 +43,104 @@ const Hero = () => {
             window.removeEventListener("scroll", onScrollOrResize);
             window.removeEventListener("resize", onScrollOrResize);
             if (rafId) window.cancelAnimationFrame(rafId);
+        };
+    }, []);
+
+    useEffect(() => {
+        const el = companyLogosRef.current;
+        if (!el) return;
+
+        const prefersReducedMotion =
+            typeof window !== "undefined" &&
+            window.matchMedia &&
+            window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        const clamp01 = (value) => Math.max(0, Math.min(1, value));
+        const smoothstep = (t) => t * t * (3 - 2 * t);
+
+        // Modern scroll-driven feel (targets)
+        const maxTranslate = 140; // px
+        const minScale = 0.9;
+        const maxRotate = 1.25; // deg
+
+        const current = { opacity: 1, translateY: 0, scale: 1, rotate: 0 };
+        const target = { opacity: 1, translateY: 0, scale: 1, rotate: 0 };
+        let measureRaf = 0;
+        let tickRaf = 0;
+
+        el.style.willChange = "opacity, transform";
+        el.style.transformOrigin = "50% 50%";
+        el.style.transition = "none";
+
+        const apply = () => {
+            const node = companyLogosRef.current;
+            if (!node) return;
+
+            node.style.opacity = String(current.opacity);
+            node.style.transform = `translate3d(0, ${current.translateY}px, 0) scale(${current.scale}) rotate(${current.rotate}deg)`;
+        };
+
+        const tick = () => {
+            tickRaf = 0;
+            const k = 0.14; // smoothing factor (higher = snappier)
+
+            current.opacity += (target.opacity - current.opacity) * k;
+            current.translateY += (target.translateY - current.translateY) * k;
+            current.scale += (target.scale - current.scale) * k;
+            current.rotate += (target.rotate - current.rotate) * k;
+
+            apply();
+
+            const done =
+                Math.abs(target.opacity - current.opacity) < 0.001 &&
+                Math.abs(target.translateY - current.translateY) < 0.05 &&
+                Math.abs(target.scale - current.scale) < 0.001 &&
+                Math.abs(target.rotate - current.rotate) < 0.01;
+
+            if (!done) tickRaf = window.requestAnimationFrame(tick);
+        };
+
+        const updateTarget = () => {
+            const node = companyLogosRef.current;
+            if (!node) return;
+
+            const rect = node.getBoundingClientRect();
+            const vh = window.innerHeight || document.documentElement.clientHeight;
+
+            const elementCenter = rect.top + rect.height / 2;
+            const viewportCenter = vh / 2;
+            const norm = (elementCenter - viewportCenter) / (vh / 2);
+            const absNorm = Math.abs(norm);
+
+            const visibility = smoothstep(clamp01(1 - absNorm));
+
+            target.opacity = 0.12 + 0.88 * visibility;
+            target.scale = minScale + (1 - minScale) * visibility;
+            target.translateY = prefersReducedMotion ? 0 : -norm * maxTranslate * (1 - visibility);
+            target.rotate = prefersReducedMotion ? 0 : norm * maxRotate * (1 - visibility);
+
+            if (!tickRaf) tickRaf = window.requestAnimationFrame(tick);
+        };
+
+        const onScrollOrResize = () => {
+            if (measureRaf) return;
+            measureRaf = window.requestAnimationFrame(() => {
+                measureRaf = 0;
+                updateTarget();
+            });
+        };
+
+        window.addEventListener("scroll", onScrollOrResize, { passive: true });
+        window.addEventListener("resize", onScrollOrResize);
+        updateTarget();
+
+        return () => {
+            window.removeEventListener("scroll", onScrollOrResize);
+            window.removeEventListener("resize", onScrollOrResize);
+            if (measureRaf) window.cancelAnimationFrame(measureRaf);
+            if (tickRaf) window.cancelAnimationFrame(tickRaf);
+            measureRaf = 0;
+            tickRaf = 0;
         };
     }, []);
 
@@ -116,7 +216,7 @@ const Hero = () => {
                         <img
                             src={ImageInterfaz}
                             alt="User"
-                            className="absolute z-10 pointer-events-none hero-gif-enter max-w-[60vw] w-[170px] sm:w-[220px] md:w-[280px] lg:w-[220px] xl:w-[300px] right-30 sm:right-70 md:right-74 lg:right-[240px] xl:right-[370px] top-10 sm:top-20 md:top-20 lg:top-[30px] xl:top-[100px]"
+                            className="absolute z-10 pointer-events-none hero-gif-enter max-w-[60vw] w-[170px] sm:w-[220px] md:w-[280px] lg:w-[250px] xl:w-[320px] right-30 sm:right-70 md:right-74 lg:right-[280px] xl:right-[340px] top-10 sm:top-20 md:top-20 lg:top-[40px] xl:top-[50px]"
                             style={{
                                 background: "transparent",
                                 height: "auto",
@@ -127,7 +227,7 @@ const Hero = () => {
                     </div>
                 </div>
             </div>
-            <div className="container text-center mt-40 mb-4">
+            <div className="container text-center mt-20 sm:mt-40 mb-4">
                 <h2
                     className="font-bold text-3xl md:text-6xl pb-2"
                     style={{
@@ -143,7 +243,13 @@ const Hero = () => {
                 <p className="text-2xl md:text-6xl font-normal text-black mb-6">
                     with Seamless Remote Service
                 </p>
-                <CompanyLogos className="z-10 mt-20" />
+                <div className="z-10 mt-10 sm:mt-20 flex justify-center">
+                    <div className="w-full max-w-[1240px] px-2 sm:px-6">
+                        <div ref={companyLogosRef} className="w-full">
+                            <CompanyLogos className="w-full" />
+                        </div>
+                    </div>
+                </div>
 
             </div>
 

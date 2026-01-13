@@ -310,3 +310,50 @@
     visibility: visible;
   }
 }
+
+@keyframes flagCardIn {
+  0% {
+    opacity: 0;
+    transform: perspective(900px) translateY(52px) rotateZ(-12deg) rotateX(10deg)
+      rotateY(-14deg) scale(0.985);
+  }
+  38% {
+    opacity: 1;
+    transform: perspective(900px) translateY(-10px) rotateZ(6deg) rotateX(-3deg)
+      rotateY(6deg) scale(1.02);
+  }
+  62% {
+    opacity: 1;
+    transform: perspective(900px) translateY(4px) rotateZ(-3.5deg) rotateX(2deg)
+      rotateY(-3deg) scale(1.008);
+  }
+  100% {
+    opacity: 1;
+    transform: perspective(900px) translateY(0) rotateZ(0deg) rotateX(0deg)
+      rotateY(0deg) scale(1);
+  }
+}
+
+.flag-in {
+  opacity: 0;
+  transform: perspective(900px) translateY(52px) rotateZ(-12deg) rotateX(10deg)
+    rotateY(-14deg) scale(0.985);
+  transform-origin: 10% 10%;
+  backface-visibility: hidden;
+  will-change: transform, opacity;
+}
+
+.flag-in--play {
+  animation: flagCardIn 980ms cubic-bezier(0.16, 1, 0.3, 1)
+    var(--flag-delay, 0ms) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flag-in {
+    opacity: 1;
+    transform: none;
+  }
+  .flag-in--play {
+    animation: none;
+  }
+}
