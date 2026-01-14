@@ -79,7 +79,7 @@ function StackCard({ item, pos }) {
                                 ? "hidden md:block w-[360px]"
                                 : "hidden md:block w-[320px]";
 
-    const cardHeightClass = pos === "current" ? "h-[300px]" : "h-[240px]";
+    const cardHeightClass = pos === "current" ? "h-[400px] md:h-[300px]" : "h-[240px]";
 
     const base =
         "absolute inset-0 mx-auto transition-[transform,opacity] duration-[650ms] ease-[cubic-bezier(.22,1,.36,1)] will-change-[transform,opacity] ";

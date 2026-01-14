@@ -266,7 +266,7 @@ const Experiences = () => {
         ref={loveSectionRef}
         className="w-full py-20 flex flex-col items-center mt-5 sm:mt-20"
       >
-                                       <h2 className="font-medium text-4xl md:text-6xl pb-2">
+                                       <h2 className="font-medium text-4xl md:text-6xl pb-2 text-center">
                                         Why you'll love
                                         <span className="pl-4 font-bold"
                                     

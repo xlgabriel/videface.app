@@ -239,7 +239,7 @@ const Hero = () => {
                 <p className="text-3xl md:text-6xl font-normal text-black mb-6">
                     with Seamless Remote Service
                 </p>
-                <div className="z-10 mt-10 sm:mt-20">
+                <div className="z-10 mt-10 sm:mt-20 mb-20">
                     <div className="relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen px-2 sm:px-6">
                         <div ref={companyLogosRef} className="w-full">
                             <CompanyLogos className="w-full" />
