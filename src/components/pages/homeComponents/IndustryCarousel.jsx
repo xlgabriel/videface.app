@@ -40,11 +40,11 @@ export default function IndustryCarousel() {
         return () => io.disconnect();
     }, [inView]);
 
-    // Auto-cycle active image every 2 seconds
+    // Auto-cycle active image every 3 seconds
     useEffect(() => {
         const interval = setInterval(() => {
             setActiveIndex((prev) => (prev + 1) % items.length);
-        }, 2000);
+        }, 3000);
         return () => clearInterval(interval);
     }, [items.length]);
 
@@ -80,15 +80,15 @@ export default function IndustryCarousel() {
                                     />
 
                                     <div
-                                        className={`absolute inset-0 transition-opacity duration-500 ${isActive ? "bg-black/10" : "bg-black/55"
+                                        className={`absolute inset-0 transition-opacity duration-500 ${isActive ? "active-overlay" : "bg-black/55"
                                             }`}
                                     />
 
                                     <div className="absolute bottom-5 left-5 z-10 flex items-end gap-3">
                                         <div className="h-6 w-[3px] bg-white" />
-                                        <div className="text-base font-bold uppercase tracking-wide text-white md:text-lg">
+                                        <h3 className="text-base font-bold uppercase tracking-wide text-white md:text-lg">
                                             {item.title}
-                                        </div>
+                                        </h3>
                                     </div>
 
                                     <div
@@ -171,6 +171,10 @@ export default function IndustryCarousel() {
                             transform: none !important;
                             filter: none !important;
                         }
+                    }
+
+                    .active-overlay {
+                        background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
                     }
                 `}</style>
             </div>

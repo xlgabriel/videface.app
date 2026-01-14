@@ -182,11 +182,7 @@ const Hero = () => {
                             href="#demo"
                             textColor="text-white"
                             size="lg"
-                            className="hero-cta-btn glass-blue-btn"
-                            style={{
-                                background: "#0A6CFF",
-                                boxShadow: "5px 7px 10px 0 rgb(0, 0, 0, 0.4), 0 4px 32px 0 rgba(0, 127, 255, 0.10), 0 0 24px 2px rgba(255,255,255,0.45)",
-                            }}
+                            className="hero-cta-btn"
                         >
                             REQUEST A DEMO
                         </Button>
@@ -229,7 +225,7 @@ const Hero = () => {
             </div>
             <div className="container text-center mt-20 sm:mt-40 mb-4">
                 <h2
-                    className="font-bold text-3xl md:text-6xl pb-2"
+                    className="font-bold text-4xl md:text-6xl pb-2"
                     style={{
                         background: 'linear-gradient(90deg, #00438B 0%, #007FFF 57%)',
                         WebkitBackgroundClip: 'text',
@@ -240,11 +236,11 @@ const Hero = () => {
                 >
                     Empowering Businesses
                 </h2>
-                <p className="text-2xl md:text-6xl font-normal text-black mb-6">
+                <p className="text-3xl md:text-6xl font-normal text-black mb-6">
                     with Seamless Remote Service
                 </p>
-                <div className="z-10 mt-10 sm:mt-20 flex justify-center">
-                    <div className="w-full max-w-[1240px] px-2 sm:px-6">
+                <div className="z-10 mt-10 sm:mt-20">
+                    <div className="relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen px-2 sm:px-6">
                         <div ref={companyLogosRef} className="w-full">
                             <CompanyLogos className="w-full" />
                         </div>

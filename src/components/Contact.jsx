@@ -1,18 +1,31 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import Section from "./Section";
 import { BackgroundCircles } from "./design/Hero";
 import ReactDOMServer from "react-dom/server";
 import ContactEmailTemplate from "./ContactEmailTemplate";
 import Footer from "./Footer";
+import { countries } from "../constants/countries";
+
+// Utility functions for animations
+const clamp01 = (v) => Math.max(0, Math.min(1, v));
+const smoothstep = (t) => t * t * (3 - 2 * t);
+const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
 
 const Contact = () => {
     const formRef = useRef();
+    const sectionRef = useRef(null);
+    const titleRef = useRef(null);
+    const lastScrollYRef = useRef(
+        typeof window !== "undefined" ? window.scrollY || 0 : 0
+    );
+    const glowLockedRef = useRef(false);
+
     const [form, setForm] = useState({
         name: "",
         company: "",
         email: "",
         message: "",
-        phoneCountry: "+1",
+        phoneCountry: "+1-United States",
         phoneNumber: "",
     });
 
@@ -25,7 +38,105 @@ const Contact = () => {
         message: false,
     });
 
-    const phoneFull = `${form.phoneCountry}${form.phoneNumber?.trim() ? ` ${form.phoneNumber.trim()}` : ""}`;
+    const [glowAmount, setGlowAmount] = useState(0);
+    const [scrollProgress, setScrollProgress] = useState(0);
+
+    // Main scroll progress tracker for the section
+    useEffect(() => {
+        const section = sectionRef.current;
+        if (!section) return;
+
+        let rafId = 0;
+
+        const update = () => {
+            rafId = 0;
+            const rect = section.getBoundingClientRect();
+            const vh = window.innerHeight;
+
+            // Progress: 0 when section top hits bottom of viewport, 1 when section top is at 30% from top
+            const start = vh;
+            const end = vh * 0.3;
+            const progress = clamp01((start - rect.top) / (start - end));
+
+            setScrollProgress(progress);
+        };
+
+        const onScrollOrResize = () => {
+            if (rafId) return;
+            rafId = window.requestAnimationFrame(update);
+        };
+
+        update();
+        window.addEventListener("scroll", onScrollOrResize, { passive: true });
+        window.addEventListener("resize", onScrollOrResize);
+        return () => {
+            window.removeEventListener("scroll", onScrollOrResize);
+            window.removeEventListener("resize", onScrollOrResize);
+            rafId && window.cancelAnimationFrame(rafId);
+        };
+    }, []);
+
+    // Title glow effect
+    useEffect(() => {
+        const el = titleRef.current;
+        if (!el) return;
+
+        let rafId = 0;
+
+        const update = () => {
+            rafId = 0;
+
+            const currentScrollY = window.scrollY || 0;
+            const isScrollingDown = currentScrollY > lastScrollYRef.current;
+            lastScrollYRef.current = currentScrollY;
+
+            const rect = el.getBoundingClientRect();
+            const viewportCenter = window.innerHeight / 2;
+            const titleCenter = rect.top + rect.height / 2;
+            const distance = Math.abs(titleCenter - viewportCenter);
+
+            // Near = strongly glowing, Far = fully gradient
+            const near = 130;
+            const far = 260;
+            const t = clamp01(1 - (distance - near) / (far - near));
+            const dynamicGlow = smoothstep(t);
+
+            // Only lock the glow once the title is sufficiently centered.
+            const LOCK_THRESHOLD = 0.72;
+
+            if (!isScrollingDown) {
+                glowLockedRef.current = false;
+                setGlowAmount(dynamicGlow);
+                return;
+            }
+
+            if (dynamicGlow >= LOCK_THRESHOLD) glowLockedRef.current = true;
+
+            if (!glowLockedRef.current) {
+                setGlowAmount(dynamicGlow);
+                return;
+            }
+
+            // User is scrolling down and glow has been locked: prevent it from decreasing.
+            setGlowAmount((prev) => Math.max(prev, dynamicGlow));
+        };
+
+        const onScrollOrResize = () => {
+            if (rafId) return;
+            rafId = window.requestAnimationFrame(update);
+        };
+
+        update();
+        window.addEventListener("scroll", onScrollOrResize, { passive: true });
+        window.addEventListener("resize", onScrollOrResize);
+        return () => {
+            window.removeEventListener("scroll", onScrollOrResize);
+            window.removeEventListener("resize", onScrollOrResize);
+            rafId && window.cancelAnimationFrame(rafId);
+        };
+    }, []);
+
+    const phoneFull = `${form.phoneCountry.split('-')[0]}${form.phoneNumber?.trim() ? ` ${form.phoneNumber.trim()}` : ""}`;
 
     const emailContact = ReactDOMServer.renderToString(
         <ContactEmailTemplate
@@ -114,7 +225,7 @@ const Contact = () => {
                         company: "",
                         email: "",
                         message: "",
-                        phoneCountry: "+1",
+                        phoneCountry: "+1-United States",
                         phoneNumber: "",
                     });
                 },
@@ -127,27 +238,108 @@ const Contact = () => {
             );
     };
 
+    // Animation progress calculations
+    const bgMotion = easeOutCubic(clamp01(scrollProgress / 0.38));
+    const bgOpacity = smoothstep(clamp01(scrollProgress / 0.75));
+
+    // Particles: 44-82% of scroll
+    const particlesProgress = easeOutCubic(clamp01((scrollProgress - 0.44) / 0.38));
+    // Title: 60-94% of scroll
+    const titleProgress = easeOutCubic(clamp01((scrollProgress - 0.60) / 0.34));
+    // Form: 75-100% of scroll
+    const formProgress = easeOutCubic(clamp01((scrollProgress - 0.75) / 0.25));
+
+    // Background style with animation
+    const bgStyle = {
+        background:
+            "radial-gradient(ellipse 135% 135% at 50% 48%, #0A6CFF 0%, #0A6CFF 22%, #064199 58%, #031A3F 100%)",
+        opacity: bgOpacity,
+        transform: `translateY(${(1 - bgMotion) * 120}px)`,
+        transition: "transform 170ms ease-out, opacity 220ms ease-out",
+    };
+
+    // Particles styles (expansion + fade)
+    const particlesStyle = {
+        opacity: particlesProgress * 0.5,
+        transform: `translate(-50%, -50%) scale(${0.5 + 0.5 * particlesProgress})`,
+        transition: "transform 200ms ease-out, opacity 200ms ease-out",
+    };
+
+    // Title container styles
+    const titleContainerStyle = {
+        opacity: titleProgress,
+        transform: `translateY(${(1 - titleProgress) * 40}px)`,
+        transition: "transform 180ms ease-out, opacity 180ms ease-out",
+    };
+
+    // Form container styles
+    const formContainerStyle = {
+        opacity: formProgress,
+        transform: `translateY(${(1 - formProgress) * 60}px)`,
+        transition: "transform 200ms ease-out, opacity 200ms ease-out",
+    };
+
     return (
         <Section customPaddings="py-0">
-            <div className="relative min-h-screen overflow-hidden">
+            <section ref={sectionRef} className="relative min-h-screen overflow-hidden">
+                {/* Animated background */}
                 <div
-                    className="absolute inset-0"
-                    style={{
-                        background: "linear-gradient(180deg, #0A6CFF 0%, #064199 100%)",
-                    }}
+                    className="pointer-events-none absolute inset-0 z-0"
+                    style={bgStyle}
                 />
 
-                <div className="absolute inset-0 pointer-events-none opacity-50">
-                    <BackgroundCircles className="absolute left-1/2 top-1/2 w-[78rem] aspect-square -translate-x-1/2 -translate-y-1/2" />
+                {/* Animated particles */}
+                <div
+                    className="pointer-events-none absolute left-1/2 top-1/2 h-[900px] w-[900px] z-10"
+                    style={particlesStyle}
+                >
+                    <BackgroundCircles className="absolute inset-0 rounded-full border border-white/10" />
                 </div>
 
-                <div className="relative z-10 flex min-h-screen flex-col">
-                    <div className="flex flex-1 flex-col items-center justify-center px-4 pt-44 pb-14">
-                        <h2 className="text-center text-white font-semibold text-4xl md:text-6xl tracking-tight mb-10">
-                            Contact us!
-                        </h2>
+                <div className="relative z-20 flex min-h-screen flex-col">
+                    <div className="flex flex-1 flex-col items-center justify-center px-4 mt-28 pb-14">
+                        {/* Title with glow effect */}
+                        <div style={titleContainerStyle}>
+                            <h2
+                                ref={titleRef}
+                                className="text-center font-semibold text-4xl md:text-6xl tracking-tight mb-10"
+                            >
+                                <span className="relative inline-block">
+                                    <span
+                                        aria-hidden
+                                        style={{
+                                            background: "linear-gradient(90deg, #FFFFFF 66%, #007FFF 90%)",
+                                            WebkitBackgroundClip: "text",
+                                            WebkitTextFillColor: "transparent",
+                                            color: "transparent",
+                                            display: "inline-block",
+                                            opacity: 1 - glowAmount,
+                                            transition: "opacity 280ms ease",
+                                        }}
+                                    >
+                                        Contact us!
+                                    </span>
 
-                        <div className="w-full max-w-[440px] rounded-2xl border border-white/20 bg-blue-200/20  shadow-black/30 shadow-xl">
+                                    <span
+                                        style={{
+                                            position: "absolute",
+                                            inset: 0,
+                                            color: "#fff",
+                                            WebkitTextFillColor: "#fff",
+                                            opacity: glowAmount,
+                                            transition: "opacity 280ms ease",
+                                            filter:
+                                                "drop-shadow(0 0 18px rgba(255, 255, 255, 0.9)) brightness(1.15)",
+                                            pointerEvents: "none",
+                                        }}
+                                    >
+                                        Contact us!
+                                    </span>
+                                </span>
+                            </h2>
+                        </div>
+
+                        <div style={formContainerStyle} className="w-full max-w-[440px] rounded-2xl border border-white/20 bg-blue-200/20  shadow-black/30 shadow-xl">
                             <div className="p-7 md:p-8">
                                 <form ref={formRef} onSubmit={handleSubmit}>
                                     <div className="mb-5">
@@ -231,12 +423,11 @@ const Contact = () => {
                                                 onChange={handleChange}
                                                 aria-label="Country code"
                                             >
-                                                <option value="+1">🇺🇸 +1</option>
-                                                <option value="+52">🇲🇽 +52</option>
-                                                <option value="+57">🇨🇴 +57</option>
-                                                <option value="+34">🇪🇸 +34</option>
-                                                <option value="+54">🇦🇷 +54</option>
-                                                <option value="+56">🇨🇱 +56</option>
+                                                {countries.map((country) => (
+                                                    <option key={`${country.code}-${country.name}`} value={`${country.code}-${country.name}`}>
+                                                        {country.flag} {country.name} {country.code}
+                                                    </option>
+                                                ))}
                                             </select>
                                             <input
                                                 id="phoneNumber"
@@ -284,6 +475,12 @@ const Contact = () => {
                                             {loading ? "Sending..." : emailSent ? "Sent" : "Send"}
                                         </button>
                                     </div>
+
+                                    {emailSent && (
+                                        <div className="mt-4 text-center text-white font-semibold text-lg">
+                                            Form submitted successfully!
+                                        </div>
+                                    )}
                                 </form>
                             </div>
                         </div>
@@ -291,7 +488,7 @@ const Contact = () => {
 
                     <Footer />
                 </div>
-            </div>
+            </section>
         </Section>
     );
 };

@@ -103,8 +103,8 @@
   0%,
   100% {
     opacity: 0.7;
-    filter: blur(7px);
-    transform: scale(0.995);
+    filter: blur(10px);
+    transform: scale(1);
   }
   50% {
     opacity: 0.2;

@@ -49,7 +49,7 @@ const CompanyLogos = ({ className = "" }) => {
                 Since 2020, we are working together with some affiliates of brands like Zezgo, Economy and much more!
             </h5> */}
             <div
-                className="flex space-x-0 sm:space-x-20 items-center overflow-hidden"
+                className="flex space-x-0 sm:space-x-0 items-center overflow-hidden"
                 ref={carouselRef}
                 style={{ scrollBehavior: "smooth", display: "flex", width: "100%" }}
             >
@@ -61,7 +61,7 @@ const CompanyLogos = ({ className = "" }) => {
                         <img
                             src={logo}
                             alt={`Logo ${index}`}
-                            className="h-auto w-[150px] sm:w-[180px] md:w-[190px] lg:w-[200px]"
+                            className="h-auto w-[130px] sm:w-[160px] md:w-[170px] lg:w-[180px]"
                         />
                     </div>
                 ))}

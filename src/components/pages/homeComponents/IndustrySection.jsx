@@ -5,7 +5,7 @@ export default function IndustrySection() {
     return (
         <section className="w-full pt-10">
             <div className="container flex flex-col items-center">
-                <h2 className="text-center text-3xl font-medium md:text-6xl">
+                <h2 className="text-center text-4xl font-medium md:text-6xl">
                     Flexible by{" "}
                     <span
                         className="pb-2 font-bold"
@@ -34,9 +34,9 @@ export default function IndustrySection() {
                     </span>
                 </h2>
 
-                <p className="mt-4 text-center text-2xl text-n-1/70">
+                <h3 className="mt-4 text-center text-2xl text-n-1/70">
                     Made to fit your team &amp; industry
-                </p>
+                </h3>
             </div>
 
             <div className="mt-20">

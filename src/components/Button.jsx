@@ -21,7 +21,7 @@ const Button = ({
   href,
   onClick,
   children,
-  color = 'bg-blue-500',
+  color = 'bg-[#0A6CFF]',
   textColor = 'text-white',
   size = 'md',
   shadow = 'shadow-md',
@@ -41,7 +41,7 @@ const Button = ({
     color,
     textColor,
     SIZE_MAP[size] || SIZE_MAP.md,
-    !boxShadow && 'shadow-[0_4px_10px_0_#007FFFcc]', // sombra azul compacta por defecto
+    !boxShadow && 'shadow-[5px_7px_10px_0_rgba(0,0,0,0.4)]', // sombra negra por defecto
     rounded,
     className,
   ].filter(Boolean).join(' ');

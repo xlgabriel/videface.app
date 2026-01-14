@@ -15,18 +15,32 @@ export const Gradient = () => {
   );
 };
 
-export const PhotoChatMessage = () => {
+export const PhotoChatMessage = ({ phase = "exit", delayMs = 0 }) => {
+  const phaseClass = phase === "enter" ? "svc-bubble--enter" : "svc-bubble--exit";
+  const animationDelay = phase === "enter" ? `${delayMs}ms` : "0ms";
+
   return (
-    <div className="absolute top-8 right-8 max-w-[17.5rem] py-6 px-8 bg-white rounded-t-xl rounded-bl-xl font-code text-base lg:top-16 lg:right-[8.75rem] lg:max-w-[17.5rem]">
+    <div
+      className={`svc-bubble svc-bubble--right ${phaseClass} absolute top-8 right-8 max-w-[17.5rem] py-6 px-8 bg-white rounded-t-xl rounded-bl-xl font-code text-base lg:top-16 lg:right-[8.75rem] lg:max-w-[17.5rem]`}
+      style={{ animationDelay }}
+      data-svc-anim
+    >
       Hello, how can I help you today?
       <ChatBubbleWing className="absolute left-full bottom-0" pathClassName="fill-n-8" />
     </div>
   );
 };
 
-export const VideoChatMessage = () => {
+export const VideoChatMessage = ({ phase = "exit", delayMs = 0 }) => {
+  const phaseClass = phase === "enter" ? "svc-bubble--enter" : "svc-bubble--exit";
+  const animationDelay = phase === "enter" ? `${delayMs}ms` : "0ms";
+
   return (
-    <div className="absolute top-8 left-[3.125rem] w-full max-w-[14rem] pt-2.5 pr-2.5 pb-7 pl-5 bg-n-7 rounded-t-xl rounded-br-xl font-code text-base md:max-w-[17.5rem]">
+    <div
+      className={`svc-bubble svc-bubble--left ${phaseClass} absolute top-8 left-[3.125rem] w-full max-w-[14rem] pt-2.5 pr-2.5 pb-7 pl-5 bg-n-7 rounded-t-xl rounded-br-xl font-code text-base md:max-w-[17.5rem]`}
+      style={{ animationDelay }}
+      data-svc-anim
+    >
       Kiosk 3 is calling!
       <div className="absolute left-5 -bottom-[1.125rem] flex items-center justify-center w-[2.25rem] h-[2.25rem] bg-n-7 rounded-[0.75rem]">
         <img

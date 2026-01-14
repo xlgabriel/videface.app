@@ -145,6 +145,7 @@ const Experiences = () => {
         opacity: bgOpacity,
         transform: `translateY(${(1 - bgMotion) * 120}px)`,
         transition: "transform 170ms ease-out, opacity 220ms ease-out",
+        
       }
     : {
         background:
@@ -154,6 +155,7 @@ const Experiences = () => {
         opacity: bgOpacity,
         transform: `translateY(${(1 - bgMotion) * 120}px)`,
         transition: "transform 170ms ease-out, opacity 220ms ease-out",
+        boxShadow: '15px 15px 25px 0 rgba(0, 0, 0, 0.7)',
       };
 
   // Particles styles (expansion + fade)
@@ -181,10 +183,12 @@ const Experiences = () => {
     <>
       <section ref={sectionRef} className="relative w-full overflow-hidden pb-20">
         {/* Fondo: semicírculo con degradado radial, rectangular en sm */}
+
         <div
-          className="pointer-events-none absolute left-0 top-0 h-full w-[100vw] z-10"
+          className="pointer-events-none absolute left-0 top-0 h-full w-[100vw] z-10  "
           style={bgStyle}
         />
+
 
         {/* Partículas centradas */}
         <div
@@ -201,7 +205,7 @@ const Experiences = () => {
           <div style={titleContainerStyle}>
             <h2
               ref={titleRef}
-              className="experience-title text-center text-3xl font-medium leading-tight md:text-4xl lg:text-6xl"
+              className="experience-title text-center text-4xl font-medium leading-tight md:text-4xl lg:text-6xl"
             >
               <span className="relative inline-block">
                 <span
@@ -262,9 +266,9 @@ const Experiences = () => {
         ref={loveSectionRef}
         className="w-full py-20 flex flex-col items-center mt-5 sm:mt-20"
       >
-                                       <h2 className="font-medium text-3xl md:text-6xl pb-2">
+                                       <h2 className="font-medium text-4xl md:text-6xl pb-2">
                                         Why you'll love
-                                        <p className="pl-4 font-bold"
+                                        <span className="pl-4 font-bold"
                                     
                                     style={{
                                         background: 'linear-gradient(90deg, #00438B 0%, #007FFF 57%)',
@@ -275,7 +279,7 @@ const Experiences = () => {
                                     }}
                                 >
                                     Videface
-                                </p>
+                                </span>
                                         </h2> 
         <div className="grid w-full max-w-[1100px] grid-cols-2 justify-items-center gap-6 sm:gap-10 sm:grid-cols-2 lg:grid-cols-4 mt-20">
           {/* Tarjeta 1 */}
@@ -287,7 +291,7 @@ const Experiences = () => {
           >
             <div className="bg-[#0A6CFF] rounded-b-[7.5rem] h-[320px] sm:h-[370px] p-2" style={{ boxShadow: '12px 0 16px 0 rgba(0,0,0,0.5)' }}>
               <div className="flex flex-col items-center justify-between border-4 border-white rounded-b-[6.5rem] bg-[#0A6CFF] pt-6 pb-8 px-6 h-full w-full">
-                <div className="text-white text-center font-extrabold text-lg sm:text-xl mb-6">REAL-TIME<br />TRANSLATION</div>
+                <h3 className="text-white text-center font-extrabold text-lg sm:text-xl mb-6">REAL-TIME<br />TRANSLATION</h3>
                 <div className="flex-1 flex items-center justify-center">
                   <span className="flex items-center justify-center rounded-full bg-white w-32 h-32 sm:w-40 sm:h-40">
                     <span className="icon-translation w-20 h-20 sm:w-24 sm:h-24 text-[#0A6CFF]" />
@@ -305,7 +309,7 @@ const Experiences = () => {
             >
               <div className="bg-[#0A6CFF] rounded-b-[7.5rem] h-[320px] sm:h-[370px] p-2" style={{ boxShadow: '12px 0 16px 0 rgba(0,0,0,0.5)' }}>
                 <div className="flex flex-col items-center justify-between border-4 border-white rounded-b-[6.5rem] bg-[#0A6CFF] pt-6 pb-8 px-6 h-full w-full">
-                  <div className="text-white text-center font-extrabold text-lg sm:text-xl mb-6">24/7 REMOTE AGENT SUPPORT</div>
+                <h3 className="text-white text-center font-extrabold text-lg sm:text-xl mb-6">24/7 REMOTE AGENT SUPPORT</h3>
                   <div className="flex-1 flex items-center justify-center">
                     <span className="flex items-center justify-center rounded-full bg-white w-32 h-32 sm:w-40 sm:h-40">
                       <span className="icon-agent-support w-20 h-20 sm:w-24 sm:h-24 text-[#0A6CFF]" />
@@ -323,7 +327,7 @@ const Experiences = () => {
             >
               <div className="bg-[#0A6CFF] rounded-b-[7.5rem] h-[320px] sm:h-[370px] p-2" style={{ boxShadow: '12px 0 16px 0 rgba(0,0,0,0.5)' }}>
                 <div className="flex flex-col items-center justify-between border-4 border-white rounded-b-[6.5rem] bg-[#0A6CFF] pt-6 pb-8 px-6 h-full w-full">
-                  <div className="text-white text-center font-extrabold text-lg sm:text-xl mb-6">REDUCE<br />COSTS</div>
+                <h3 className="text-white text-center font-extrabold text-lg sm:text-xl mb-6">REDUCE<br />COSTS</h3>
                   <div className="flex-1 flex items-center justify-center">
                     <span className="flex items-center justify-center rounded-full bg-white w-32 h-32 sm:w-40 sm:h-40">
                       <span className="icon-reduce w-20 h-20 sm:w-24 sm:h-24 text-[#0A6CFF]" />
@@ -341,7 +345,7 @@ const Experiences = () => {
             >
               <div className="bg-[#0A6CFF] rounded-b-[7.5rem] h-[320px] sm:h-[370px] p-2" style={{ boxShadow: '12px 0 16px 0 rgba(0,0,0,0.5)' }}>
                 <div className="flex flex-col items-center justify-between border-4 border-white rounded-b-[6.5rem] bg-[#0A6CFF] pt-6 pb-8 px-6 h-full w-full">
-                  <div className="text-white text-center font-extrabold text-lg sm:text-xl mb-6">BOOST<br />PRODUCTIVITY</div>
+                <h3 className="text-white text-center font-extrabold text-lg sm:text-xl mb-6">BOOST<br />PRODUCTIVITY</h3>
                   <div className="flex-1 flex items-center justify-center">
                     <span className="flex items-center justify-center rounded-full bg-white w-32 h-32 sm:w-40 sm:h-40">
                       <span className="icon-productivity w-20 h-20 sm:w-24 sm:h-24 text-[#0A6CFF]" />

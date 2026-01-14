@@ -1,4 +1,4 @@
-import React, { useId, useMemo, useState } from "react";
+import React, { useEffect, useId, useMemo, useRef, useState } from "react";
 
 const BORDER_GRADIENT = {
     from: "#1486FF",
@@ -9,46 +9,46 @@ const pricingOptions = [
     {
         title: "VideFace Calls",
         collapsedDescription:
-            "Real time videocalls,\nunlimited connections\nbetween agents and clients\nand easy management of\nyour kiosks.",
+            "Real time videocalls, unlimited connections between agents and clients and easy management of your kiosks.",
         button: "CONTACT US",
         features: [
-            "Live Translation,\nSubtitles and\nRecording included",
-            "Document, signature and\nrating features included",
-            "Assistance to set up\nyour kiosks and\nagents",
+            "Live Translation, Subtitles and Recording included",
+            "Document, signature and rating features included",
+            "Assistance to set up your kiosks and agents",
         ],
     },
     {
-        title: "SmartLocker +\nKeyDrop",
+        title: "SmartLocker + KeyDrop",
         collapsedDescription:
-            "Give and receive the keys\nsmoothly without the need\nof agents in the office.",
+            "Give and receive the keys smoothly without the need of agents in the office.",
         button: "CONTACT US",
         features: [
-            "Record of all key\nmovements",
-            "Real-time key delivery for\nclients",
-            "Easy key drop off by\ncarwasher",
+            "Record of all key movements",
+            "Real-time key delivery for clients",
+            "Easy key drop off by carwasher",
         ],
     },
     {
         title: "VideFace Cars",
         collapsedDescription:
-            "Manage every car easily.\nAvoid losing chargebacks\nwith the car inspection\nand walk around.",
+            "Manage every car easily. Avoid losing chargebacks with the car inspection and walk around.",
         button: "CONTACT US",
         features: [
-            "Full control of your cars,\ndamages, photos and\nmore",
-            "Car Inspection, Pickup\nand Return in real time",
-            "No more staff needed, no\nmore misunderstandings",
+            "Full control of your cars, damages, photos and more",
+            "Car Inspection, Pickup and Return in real time",
+            "No more staff needed, no more misunderstandings",
         ],
     },
     {
         title: "Full VideFace",
         showMedal: true,
         collapsedDescription:
-            "Fully virtualize your office\nby using all our services.\nUnlock the full\npotential of VideFace",
+            "Fully virtualize your office by using all our services. Unlock the full potential of VideFace",
         button: "CONTACT US",
         features: [
-            "Get first the new features\nwe constantly add to our\nsoftware",
-            "It's easier to manage\neverything in one place.\nDefinitely worth it!",
-            "Priority support and\nassistance for any needs.",
+            "Get first the new features we constantly add to our software",
+            "It's easier to manage everything in one place. Definitely worth it!",
+            "Priority support and assistance for any needs.",
         ],
     },
 ];
@@ -108,7 +108,7 @@ function PricingCard({
     return (
         <div
             className={
-                "pricing-card rounded-2xl p-[3px] cursor-pointer select-none transition-[box-shadow,transform] duration-600 ease-[cubic-bezier(0.22,1,0.36,1)] w-[18rem] md:w-[18rem] relative transform-gpu " +
+                "pricing-card rounded-2xl p-[3px] cursor-pointer select-none transition-[box-shadow,transform] duration-600 ease-[cubic-bezier(0.22,1,0.36,1)] w-full md:w-[20rem] lg:w-[28rem] xl:w-[20rem] 2xl:w-[20rem] relative transform-gpu " +
                 (expanded
                     ? "shadow-blue-500 shadow-lg pricing-active"
                     : "shadow-[0_10px_25px_rgba(0,0,0,0.18)] pricing-neon hover:scale-105 hover:-translate-y-2 hover:shadow-[0_15px_35px_rgba(0,0,0,0.25)]")
@@ -121,7 +121,7 @@ function PricingCard({
             <div
                 className={
                     "rounded-[1rem] overflow-hidden transition-[height] duration-600 ease-[cubic-bezier(0.22,1,0.36,1)] p-2 " +
-                    (expanded ? "h-[38rem]" : "h-[17rem]")
+                    (expanded ? "h-[36rem] lg:h-[38rem]" : "h-[18rem] lg:h-[17rem]")
                 }
                 style={innerStyle}
             >
@@ -139,8 +139,8 @@ function PricingCard({
                                 className={
                                     "font-bold leading-tight whitespace-pre-line " +
                                     (expanded
-                                        ? "text-white text-3xl"
-                                        : "text-[#1486FF] text-2xl")
+                                        ? "text-white text-4xl"
+                                        : "text-[#1486FF] text-3xl")
                                 }
                             >
                                 {title}
@@ -158,21 +158,22 @@ function PricingCard({
                             )}
                         </div>
 
-                        <div className="min-h-[7.5rem] flex flex-col items-center justify-start">
-                            <p
+                        <div className="min-h-[7.5rem] flex flex-col items-center mt-3 justify-start">
+                            <h3
                                 className={
-                                    "whitespace-pre-line text-[0.95rem] leading-snug text-center " +
+                                    "whitespace-pre-line text-[1.05rem] leading-snug text-center " +
                                     (expanded ? "text-white pt-2 pb-4" : "text-[#1486FF]")
                                 }
                             >
                                 {collapsedDescription}
-                            </p>
-                            {!expanded && (
-                                <div className="flex justify-center pt-3">
-                                    <GradientArrow direction="down" />
-                                </div>
-                            )}
+                            </h3>
                         </div>
+
+                        {!expanded && (
+                            <div className="flex justify-center mt-auto pb-3">
+                                <GradientArrow direction="down" />
+                            </div>
+                        )}
 
                         <div
                             className={
@@ -183,13 +184,14 @@ function PricingCard({
                             }
                         >
                             <div className="min-h-0 overflow-hidden">
-                                <div className="flex justify-center">
-                                    <button
-                                        type="button"
-                                        className="bg-white text-[#1486FF] font-bold text-xs tracking-wide px-6 py-2 rounded-lg shadow-lg"
+                                <div className="flex justify-center sm:mt-3">
+                                    <a
+                                        href="#contact"
+                                        className="bg-white text-[#1486FF] font-bold text-xs tracking-wide px-6 py-3 rounded-lg shadow-lg inline-block hero-cta-btn"
+                                        onClick={(e) => e.stopPropagation()}
                                     >
                                         {button}
-                                    </button>
+                                    </a>
                                 </div>
 
                                 <ul className="mt-4">
@@ -202,9 +204,9 @@ function PricingCard({
                                                 className="iconBase icon-verified text-white shrink-0"
                                                 aria-hidden="true"
                                             />
-                                            <span className="text-white text-[0.95rem] leading-snug whitespace-pre-line">
+                                            <h3 className="text-white text-[1.05rem] leading-snug whitespace-pre-line">
                                                 {text}
-                                            </span>
+                                            </h3>
                                         </li>
                                     ))}
                                 </ul>
@@ -226,7 +228,9 @@ function PricingCard({
 }
 
 function PricingCards() {
-    const [pinnedOpen, setPinnedOpen] = useState(() => new Set([0]));
+    const [pinnedOpen, setPinnedOpen] = useState(() => new Set([]));
+    const [hasRevealed, setHasRevealed] = useState(false);
+    const listRef = useRef(null);
 
     const isExpanded = (idx) => pinnedOpen.has(idx);
 
@@ -239,21 +243,89 @@ function PricingCards() {
         });
     };
 
+    useEffect(() => {
+        const el = listRef.current;
+        if (!el) return;
+
+        const io = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setHasRevealed(true);
+                    io.disconnect();
+                }
+            },
+            {
+                threshold: 0.12,
+                rootMargin: "0px 0px -15% 0px",
+            }
+        );
+
+        io.observe(el);
+        return () => io.disconnect();
+    }, []);
+
     return (
-        <div className="flex gap-6 justify-center items-start flex-nowrap overflow-x-auto overflow-y-visible w-full pb-6 lg:overflow-x-visible lg:justify-between">
+        <div
+            ref={listRef}
+            className="flex flex-col gap-6 items-center w-full pb-6 md:grid md:grid-cols-2 md:gap-8 md:items-start md:justify-items-center lg:grid lg:grid-cols-2 lg:gap-8 lg:items-start lg:justify-items-center xl:flex xl:flex-row xl:flex-nowrap xl:justify-center xl:gap-6 xl:overflow-x-visible xl:overflow-y-visible"
+        >
             {pricingOptions.map((opt, idx) => (
-                <PricingCard
+                <div
                     key={opt.title}
-                    title={opt.title}
-                    showMedal={opt.showMedal}
-                    collapsedDescription={opt.collapsedDescription}
-                    button={opt.button}
-                    features={opt.features}
-                    expanded={isExpanded(idx)}
-                    pinned={pinnedOpen.has(idx)}
-                    onClick={() => togglePinned(idx)}
-                />
+                    className={hasRevealed ? "pricing-reveal" : "pricing-reveal pricing-reveal--hidden"}
+                    style={{ animationDelay: `${idx * 160}ms` }}
+                    data-pricing-reveal
+                >
+                    <PricingCard
+                        title={opt.title}
+                        showMedal={opt.showMedal}
+                        collapsedDescription={opt.collapsedDescription}
+                        button={opt.button}
+                        features={opt.features}
+                        expanded={isExpanded(idx)}
+                        pinned={pinnedOpen.has(idx)}
+                        onClick={() => togglePinned(idx)}
+                    />
+                </div>
             ))}
+
+            <style>{`
+                [data-pricing-reveal] {
+                    will-change: transform, opacity;
+                }
+
+                .pricing-reveal {
+                    opacity: 0;
+                    transform: translateX(-18px) translateY(14px);
+                    animation: pricing-reveal-in 720ms cubic-bezier(0.22, 1, 0.36, 1) both;
+                }
+
+                .pricing-reveal--hidden {
+                    animation: none !important;
+                    opacity: 0 !important;
+                    transform: translateX(-18px) translateY(14px) !important;
+                }
+
+                @keyframes pricing-reveal-in {
+                    0% {
+                        opacity: 0;
+                        transform: translateX(-18px) translateY(14px);
+                    }
+                    100% {
+                        opacity: 1;
+                        transform: translateX(0) translateY(0);
+                    }
+                }
+
+                @media (prefers-reduced-motion: reduce) {
+                    .pricing-reveal,
+                    .pricing-reveal--hidden {
+                        animation: none !important;
+                        opacity: 1 !important;
+                        transform: none !important;
+                    }
+                }
+            `}</style>
         </div>
     );
 }
@@ -262,7 +334,7 @@ const Pricing = () => {
     return (
         <section className="overflow-visible pt-36" id="pricing">
             <div className="container">
-                <h2 className="font-medium text-3xl md:text-6xl pb-2 text-center">
+                <h2 className="font-medium text-4xl md:text-6xl pb-2 text-center">
                     Pricing Deisgned to
                     <span
                         className="block md:inline pl-0 md:pl-4 font-bold text-center"
