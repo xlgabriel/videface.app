@@ -2,29 +2,22 @@ import React, { useEffect, useRef, useState } from "react";
 import MessageCarousel from "./MessageCarousel";
 
 const sampleItems = [
+
     {
-        name: "Carlos Urrutia",
-        role: "Gerente General",
+        name: "Mr. Ebrima",
+        role: "Cargreen rental car, Minneapolis, MN",
         text:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque dignissim non arcu non lobortis. Proin tristique eros in mollis viverra. Aenean mollis ligula nisi. Donec vulputate.",
+            "The system has been great! My customers love it. I recommend it 100%. It has made our operations smoother and more efficient. We’ve seen a real improvement in how we serve our clients every day.",
     },
-    {
-        name: "María González",
-        role: "Operaciones",
-        text:
-            "VideFace nos permitió automatizar la recepción y entrega de llaves, reduciendo tiempos y mejorando la experiencia del cliente.",
-    },
-    {
-        name: "Jorge Pérez",
-        role: "Atención al Cliente",
-        text:
-            "Las videollamadas con traducción en vivo hicieron posible atender turistas sin barreras de idioma. Súper recomendable.",
-    },
+    
+    
 ];
 
 export default function Testimonials({ items = sampleItems }) {
     const sectionRef = useRef(null);
     const [phase, setPhase] = useState("hidden");
+    const count = Array.isArray(items) ? items.length : 0;
+    const useCarousel = count >= 3;
 
     useEffect(() => {
         const el = sectionRef.current;
@@ -71,35 +64,114 @@ export default function Testimonials({ items = sampleItems }) {
                 ? "flex justify-center lg:justify-end tst-shown"
                 : "flex justify-center lg:justify-end tst-exit";
 
+    // Mini-carousel for 2 reviews
+    const [twoIndex, setTwoIndex] = useState(0);
+    const [fade, setFade] = useState(false);
+
+    // Handles fade animation when changing review
+    const handleTwoIndex = (i) => {
+        if (i === twoIndex) return;
+        setFade(true);
+        setTimeout(() => {
+            setTwoIndex(i);
+            setFade(false);
+        }, 220); 
+    };
+    const showMiniCarousel = count === 2 && !useCarousel;
+
     return (
         <section ref={sectionRef} className="py-24" id="testimonials">
             <div className="container">
                 <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-2 gap-12 lg:gap-16 xl:gap-24 items-center">
                     {/* Title */}
                     <div className={titleClass}>
-                        <h3 className="text-[3rem] leading-tight md:text-6xl font-medium text-gray-900">
+                        <h2 className="text-[2.3rem] leading-tight md:text-6xl font-medium text-gray-900">
                             What our
-                        </h3>
-                        <div className="mt-2">
-                            <span className="text-[3rem] leading-tight md:text-6xl font-bold" style={{
-                                background: 'linear-gradient(90deg, #00438B 0%, #007FFF 57%)',
-                                WebkitBackgroundClip: 'text',
-                                WebkitTextFillColor: 'transparent',
-                                color: 'transparent',
-                                display: 'inline-block',
-                            }}>
-                                #VideFaceLovers
-                            </span>
-                            <h3 className="text-[3rem] leading-tight md:text-6xl font-medium text-gray-900">say</h3>
-                        </div>
+                            <div className="mt-2">
+                                <span className="text-[2.3rem] leading-tight md:text-6xl font-bold" style={{
+                                    background: 'linear-gradient(90deg, #00438B 0%, #007FFF 57%)',
+                                    WebkitBackgroundClip: 'text',
+                                    WebkitTextFillColor: 'transparent',
+                                    color: 'transparent',
+                                    display: 'inline-block',
+                                }}>
+                                    #VideFaceLovers
+                                </span>
+                                <span className="text-[2.3rem] leading-tight md:text-6xl font-medium text-gray-900">say</span>
+                            </div>
+                        </h2>
                     </div>
 
-                    {/* Carousel */}
+                    {/* Carousel o mini-carrusel */}
                     <div
                         className={carouselClass}
                         style={phase === "shown" ? { transitionDelay: "180ms" } : undefined}
                     >
-                        <MessageCarousel items={items} />
+                        {useCarousel ? (
+                            <MessageCarousel items={items} />
+                        ) : showMiniCarousel ? (
+                            <div className="w-full max-w-[560px] mx-auto py-10 flex flex-col items-center">
+                                <div className="w-full relative flex items-center justify-center">
+                                    <button
+                                        onClick={() => handleTwoIndex((twoIndex + 1) % 2)}
+                                        className="absolute left-[-32px] md:left-[-48px] top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white border border-gray-200 shadow-md flex items-center justify-center text-2xl font-bold z-10"
+                                        aria-label="Anterior"
+                                    >
+                                        &#8249;
+                                    </button>
+                                    <div
+                                        className={`bg-white rounded-md border border-gray-100 relative overflow-hidden px-10 py-7 pr-28 transition-opacity duration-200 ${fade ? 'opacity-0' : 'opacity-100'}`}
+                                        style={{ boxShadow: "8px 12px 0 0 rgba(59,130,246,0.40)" }}
+                                    >
+                                        <div className="absolute top-4 right-4">
+                                            <span className="iconBase icon-user w-12 h-12 text-[#007FFF] block" />
+                                        </div>
+                                        <p className="text-[#1486FF] font-bold text-2xl">{items[twoIndex].name}</p>
+                                        <p className="text-base font-semibold text-gray-800">{items[twoIndex].role}</p>
+                                        <p className="mt-6 text-lg text-gray-700 leading-relaxed">{items[twoIndex].text}</p>
+                                    </div>
+                                    <button
+                                        onClick={() => handleTwoIndex((twoIndex + 1) % 2)}
+                                        className="absolute right-[-32px] md:right-[-48px] top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white border border-gray-200 shadow-md flex items-center justify-center text-2xl font-bold z-10"
+                                        aria-label="Siguiente"
+                                    >
+                                        &#8250;
+                                    </button>
+                                </div>
+                                <div className="flex items-center justify-center gap-3 mt-6">
+                                    {[0, 1].map((i) => (
+                                        <button
+                                            key={i}
+                                            onClick={() => handleTwoIndex(i)}
+                                            className={`h-2 rounded-full transition-all ${i === twoIndex ? "bg-[#1486FF] w-16" : "bg-[#93C5FD] w-10"}`}
+                                        />
+                                    ))}
+                                </div>
+                            </div>
+                        ) : (
+                            <div className="w-full max-w-[980px] mx-auto py-10">
+                                <div className="flex justify-center">
+                                    {items.map((item, i) => (
+                                        <div
+                                            key={i}
+                                            className="w-[92vw] max-w-[560px] md:w-full"
+                                        >
+                                            <div
+                                                className="bg-white rounded-md border border-gray-100 relative overflow-hidden px-10 py-7 pr-28"
+                                                style={{ boxShadow: "8px 12px 0 0 rgba(59,130,246,0.40)" }}
+                                            >
+                                                <div className="absolute top-4 right-4">
+                                                    <span className="iconBase icon-user w-12 h-12 text-[#007FFF] block" />
+                                                </div>
+                                                <p className="text-[#1486FF] font-bold text-2xl">{item.name}</p>
+                                                <p className="text-base font-semibold text-gray-800">{item.role}</p>
+                                                <p className="mt-6 text-lg text-gray-700 leading-relaxed">{item.text}</p>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
                     </div>
 
                 </div>

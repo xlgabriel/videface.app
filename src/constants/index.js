@@ -78,7 +78,7 @@ import {
 } from "../assets";
 
 export const navigation = [
-    {
+/*     {
         id: "0",
         title: "Solutions",
         url: null, // Not clickable, only hover for dropdown
@@ -87,17 +87,17 @@ export const navigation = [
         id: "1",
         title: "About Us",
         url: "/home/#about-us",
-    },
+    }, */
     {
         id: "2",
         title: "Pricing",
         url: "/pricing",
     },
-        {
+/*     {
         id: "3",
         title: "Blog",
         url: "/blog",
-    }
+    } */
 ];
 
 export const heroIcons = [homeSmile, file02, searchMd, plusSquareWhite];

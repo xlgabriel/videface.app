@@ -11,6 +11,7 @@ import Testimonials from "./homeComponents/Testimonials";
 import Contact from "../Contact";
 import Services from "./homeComponents/Services";
 import Announcement from "../Announcement";
+import ImageGallery from "./homeComponents/ImageGallery";
 
 export default function Home() {
     return (

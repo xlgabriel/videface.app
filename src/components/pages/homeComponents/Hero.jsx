@@ -5,6 +5,7 @@ import ImagePrincipalBG from "../../../assets/hero/ImagePrincipalBG.webp";
 import ImagePrincipalUSER from "../../../assets/hero/ImagePrincipalUSER.webp";
 import ImageInterfaz from "../../../assets/hero/interfaz.gif";
 import { useEffect, useRef, useState } from "react";
+import ImageGallery from "./ImageGallery";
 
 const Hero = () => {
     const heroRef = useRef(null);
@@ -179,7 +180,7 @@ const Hero = () => {
                     </h1>
                     <div className="w-full flex justify-center mt-8 hero-left-enter">
                         <Button
-                            href="#demo"
+                            href="#contact"
                             textColor="text-white"
                             size="lg"
                             className="hero-cta-btn"
@@ -223,7 +224,8 @@ const Hero = () => {
                     </div>
                 </div>
             </div>
-            <div className="container text-center mt-20 sm:mt-40 mb-4">
+
+            <div className="container text-center mt-20 sm:mt-40 mb-24">
                 <h2
                     className="font-bold text-4xl md:text-6xl pb-2"
                     style={{
@@ -248,8 +250,9 @@ const Hero = () => {
                 </div>
 
             </div>
-
+            <ImageGallery />
         </div>
+
     );
 };
 

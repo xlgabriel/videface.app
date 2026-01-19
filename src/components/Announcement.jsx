@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 export default function Announcement() {
     const [open, setOpen] = useState(false);
 
-    // --- LÓGICA DE FECHA ---
+    // --- DATE LOGIC ---
     const today = new Date();
     const month = today.getMonth(); // 0 = enero, 10 = noviembre
     const day = today.getDate();

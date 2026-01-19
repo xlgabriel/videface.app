@@ -335,7 +335,7 @@ const Pricing = () => {
         <section className="overflow-visible pt-36" id="pricing">
             <div className="container">
                 <h2 className="font-medium text-4xl md:text-6xl pb-2 text-center">
-                    Pricing Deisgned to
+                    Pricing Designed to&nbsp;
                     <span
                         className="block md:inline pl-0 md:pl-4 font-bold text-center"
                         style={{

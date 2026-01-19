@@ -1,4 +1,5 @@
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
 import { disablePageScroll, enablePageScroll } from "scroll-lock";
 
 import { brainwave } from "../assets";
@@ -45,12 +46,14 @@ const Header = () => {
     };
 
     const solutionsItems = [
-        { label: "Kiosk", href: "/home/#kiosk", iconClass: "icon-kiosk" },
-        { label: "Smart Locker", href: "/home/#smart-locker", iconClass: "icon-locker-key" },
-        { label: "KeyDrop", href: "/home/#keydrop", iconClass: "icon-key" },
-        { label: "Acoustic Cabin Booth", href: "/home/#acoustic-cabin-booth", iconClass: "icon-acoustic-cabin" },
-        { label: "Agents", href: "/home/#agents", iconClass: "icon-agent-support" },
+        { label: "Kiosk", iconClass: "icon-kiosk" },
+        { label: "Smart Locker", iconClass: "icon-locker-key" },
+        { label: "KeyDrop", iconClass: "icon-key" },
+        { label: "Acoustic Cabin Booth", iconClass: "icon-acoustic-cabin" },
+        { label: "Agents", iconClass: "icon-agent-support" },
     ];
+
+    const isHashUrl = (url) => typeof url === "string" && url.includes("#");
 
 
     return (
@@ -78,7 +81,9 @@ const Header = () => {
                         style={{ ...headerGlassStyle, animationDelay: '0s' }}
                     >
                         <div className="flex items-center px-5 lg:px-7.5 xl:px-10 max-lg:py-4">
-                        <a className="block w-[12rem]" href="/home/#hero"
+                        <Link
+                            className="block w-[12rem] hover:scale-110 transition-transform duration-100"
+                            to="/home"
                             onMouseEnter={e => {
                                 e.currentTarget.querySelector('img').style.filter = 'drop-shadow(0 0 16px rgba(255,255,255,1))';
                             }}
@@ -93,10 +98,10 @@ const Header = () => {
                                 alt="Brainwave"
                                 style={{ filter: "drop-shadow(0 0 4px rgba(255,255,255,0.7))", transition: "filter 0.35s cubic-bezier(0.4,0,0.2,1)" }}
                             />
-                        </a>
+                        </Link>
 
-                        <nav className="hidden lg:flex lg:mx-auto">
-                            <div className="flex items-center">
+                        <nav className="hidden lg:flex lg:flex-1 lg:justify-center">
+                            <div className="flex items-center justify-center">
                                 {navigation.map((item) => {
                                     if (item.title === "Solutions") {
                                         return (
@@ -106,8 +111,8 @@ const Header = () => {
                                                 onMouseEnter={() => setSolutionsOpen(true)}
                                                 onMouseLeave={() => setSolutionsOpen(false)}
                                             >
-                                                <a
-                                                    href={item.url}
+                                                <button
+                                                    type="button"
                                                     className={`block relative text-md text-white font-medium hover:text-white hover:[text-shadow:0_0_14px_rgba(255,255,255,0.85)] px-6 py-6 lg:-mr-0.25 lg:font-semibold lg:text-white lg:leading-5 xl:px-12 lowercase transform-gpu transition-[transform,color,text-shadow] duration-200 ease-out hover:scale-[1.06]`}
                                                     style={{
                                                         textTransform: "none",
@@ -137,7 +142,7 @@ const Header = () => {
                                                             />
                                                         </svg>
                                                     </span>
-                                                </a>
+                                                </button>
 
                                                 <div
                                                     className={`absolute left-1/2 top-full mt-2 -translate-x-1/2 w-[16rem] rounded-3xl border border-white/15 overflow-hidden transform transition-[transform,opacity] duration-320 ease-in-out ${
@@ -149,9 +154,9 @@ const Header = () => {
                                                 >
                                                     <div className="py-4">
                                                         {solutionsItems.map((opt) => (
-                                                            <a
-                                                                key={opt.href}
-                                                                href={opt.href}
+                                                            <button
+                                                                key={opt.label}
+                                                                type="button"
                                                                 className="block px-6 py-3 text-white font-semibold lowercase hover:[text-shadow:0_0_14px_rgba(255,255,255,0.85)] transform-gpu transition-[transform,color,text-shadow] duration-200 ease-out hover:scale-[1.03]"
                                                                 style={{
                                                                     textTransform: "none",
@@ -168,7 +173,7 @@ const Header = () => {
                                                                     />
                                                                     <span>{opt.label}</span>
                                                                 </span>
-                                                            </a>
+                                                            </button>
                                                         ))}
                                                     </div>
                                                 </div>
@@ -176,10 +181,14 @@ const Header = () => {
                                         );
                                     }
 
+                                    const NavTag = isHashUrl(item.url) ? HashLink : Link;
+                                    const to = item.url ?? "/home";
+
                                     return (
-                                        <a
+                                        <NavTag
                                             key={item.id}
-                                            href={item.url}
+                                            to={to}
+                                            smooth={isHashUrl(item.url) ? true : undefined}
                                             onClick={handleClick}
                                             className={`block relative text-md text-white font-medium hover:text-white hover:[text-shadow:0_0_14px_rgba(255,255,255,0.85)] transform-gpu transition-[transform,color,text-shadow] duration-200 ease-out hover:scale-[1.06] ${
                                                 item.onlyMobile ? "lg:hidden" : ""
@@ -193,20 +202,28 @@ const Header = () => {
                                             }}
                                         >
                                             {item.title}
-                                        </a>
+                                        </NavTag>
                                     );
                                 })}
                             </div>
                         </nav>
 
-                        <div className="w-[14rem] xl:w-[14rem] lg:w-[13rem]">
-                            <a
-                                href="#contact"
-                                className="hidden lg:flex text-md font-bold text-white px-6 py-6 lg:leading-5 hover:text-white lg:hover:text-white hover:[text-shadow:0_0_14px_rgba(255,255,255,0.85)] xl:px-12 transition-colors lowercase"
-                                style={{ textTransform: "none", transition: "color 0.3s cubic-bezier(0.4,0,0.2,1), text-shadow 0.3s cubic-bezier(0.4,0,0.2,1)" }}
+                        <div className="w-[12rem] xl:w-[14rem] lg:w-[13rem] ml-auto lg:flex-shrink-0">
+                            <HashLink
+                                to="/home/#contact"
+                                smooth
+                                className="hidden lg:flex text-xl font-bold text-white px-8 py-4 hover:text-white hover:scale-110 transition-all lowercase"
+                                style={{ textTransform: "none", transition: "color 0.3s cubic-bezier(0.4,0,0.2,1), filter 0.35s cubic-bezier(0.4,0,0.2,1), transform 0.3s cubic-bezier(0.4,0,0.2,1)" }}
+                                onMouseEnter={e => {
+                                    e.currentTarget.style.filter = 'drop-shadow(0 0 16px rgba(255,255,255,1))';
+                                }}
+                                onMouseLeave={e => {
+                                    e.currentTarget.style.filter = '';
+                                }}
                             >
+                                <span className="icon-user w-7 h-7 mr-2" />
                                 Contact us
-                            </a>
+                            </HashLink>
                         </div>
 
                         <Button className="ml-auto lg:hidden" px="px-3" onClick={toggleNavigation}>
@@ -245,10 +262,8 @@ const Header = () => {
                         {navigation.map((item) => {
                             if (item.title === "Solutions") {
                                 return (
-                                    <>
-                                        <div className="w-full flex flex-col items-center">
+                                        <div key={item.id} className="w-full flex flex-col items-center">
                                             <button
-                                                key={item.id}
                                                 type="button"
                                                 className={` w-auto text-xl text-white font-semibold transition-colors hover:text-white hover:[text-shadow:0_0_14px_rgba(255,255,255,0.85)] px-8 py-5 lowercase text-center flex items-center justify-center mx-auto`}
                                                 style={{ textTransform: "none", transition: "color 0.3s cubic-bezier(0.4,0,0.2,1), text-shadow 0.3s cubic-bezier(0.4,0,0.2,1)" }}
@@ -280,12 +295,15 @@ const Header = () => {
                                                 }}
                                             >
                                                 {solutionsItems.map((opt) => (
-                                                    <a
-                                                        key={opt.href}
-                                                        href={opt.href}
+                                                    <button
+                                                        key={opt.label}
+                                                        type="button"
                                                         className="flex items-center gap-4 px-8 py-5 text-white text-xl font-semibold lowercase hover:[text-shadow:0_0_14px_rgba(255,255,255,0.85)] transition-[transform,color,text-shadow] duration-200 ease-out hover:scale-[1.05]"
                                                         style={{ textTransform: "none", transition: "transform 200ms cubic-bezier(0.22,1,0.36,1), color 0.3s cubic-bezier(0.4,0,0.2,1), text-shadow 0.3s cubic-bezier(0.4,0,0.2,1)" }}
-                                                        onClick={handleClick}
+                                                        onClick={() => {
+                                                            setMobileSolutionsOpen(false);
+                                                            handleClick();
+                                                        }}
                                                     >
                                                         <span
                                                             aria-hidden="true"
@@ -293,17 +311,21 @@ const Header = () => {
                                                             style={{ width: 34, height: 34 }}
                                                         />
                                                         <span>{opt.label}</span>
-                                                    </a>
+                                                    </button>
                                                 ))}
                                             </div>
                                         </div>
-                                    </>
                                 );
                             }
+
+                            const NavTag = isHashUrl(item.url) ? HashLink : Link;
+                            const to = item.url ?? "/home";
+
                             return (
-                                <a
+                                <NavTag
                                     key={item.id}
-                                    href={item.url}
+                                    to={to}
+                                    smooth={isHashUrl(item.url) ? true : undefined}
                                     onClick={handleClick}
                                     className={`block text-xl text-white font-semibold transition-colors hover:text-white hover:[text-shadow:0_0_14px_rgba(255,255,255,0.85)] px-8 py-5 lowercase ${
                                         item.onlyMobile ? "" : ""
@@ -311,18 +333,26 @@ const Header = () => {
                                     style={{ textTransform: "none", transition: "color 0.3s cubic-bezier(0.4,0,0.2,1), text-shadow 0.3s cubic-bezier(0.4,0,0.2,1)" }}
                                 >
                                     {item.title}
-                                </a>
+                                </NavTag>
                             );
                         })}
 
-                        <a
-                            href="#contact"
+                        <HashLink
+                            to="/home/#contact"
+                            smooth
                             onClick={handleClick}
-                            className="block text-xl text-white font-semibold transition-colors hover:text-white hover:[text-shadow:0_0_14px_rgba(255,255,255,0.85)] px-8 py-5"
-                            style={{ textTransform: "none", transition: "color 0.3s cubic-bezier(0.4,0,0.2,1), text-shadow 0.3s cubic-bezier(0.4,0,0.2,1)" }}
+                            className="flex items-center text-2xl text-white font-semibold px-8 py-5 hover:text-white hover:scale-110 transition-all lowercase"
+                            style={{ textTransform: "none", transition: "color 0.3s cubic-bezier(0.4,0,0.2,1), filter 0.35s cubic-bezier(0.4,0,0.2,1), transform 0.3s cubic-bezier(0.4,0,0.2,1)" }}
+                            onMouseEnter={e => {
+                                e.currentTarget.style.filter = 'drop-shadow(0 0 16px rgba(255,255,255,1))';
+                            }}
+                            onMouseLeave={e => {
+                                e.currentTarget.style.filter = '';
+                            }}
                         >
+                            <span className="icon-user w-7 h-7 mr-2" />
                             Contact us
-                        </a>
+                        </HashLink>
                     </div>
                 </div>
             </div>

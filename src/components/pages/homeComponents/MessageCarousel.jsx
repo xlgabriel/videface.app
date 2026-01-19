@@ -76,8 +76,8 @@ function StackCard({ item, pos }) {
         pos === "current"
                         ? "w-[92vw] max-w-[560px] md:w-[600px] md:max-w-none"
             : pos === "prev" || pos === "next"
-                                ? "hidden md:block w-[360px]"
-                                : "hidden md:block w-[320px]";
+                                ? "w-[92vw] max-w-[560px] md:w-[360px]"
+                                : "w-[92vw] max-w-[560px] md:w-[320px]";
 
     const cardHeightClass = pos === "current" ? "h-[400px] md:h-[300px]" : "h-[240px]";
 

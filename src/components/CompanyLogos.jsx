@@ -8,11 +8,11 @@ const CompanyLogos = ({ className = "" }) => {
     useEffect(() => {
         const handleResize = () => {
             if (window.innerWidth <= 768) {
-                setLogoWidth(120);
+                setLogoWidth(140);
             } else if (window.innerWidth <= 1024) {
-                setLogoWidth(120);
+                setLogoWidth(180);
             } else {
-                setLogoWidth(270);
+                setLogoWidth(200);
             }
         };
 
@@ -49,19 +49,20 @@ const CompanyLogos = ({ className = "" }) => {
                 Since 2020, we are working together with some affiliates of brands like Zezgo, Economy and much more!
             </h5> */}
             <div
-                className="flex space-x-0 sm:space-x-0 items-center overflow-hidden"
+                className="flex gap-20 items-center overflow-hidden"
                 ref={carouselRef}
                 style={{ scrollBehavior: "smooth", display: "flex", width: "100%" }}
             >
                 {[...companyLogos, ...companyLogos].map((logo, index) => (
                     <div
-                        className="flex-none md:w-1/3 lg:w-1/5 w-1/2 flex justify-center items-center h-[8rem] sm:h-[10rem]"
+                        className="flex-none flex justify-center items-center h-[8rem] sm:h-[10rem]"
                         key={index}
+                        style={{ width: `${logoWidth}px` }}
                     >
                         <img
                             src={logo}
                             alt={`Logo ${index}`}
-                            className="h-auto w-[130px] sm:w-[160px] md:w-[170px] lg:w-[180px]"
+                            className="block h-auto w-[130px] sm:w-[160px] md:w-[170px] lg:w-[180px]"
                         />
                     </div>
                 ))}

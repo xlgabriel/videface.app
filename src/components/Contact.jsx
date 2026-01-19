@@ -154,8 +154,8 @@ const Contact = () => {
         receiverEmails: [
             "videfaceapp@gmail.com",
             "ariel@videface.com",
-            "nathalia.benitez@videface.app",
-            form.email, // el cliente que escribió
+            "nathaliabenitez@videface.com ",
+            form.email, // the client who wrote
         ],
     };
 
@@ -252,7 +252,7 @@ const Contact = () => {
     // Background style with animation
     const bgStyle = {
         background:
-            "radial-gradient(ellipse 135% 135% at 50% 48%, #0A6CFF 0%, #0A6CFF 22%, #064199 58%, #031A3F 100%)",
+            "radial-gradient(ellipse 80% 80% at 50% 50%, #0A6CFF 0%, #0A6CFF 22%, #064199 58%, #031A3F 100%)",
         opacity: bgOpacity,
         transform: `translateY(${(1 - bgMotion) * 120}px)`,
         transition: "transform 170ms ease-out, opacity 220ms ease-out",

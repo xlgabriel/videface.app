@@ -26,8 +26,8 @@ const Form = () => {
         email: false,
     });
 
-    // ✅ En lugar de concatenar todo en un solo string,
-    // pasamos todos los valores individualmente al template
+    // ✅ Instead of concatenating everything into a single string,
+    // we pass all values individually to the template
     const emailContact = ReactDOMServer.renderToString(
         <ContactEmailTemplate
             name={form.name}
@@ -44,8 +44,8 @@ const Form = () => {
         receiverEmails: [
             "videfaceapp@gmail.com",
             "ariel@videface.com",
-            "nathalia.benitez@videface.app",
-            form.email, // el cliente que escribió
+            "nathaliabenitez@videface.com ",
+            form.email, // the client who wrote
         ],
     };
 

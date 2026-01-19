@@ -103,7 +103,7 @@ const Experiences = () => {
     };
   }, []);
 
-  // Reproduce animación: se activa al entrar y se reinicia al salir
+  // Animation playback: activates on enter and resets on exit
   useEffect(() => {
     const el = loveSectionRef.current;
     if (!el) return;
@@ -120,25 +120,25 @@ const Experiences = () => {
     return () => io.disconnect();
   }, []);
 
-  // Animación más lenta y retrasada
-  // Semicírculo: fade más largo y movimiento más extendido
+  // Slower and delayed animation
+  // Semicircle: longer fade and more extended movement
   const bgMotion = easeOutCubic(clamp01(scrollProgress / 0.38));
   const bgOpacity = smoothstep(clamp01(scrollProgress / 0.75));
 
-  // Retraso extra para el resto (partículas, título, cards)
+  // Extra delay for the rest (particles, title, cards)
   // Particles: 44-82% of scroll
   const particlesProgress = easeOutCubic(clamp01((scrollProgress - 0.44) / 0.38));
   // Title: 60-94% of scroll
   const titleProgress = easeOutCubic(clamp01((scrollProgress - 0.60) / 0.34));
-  // Cards: 88-100% of scroll (más retraso)
+  // Cards: 88-100% of scroll (more delay)
   const cardsProgress = easeOutCubic(clamp01((scrollProgress - 0.88) / 0.12));
 
-  // Semicírculo (contenedor) con degradado radial, rectangular en sm
+  // Semicircle (container) with radial gradient, rectangular on sm
   const isSmallScreen = typeof window !== 'undefined' && window.innerWidth < 640;
   const bgStyle = isSmallScreen
     ? {
         background:
-          "radial-gradient(ellipse 135% 135% at 50% 48%, #0A6CFF 0%, #0A6CFF 22%, #064199 58%, #031A3F 100%)",
+          "radial-gradient(ellipse 80% 80% at 50% 50%, #0A6CFF 0%, #0A6CFF 22%, #064199 58%, #031A3F 100%)",
         borderTopLeftRadius: 0,
         borderTopRightRadius: 0,
         borderRadius: 0,
@@ -149,7 +149,7 @@ const Experiences = () => {
       }
     : {
         background:
-          "radial-gradient(ellipse 135% 135% at 50% 48%, #0A6CFF 0%, #0A6CFF 22%, #064199 58%, #031A3F 100%)",
+          "radial-gradient(ellipse 80% 80% at 50% 50%, #0A6CFF 0%, #0A6CFF 22%, #064199 58%, #031A3F 100%)",
         borderTopLeftRadius: "50% 800px",
         borderTopRightRadius: "50% 800px",
         opacity: bgOpacity,
@@ -278,7 +278,7 @@ const Experiences = () => {
                                         display: 'inline-block',
                                     }}
                                 >
-                                    Videface
+                                    VideFace
                                 </span>
                                         </h2> 
         <div className="grid w-full max-w-[1100px] grid-cols-2 justify-items-center gap-6 sm:gap-10 sm:grid-cols-2 lg:grid-cols-4 mt-20">
