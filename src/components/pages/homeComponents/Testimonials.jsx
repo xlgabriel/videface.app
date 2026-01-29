@@ -86,7 +86,7 @@ export default function Testimonials({ items = sampleItems }) {
                     {/* Title */}
                     <div className={titleClass}>
                         <h2 className="text-[2.3rem] leading-tight md:text-6xl font-medium text-gray-900">
-                            What our
+                            What our&nbsp;
                             <div className="mt-2">
                                 <span className="text-[2.3rem] leading-tight md:text-6xl font-bold" style={{
                                     background: 'linear-gradient(90deg, #00438B 0%, #007FFF 57%)',
@@ -95,7 +95,7 @@ export default function Testimonials({ items = sampleItems }) {
                                     color: 'transparent',
                                     display: 'inline-block',
                                 }}>
-                                    #VideFaceLovers
+                                    #VideFaceLovers&nbsp;
                                 </span>
                                 <span className="text-[2.3rem] leading-tight md:text-6xl font-medium text-gray-900">say</span>
                             </div>

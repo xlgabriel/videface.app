@@ -167,7 +167,7 @@ const Hero = () => {
             <div className="container flex flex-col lg:flex-row items-center justify-center gap-10 lg:gap-20" >
                 <div className="w-full lg:flex-1 lg:max-w-[48rem] relative z-20 flex flex-col justify-center items-center lg:items-start text-center lg:text-left lg:pr-12 lg:-ml-16 xl:-ml-24">
                     <h1 className="font-bold text-center lg:ml-10 xl:ml-0 lg:text-left text-4xl md:text-5xl lg:text-6xl lg:font-semibold leading-[1.05] mb-8 hero-left-enter">
-                        Your Entire Customer<br />Service Operation, Powered by <br />
+                        Your Entire Customer <br />Service Operation, Powered by <br />
                         <span className="font-bold"
                             style={{
                                 background: 'linear-gradient(90deg, #00438B 0%, #007FFF 57%)',

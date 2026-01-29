@@ -161,7 +161,7 @@ const Experiences = () => {
   // Particles styles (expansion + fade)
   const particlesStyle = {
     opacity: particlesProgress * 0.5,
-    transform: `translate(-50%, 0) scale(${0.5 + 0.5 * particlesProgress})`,
+    transform: `translate(-50%, -50%) scale(${0.5 + 0.5 * particlesProgress})`,
     transition: "transform 200ms ease-out, opacity 200ms ease-out",
   };
 
@@ -190,56 +190,38 @@ const Experiences = () => {
         />
 
 
-        {/* Partículas centradas */}
-        <div
-          className="pointer-events-none absolute left-1/2 top-[90px] h-[900px] w-[900px] z-20"
-          style={particlesStyle}
-        >
-          <BackgroundCircles
-            className="absolute inset-0 rounded-full border border-white/10"
-          />
-        </div>
+        {/* Partículas centradas: movidas dentro del contenedor y centradas */}
 
         <div className="container relative pt-20 sm:pt-52 z-30 flexflex-col items-center" >
+          <div
+            className="pointer-events-none absolute left-1/2 top-[63%] h-[900px] w-[900px] z-20"
+            style={particlesStyle}
+          >
+            <BackgroundCircles
+              className="absolute inset-0 rounded-full border border-white/10"
+            />
+          </div>
           {/* Title with scroll-driven entrance + glow effect */}
           <div style={titleContainerStyle}>
             <h2
               ref={titleRef}
-              className="experience-title text-center text-4xl font-medium leading-tight md:text-4xl lg:text-6xl"
+              className="experience-title text-center text-4xl font-medium leading-[1.2] md:leading-[1.18] lg:leading-[1.12] md:text-4xl lg:text-6xl"
             >
-              <span className="relative inline-block">
-                <span
-                  aria-hidden
-                  style={{
-                    background: "linear-gradient(90deg, #FFFFFF 66%, #007FFF 90%)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    color: "transparent",
-                    display: "inline-block",
-                    opacity: 1 - glowAmount,
-                    transition: "opacity 280ms ease",
-                  }}
-                >
-                  Driving Smarter Customer<br />
-                  Experiences, <span className="font-bold">Every Day</span>
-                </span>
-
-                <span
-                  style={{
-                    position: "absolute",
-                    inset: 0,
-                    color: "#fff",
-                    WebkitTextFillColor: "#fff",
-                    opacity: glowAmount,
-                    transition: "opacity 280ms ease",
-                    filter:
-                      "drop-shadow(0 0 18px rgba(255, 255, 255, 0.9)) brightness(1.15)",
-                    pointerEvents: "none",
-                  }}
-                >
-                  Driving Smarter Customer<br />
-                  Experiences, <span className="font-bold">Every Day</span>
-                </span>
+              <span
+                style={{
+                  background: "linear-gradient(90deg, #FFFFFF 66%, #007FFF 90%)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  color: "transparent",
+                  display: "inline-block",
+                  paddingBottom: "0.08em",
+                  filter: glowAmount > 0 ? `brightness(0) invert(1) drop-shadow(0 0 18px rgba(255, 255, 255, ${glowAmount * 0.9}))` : "none",
+                  transition: "filter 700ms cubic-bezier(0.22, 1, 0.36, 1)",
+                  willChange: 'filter',
+                }}
+              >
+                Driving Smarter Customer <br />
+                Experiences, <span className="font-bold">Every Day</span>
               </span>
             </h2>
           </div>
@@ -267,7 +249,7 @@ const Experiences = () => {
         className="w-full py-20 flex flex-col items-center mt-5 sm:mt-20"
       >
                                        <h2 className="font-medium text-4xl md:text-6xl pb-2 text-center">
-                                        Why you'll love
+                                        Why you'll love&nbsp;
                                         <span className="pl-4 font-bold"
                                     
                                     style={{
@@ -291,7 +273,7 @@ const Experiences = () => {
           >
             <div className="bg-[#0A6CFF] rounded-b-[7.5rem] h-[320px] sm:h-[370px] p-2" style={{ boxShadow: '12px 0 16px 0 rgba(0,0,0,0.5)' }}>
               <div className="flex flex-col items-center justify-between border-4 border-white rounded-b-[6.5rem] bg-[#0A6CFF] pt-6 pb-8 px-6 h-full w-full">
-                <h3 className="text-white text-center font-extrabold text-lg sm:text-xl mb-6">REAL-TIME<br />TRANSLATION</h3>
+                <h3 className="text-white text-center font-extrabold text-lg sm:text-xl mb-6">REAL-TIME <br />TRANSLATION</h3>
                 <div className="flex-1 flex items-center justify-center">
                   <span className="flex items-center justify-center rounded-full bg-white w-32 h-32 sm:w-40 sm:h-40">
                     <span className="icon-translation w-20 h-20 sm:w-24 sm:h-24 text-[#0A6CFF]" />
@@ -327,7 +309,7 @@ const Experiences = () => {
             >
               <div className="bg-[#0A6CFF] rounded-b-[7.5rem] h-[320px] sm:h-[370px] p-2" style={{ boxShadow: '12px 0 16px 0 rgba(0,0,0,0.5)' }}>
                 <div className="flex flex-col items-center justify-between border-4 border-white rounded-b-[6.5rem] bg-[#0A6CFF] pt-6 pb-8 px-6 h-full w-full">
-                <h3 className="text-white text-center font-extrabold text-lg sm:text-xl mb-6">REDUCE<br />COSTS</h3>
+                <h3 className="text-white text-center font-extrabold text-lg sm:text-xl mb-6">REDUCE <br />COSTS</h3>
                   <div className="flex-1 flex items-center justify-center">
                     <span className="flex items-center justify-center rounded-full bg-white w-32 h-32 sm:w-40 sm:h-40">
                       <span className="icon-reduce w-20 h-20 sm:w-24 sm:h-24 text-[#0A6CFF]" />
@@ -345,7 +327,7 @@ const Experiences = () => {
             >
               <div className="bg-[#0A6CFF] rounded-b-[7.5rem] h-[320px] sm:h-[370px] p-2" style={{ boxShadow: '12px 0 16px 0 rgba(0,0,0,0.5)' }}>
                 <div className="flex flex-col items-center justify-between border-4 border-white rounded-b-[6.5rem] bg-[#0A6CFF] pt-6 pb-8 px-6 h-full w-full">
-                <h3 className="text-white text-center font-extrabold text-lg sm:text-xl mb-6">BOOST<br />PRODUCTIVITY</h3>
+                <h3 className="text-white text-center font-extrabold text-lg sm:text-xl mb-6">BOOST <br />PRODUCTIVITY</h3>
                   <div className="flex-1 flex items-center justify-center">
                     <span className="flex items-center justify-center rounded-full bg-white w-32 h-32 sm:w-40 sm:h-40">
                       <span className="icon-productivity w-20 h-20 sm:w-24 sm:h-24 text-[#0A6CFF]" />

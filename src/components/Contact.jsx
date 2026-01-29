@@ -304,37 +304,19 @@ const Contact = () => {
                                 ref={titleRef}
                                 className="text-center font-semibold text-4xl md:text-6xl tracking-tight mb-10"
                             >
-                                <span className="relative inline-block">
-                                    <span
-                                        aria-hidden
-                                        style={{
-                                            background: "linear-gradient(90deg, #FFFFFF 66%, #007FFF 90%)",
-                                            WebkitBackgroundClip: "text",
-                                            WebkitTextFillColor: "transparent",
-                                            color: "transparent",
-                                            display: "inline-block",
-                                            opacity: 1 - glowAmount,
-                                            transition: "opacity 280ms ease",
-                                        }}
-                                    >
-                                        Contact us!
-                                    </span>
-
-                                    <span
-                                        style={{
-                                            position: "absolute",
-                                            inset: 0,
-                                            color: "#fff",
-                                            WebkitTextFillColor: "#fff",
-                                            opacity: glowAmount,
-                                            transition: "opacity 280ms ease",
-                                            filter:
-                                                "drop-shadow(0 0 18px rgba(255, 255, 255, 0.9)) brightness(1.15)",
-                                            pointerEvents: "none",
-                                        }}
-                                    >
-                                        Contact us!
-                                    </span>
+                                <span
+                                    style={{
+                                        background: "linear-gradient(90deg, #FFFFFF 66%, #007FFF 90%)",
+                                        WebkitBackgroundClip: "text",
+                                        WebkitTextFillColor: "transparent",
+                                        color: "transparent",
+                                        display: "inline-block",
+                                        filter: glowAmount > 0 ? `brightness(0) invert(1) drop-shadow(0 0 18px rgba(255, 255, 255, ${glowAmount * 0.9}))` : "none",
+                                        transition: "filter 700ms cubic-bezier(0.22, 1, 0.36, 1)",
+                                        willChange: 'filter',
+                                    }}
+                                >
+                                    Contact us!
                                 </span>
                             </h2>
                         </div>
