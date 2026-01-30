@@ -18,6 +18,28 @@ export default function IndustryCarousel() {
         []
     );
 
+    // Optional metadata for accessibility: map filename -> alt/title
+    const imgMetadata = useMemo(() => ({
+        [HotelImage.split("/").pop()]: {
+            alt: "Hotel Reception with Virtual Support",
+            title: "Hotel reception area with travelers and luggage using digital services",
+        },
+        [HealthImage.split("/").pop()]: {
+            alt: "Healthcare Professional Using Technology",
+            title: "Doctor wearing a stethoscope representing digital healthcare services",
+        },
+        [RentCarImage.split("/").pop()]: {
+            alt: "Car Rental Key Handover",
+            title: "Woman handing over car keys during a vehicle rental process",
+        },
+        [RestaurantImage.split("/").pop()]: {
+            alt: "Mobile Technology in Restaurant",
+            title: "Smartphone taking a photo in a restaurant using digital technology",
+        },
+    }), []);
+
+    const getBasename = (src) => (src || "").split("/").pop().split("?")[0];
+
     const [activeIndex, setActiveIndex] = useState(DEFAULT_ACTIVE_INDEX);
     const [hoverIndex, setHoverIndex] = useState(null);
     const [inView, setInView] = useState(false);
@@ -75,7 +97,14 @@ export default function IndustryCarousel() {
                                 >
                                     <img
                                         src={item.image}
-                                        alt={item.title}
+                                        alt={(() => {
+                                            const m = imgMetadata[getBasename(item.image)];
+                                            return m?.alt ?? item.title;
+                                        })()}
+                                        title={(() => {
+                                            const m = imgMetadata[getBasename(item.image)];
+                                            return m?.title ?? item.title;
+                                        })()}
                                         className="absolute inset-0 h-full w-full object-cover"
                                     />
 

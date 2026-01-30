@@ -194,7 +194,8 @@ const Hero = () => {
                         <div style={{ ...bgWrapStyle }}>
                             <img
                                 src={ImagePrincipalBG}
-                                alt="Background"
+                                alt="VideFace Branded Background"
+                                title="VideFace branded background representing virtual assistance technology"
                                 className="block h-auto w-[120%] max-w-[1000px] hero-bg-enter"
                             />
                         </div>
@@ -205,14 +206,16 @@ const Hero = () => {
                         >
                             <img
                                 src={ImagePrincipalUSER}
-                                alt="User"
+                                alt="Virtual Customer Service Agent"
+                                title="Virtual customer service agent displayed on a VideFace assistance screen"
                                 className="hero-user-enter h-auto w-[120%] max-w-[1000px]"
                             />
                         </div>
 
                         <img
                             src={ImageInterfaz}
-                            alt="User"
+                            alt="VideFace Virtual Assistance Screen"
+                            title="VideFace virtual assistance screen used for remote customer service"
                             className="absolute z-10 pointer-events-none hero-gif-enter max-w-[60vw] w-[170px] sm:w-[220px] md:w-[280px] lg:w-[250px] xl:w-[320px] right-30 sm:right-70 md:right-74 lg:right-[280px] xl:right-[340px] top-10 sm:top-20 md:top-20 lg:top-[40px] xl:top-[50px]"
                             style={{
                                 background: "transparent",

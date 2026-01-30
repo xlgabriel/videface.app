@@ -23,6 +23,51 @@ function getOrderedGalleryImages() {
 export default function ImageGallery({ className = "" }) {
     const images = useMemo(() => getOrderedGalleryImages(), []);
     const [activeIndex, setActiveIndex] = useState(0);
+    // Metadata for gallery images keyed by filename (basename)
+    const imgMetadata = useMemo(() => ({
+        "1.webp": {
+            alt: "VideFace Key Drop System",
+            title: "VideFace key drop system located outside a customer service office",
+        },
+        "2.webp": {
+            alt: "VideFace Customer Service Offices",
+            title: "VideFace offices featuring virtual customer service assistance booths",
+        },
+        "3.webp": {
+            alt: "NextCar Office Using VideFace",
+            title: "NextCar car rental office equipped with VideFace virtual service booths",
+        },
+        "4.webp": {
+            alt: "Office with Virtual Assistance Booths",
+            title: "Office with three virtual assistance booths for customer service operations",
+        },
+        "5.webp": {
+            alt: "Digitally Transformed Office",
+            title: "Digitally transformed office with virtual assistance and automation elements",
+        },
+        "6.webp": {
+            alt: "Car Rental Customer Service Office",
+            title: "Car rental office with virtual customer service booths for vehicle rentals",
+        },
+        "7.webp": {
+            alt: "Customer Service Assistance Booth",
+            title: "Customer service booth with a woman using virtual assistance technology",
+        },
+        "8.webp": {
+            alt: "VideFace Office with Virtual Assistance",
+            title: "VideFace office with chairs and virtual customer assistance setup",
+        },
+        "9.webp": {
+            alt: "Carwiz Car Rental Office",
+            title: "Carwiz car rental office using VideFace virtual customer service booths",
+        },
+        "10.webp": {
+            alt: "VideFace Team Collaboration",
+            title: "VideFace team working together in a social and collaborative environment",
+        },
+    }), []);
+
+    const getBasename = (src) => (src || "").split("/").pop().split("?")[0];
     const [selectedIndex, setSelectedIndex] = useState(null);
     const sectionRef = useRef(null);
     const [phase, setPhase] = useState("hidden");
@@ -178,7 +223,14 @@ export default function ImageGallery({ className = "" }) {
                                 key={activeSrc}
                                 className="featured-main-img"
                                 src={activeSrc}
-                                alt=""
+                                alt={(() => {
+                                    const m = imgMetadata[getBasename(activeSrc)];
+                                    return m?.alt || `Featured image ${activeIndex + 1} of VideFace`;
+                                })()}
+                                title={(() => {
+                                    const m = imgMetadata[getBasename(activeSrc)];
+                                    return m?.title ?? m?.alt ?? "Image showcasing VideFace virtual assistance services";
+                                })()}
                                 style={{ objectPosition: mainObjectPosition }}
                                 initial={{ opacity: 0, scale: 0.985 }}
                                 animate={{ opacity: 1, scale: 1 }}
@@ -242,7 +294,14 @@ export default function ImageGallery({ className = "" }) {
                                 <img
                                     src={src}
                                     className="thumb-img"
-                                    alt="gallery-image"
+                                    alt={(() => {
+                                        const m = imgMetadata[getBasename(src)];
+                                        return m?.alt || `Thumbnail image ${index + 1}`;
+                                    })()}
+                                    title={(() => {
+                                        const m = imgMetadata[getBasename(src)];
+                                        return m?.title ?? m?.alt ?? "Image showcasing VideFace virtual assistance services";
+                                    })()}
                                     loading="lazy"
                                     draggable={false}
                                 />
@@ -284,7 +343,14 @@ export default function ImageGallery({ className = "" }) {
                         />
                         <motion.img
                             src={images[selectedIndex]}
-                            alt={`Imagen ${selectedIndex + 1}`}
+                            alt={(() => {
+                                const m = imgMetadata[getBasename(images[selectedIndex])];
+                                return m?.alt || `Image ${selectedIndex + 1} from the VideFace gallery`;
+                            })()}
+                            title={(() => {
+                                const m = imgMetadata[getBasename(images[selectedIndex])];
+                                return m?.title ?? m?.alt ?? "Image showcasing VideFace virtual assistance services";
+                            })()}
                             className="lightbox-img"
                             initial={{ scale: 0.85, opacity: 0 }}
                             animate={{ scale: 1, opacity: 1 }}
