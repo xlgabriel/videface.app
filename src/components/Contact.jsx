@@ -308,11 +308,17 @@ const Contact = () => {
                                     style={{
                                         background: "linear-gradient(90deg, #FFFFFF 66%, #007FFF 90%)",
                                         WebkitBackgroundClip: "text",
-                                        WebkitTextFillColor: "transparent",
-                                        color: "transparent",
                                         display: "inline-block",
-                                        filter: glowAmount > 0 ? `brightness(0) invert(1) drop-shadow(0 0 18px rgba(255, 255, 255, ${glowAmount * 0.9}))` : "none",
-                                        transition: "filter 700ms cubic-bezier(0.22, 1, 0.36, 1)",
+                                        WebkitTextFillColor: glowAmount > 0 ? `rgba(255,255,255,${glowAmount})` : "transparent",
+                                        color: glowAmount > 0 ? `rgba(255,255,255,${glowAmount})` : "transparent",
+                                        filter:
+                                            glowAmount > 0
+                                                ? `drop-shadow(0 0 ${18 * glowAmount}px rgba(255,255,255,${Math.min(
+                                                      0.9,
+                                                      glowAmount
+                                                  )})) brightness(${1 + 0.15 * glowAmount})`
+                                                : "none",
+                                        transition: "WebkitTextFillColor 700ms cubic-bezier(0.22, 1, 0.36, 1), color 700ms cubic-bezier(0.22, 1, 0.36, 1), filter 700ms cubic-bezier(0.22, 1, 0.36, 1)",
                                         willChange: 'filter',
                                     }}
                                 >

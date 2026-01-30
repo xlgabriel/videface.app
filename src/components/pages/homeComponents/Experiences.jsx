@@ -134,7 +134,8 @@ const Experiences = () => {
   const cardsProgress = easeOutCubic(clamp01((scrollProgress - 0.88) / 0.12));
 
   // Semicircle (container) with radial gradient, rectangular on sm
-  const isSmallScreen = typeof window !== 'undefined' && window.innerWidth < 640;
+  // Treat 'lg' and below as the rectangular layout (lg breakpoint = 1024px)
+  const isSmallScreen = typeof window !== 'undefined' && window.innerWidth < 1024;
   const bgStyle = isSmallScreen
     ? {
         background:
@@ -161,7 +162,7 @@ const Experiences = () => {
   // Particles styles (expansion + fade)
   const particlesStyle = {
     opacity: particlesProgress * 0.5,
-    transform: `translate(-50%, -50%) scale(${0.5 + 0.5 * particlesProgress})`,
+    transform: `translate(-50%, 0) scale(${0.5 + 0.5 * particlesProgress})`,
     transition: "transform 200ms ease-out, opacity 200ms ease-out",
   };
 
@@ -190,34 +191,39 @@ const Experiences = () => {
         />
 
 
-        {/* Partículas centradas: movidas dentro del contenedor y centradas */}
+        {/* Partículas centradas */}
+        <div
+          className="pointer-events-none absolute left-1/2 top-[170px] h-[900px] w-[900px] z-20"
+          style={particlesStyle}
+        >
+          <BackgroundCircles
+            className="absolute inset-0 rounded-full border border-white/10"
+          />
+        </div>
 
         <div className="container relative pt-20 sm:pt-52 z-30 flexflex-col items-center" >
-          <div
-            className="pointer-events-none absolute left-1/2 top-[63%] h-[900px] w-[900px] z-20"
-            style={particlesStyle}
-          >
-            <BackgroundCircles
-              className="absolute inset-0 rounded-full border border-white/10"
-            />
-          </div>
           {/* Title with scroll-driven entrance + glow effect */}
           <div style={titleContainerStyle}>
             <h2
               ref={titleRef}
-              className="experience-title text-center text-4xl font-medium leading-[1.2] md:leading-[1.18] lg:leading-[1.12] md:text-4xl lg:text-6xl"
+              className="experience-title text-center text-4xl font-medium leading-tight md:text-4xl lg:text-6xl"
             >
               <span
+                className="relative inline-block"
                 style={{
                   background: "linear-gradient(90deg, #FFFFFF 66%, #007FFF 90%)",
                   WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  color: "transparent",
                   display: "inline-block",
-                  paddingBottom: "0.08em",
-                  filter: glowAmount > 0 ? `brightness(0) invert(1) drop-shadow(0 0 18px rgba(255, 255, 255, ${glowAmount * 0.9}))` : "none",
-                  transition: "filter 700ms cubic-bezier(0.22, 1, 0.36, 1)",
-                  willChange: 'filter',
+                  WebkitTextFillColor: `rgba(255,255,255,${glowAmount})`,
+                  color: glowAmount > 0 ? `rgba(255,255,255,${glowAmount})` : "transparent",
+                  transition: "WebkitTextFillColor 280ms ease, color 280ms ease, filter 280ms ease",
+                  filter:
+                    glowAmount > 0
+                      ? `drop-shadow(0 0 ${18 * glowAmount}px rgba(255,255,255,${Math.min(
+                          0.9,
+                          glowAmount
+                        )})) brightness(${1 + 0.15 * glowAmount})`
+                      : "none",
                 }}
               >
                 Driving Smarter Customer <br />
