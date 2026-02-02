@@ -42,7 +42,7 @@ const Form = () => {
         subject: "Thank you for contacting VideFace!",
         from: "VideFace",
         receiverEmails: [
-            "videfaceapp@gmail.com",
+            "admin@videface.com",
             "ariel@videface.com",
             "nathaliabenitez@videface.com ",
             form.email, // the client who wrote

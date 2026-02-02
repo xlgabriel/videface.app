@@ -100,6 +100,7 @@ import Mex from "./LogosCompanies/Mex.png";
 import Awreck from "./LogosCompanies/Awreck.png";
 import RC from "./LogosCompanies/RC.png";
 import Nextcar from "./LogosCompanies/Nextcar.png";
+import Advantage from "./LogosCompanies/Advantage.png";
 import Nu from "./LogosCompanies/Nu.png";
 import Routes from "./LogosCompanies/Routes.png";
 import priceless from "./LogosCompanies/priceless.png";
@@ -121,6 +122,7 @@ import Nordic from "./LogosCompanies/Nordic.png";
 import amerirent from "./LogosCompanies/amerirent.png";
 import Cafe from "./LogosCompanies/Cafe.png";
 import Tarpon from "./LogosCompanies/4.png";
+import Final from "./LogosCompanies/Final.png";
 import seven24 from "./LogosCompanies/24seven.png";
 import Nola from "./LogosCompanies/Nola.png";
 import Flex from "./LogosCompanies/Flex.png";
@@ -218,6 +220,7 @@ export {
     Awreck,
     RC,
     Nextcar,
+    Advantage,
     Nu,
     Routes,
     priceless,
@@ -239,6 +242,7 @@ export {
     amerirent,
     Cafe,
     Tarpon,
+    Final,
     seven24,
     Nola,
     Flex,

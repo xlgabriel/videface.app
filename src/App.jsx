@@ -6,8 +6,13 @@ import DocumentDownload from "./components/DocumentDownload";
 import Form from "./components/Form";
 import DottedBackground from "./components/DottedBackground";
 import ScrollToTop from "./components/ScrollToTop";
+import usePageView from "./hooks/usePageView";
 
 const App = () => {
+    // Track page views at the app level. This hook is safe to call once here
+    // and will no-op if `gtag` hasn't loaded yet. It uses react-router's
+    // `useLocation` internally to detect route changes.
+    usePageView();
     return (
         <>
             <DottedBackground spacing={30} size={0.7} opacity={0.18} color="0,0,0" speed={1} />

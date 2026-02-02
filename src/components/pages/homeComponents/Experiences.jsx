@@ -10,7 +10,7 @@ import AcousticCabinIcon from "../../../assets/svg/Acoustic-cabin.svg";
 import CarSystemIcon from "../../../assets/svg/Car-system.svg";
 
 const EXPERIENCES = [
-  { title: "Self-Service\nKiosk", icon: KioskIcon },
+  { title: "Kiosk for virtual\nAssistance", icon: KioskIcon },
   { title: "Keydrop", icon: KeyIcon },
   { title: "Virtual\nAssistants", icon: VirtualAssistantsIcon },
   { title: "Videface Smart\nLocker Key\nManagement", icon: LockerKeyIcon },

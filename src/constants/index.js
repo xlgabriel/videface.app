@@ -45,6 +45,7 @@ import {
     Awreck,
     RC,
     Nextcar,
+    Advantage,
     Nu,
     Routes,
     priceless,
@@ -66,6 +67,7 @@ import {
     amerirent,
     Cafe,
     Tarpon,
+    Final,
     seven24,
     Nola,
     Flex,
@@ -105,9 +107,9 @@ export const heroIcons = [homeSmile, file02, searchMd, plusSquareWhite];
 export const notificationImages = [notification4, notification3, notification2];
 
 export const companyLogos = [
-    Economy, Mex, Awreck, RC, Nextcar, Nu,
+    Economy, Mex, Awreck, RC, Nextcar, Advantage, Nu,
     Routes, priceless, Wheego, Flexways, Zezgo, Flextogo,
-    Zoom, Carwiz, Autounion, york, ACO, Tarpon,
+    Zoom, Carwiz, Autounion, york, ACO, Tarpon, Final,
     cargreen, Colusa, oneswitch, Clubs, Nordic,
     amerirent, Cafe, tht, seven24, Nola, Flex
 ];
