@@ -269,7 +269,7 @@ export default function ImageGallery({ className = "" }) {
                         </button>
                     </div>
 
-                    <div
+                    <motion.div
                         className="featured-thumbs"
                         role="group"
                         aria-label="Miniaturas"
@@ -308,7 +308,7 @@ export default function ImageGallery({ className = "" }) {
                             </button>
                             );
                         })}
-                    </div>
+                    </motion.div>
 
                     <div className="featured-dots" aria-label="Navegación por puntos">
                         {images.map((src, index) => (
