@@ -1,15 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
-import Heading from "../../Heading";
-import { service1, service1mobile, service2, service3, check, gradient } from "../../../assets";
-import { brainwaveServices, brainwaveServicesIcons } from "../../../constants";
+import Heading from "../../../Heading";
+import { service1, service1mobile, service2, service3, check, gradient } from "../../../../assets";
+import { brainwaveServices, brainwaveServicesIcons } from "../../../../constants";
 import {
     PhotoChatMessage,
     Gradient,
     VideoChatMessage,
-} from "../../design/Services";
-import Button from "../../Button";
+} from "../../../design/Services";
+import Button from "../../../Button";
 
-import Generating from "../../Generating";
+import Generating from "../../../Generating";
 
 const Services = () => {
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);

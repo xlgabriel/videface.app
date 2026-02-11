@@ -1,5 +1,5 @@
-import IndustryCarousel from "./IndustryCarousel";
-import IndustryStats from "./IndustryStats";
+import IndustryCarousel from "../homeComponents/IndustryCarousel";
+import IndustryStats from "../homeComponents/IndustryStats";
 
 export default function IndustrySection() {
     return (

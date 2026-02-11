@@ -80,12 +80,12 @@ import {
 } from "../assets";
 
 export const navigation = [
-/*     {
+    {
         id: "0",
         title: "Solutions",
         url: null, // Not clickable, only hover for dropdown
     },
-    {
+/*     {
         id: "1",
         title: "About Us",
         url: "/home/#about-us",

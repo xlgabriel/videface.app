@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 function getOrderedGalleryImages() {
-    const modules = import.meta.glob("../../../assets/gallery/*.{png,jpg,jpeg,webp,avif}", {
+    const modules = import.meta.glob("../../../../assets/gallery/*.{png,jpg,jpeg,webp,avif}", {
         eager: true,
         import: "default",
     });

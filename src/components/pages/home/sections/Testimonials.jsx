@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import MessageCarousel from "./MessageCarousel";
+import MessageCarousel from "../homeComponents/MessageCarousel";
 
 const sampleItems = [
 

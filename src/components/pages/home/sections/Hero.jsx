@@ -1,11 +1,11 @@
-import Button from "../../Button";
-import CompanyLogos from "../../CompanyLogos";
-import { BottomLine } from "../../design/Hero";
-import ImagePrincipalBG from "../../../assets/hero/ImagePrincipalBG.webp";
-import ImagePrincipalUSER from "../../../assets/hero/ImagePrincipalUSER.webp";
-import ImageInterfaz from "../../../assets/hero/interfaz.gif";
+import Button from "../../../Button";
+import CompanyLogos from "../../../CompanyLogos";
+import { BottomLine } from "../../../design/Hero";
+import ImagePrincipalBG from "../../../../assets/hero/ImagePrincipalBG.webp";
+import ImagePrincipalUSER from "../../../../assets/hero/ImagePrincipalUSER.webp";
+import ImageInterfaz from "../../../../assets/hero/interfaz.gif";
 import { useEffect, useRef, useState } from "react";
-import ImageGallery from "./ImageGallery";
+import ImageGallery from "../homeComponents/ImageGallery";
 
 const Hero = () => {
     const heroRef = useRef(null);

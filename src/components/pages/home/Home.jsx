@@ -1,18 +1,18 @@
-import ButtonGradient from "../../assets/svg/ButtonGradient";
-import Benefits from "../Benefits";
-import Collaboration from "../Collaboration";
-import Footer from "../Footer";
-import Header from "../Header";
-import Hero from "./homeComponents/Hero";
-import Experiences from "./homeComponents/Experiences";
-import IndustrySection from "./homeComponents/IndustrySection";
-import Pricing from "./homeComponents/Pricing";
-import Testimonials from "./homeComponents/Testimonials";
-import Contact from "../Contact";
-import Services from "./homeComponents/Services";
-import Announcement from "../Announcement";
+import ButtonGradient from "../../../assets/svg/ButtonGradient";
+import Benefits from "../../Benefits";
+import Collaboration from "../../Collaboration";
+import Footer from "../../Footer";
+import Header from "../../Header";
+import Hero from "./sections/Hero";
+import Experiences from "./sections/Experiences";
+import IndustrySection from "./sections/IndustrySection";
+import Pricing from "../../Pricing";
+import Testimonials from "./sections/Testimonials";
+import Contact from "../../Contact";
+import Services from "./sections/Services";
+import Announcement from "../../Announcement";
 import ImageGallery from "./homeComponents/ImageGallery";
-import Seo from "../Seo";
+import Seo from "../../Seo";
 
 export default function Home() {
     return (
