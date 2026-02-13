@@ -13,6 +13,7 @@ import Services from "./sections/Services";
 import Announcement from "../../Announcement";
 import ImageGallery from "./homeComponents/ImageGallery";
 import Seo from "../../Seo";
+import { homeOG } from "../../../assets";
 
 export default function Home() {
     return (
@@ -21,6 +22,7 @@ export default function Home() {
                 title="Virtual Assistance Platform for Modern Businesses | VideFace"
                 description="VideFace is a virtual assistance platform that helps businesses reduce operational costs, deliver 24/7 human support through digital and self-service solutions."
                 canonical="https://videface.com/"
+                image={homeOG}
             />
             <div className="pt-[4.75rem] lg:pt-[5.25rem] overflow-hidden">
                 <Header />

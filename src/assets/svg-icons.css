@@ -10,77 +10,99 @@
 }
 
 .icon-acoustic-cabin {
-    --svg: url("../assets/svg/Acoustic-cabin.svg");
+    --svg: url("./svg/acoustic-cabin-b.svg");
     @apply iconBase;
 }
 .icon-agent-support {
-    --svg: url("../assets/svg/Agent-support.svg");
+    --svg: url("./svg/Agent-support.svg");
     @apply iconBase;
 }
 .icon-car-system {
-    --svg: url("../assets/svg/Car-system.svg");
+    --svg: url("./svg/Car-system.svg");
     @apply iconBase;
 }
 .icon-key {
-    --svg: url("../assets/svg/Key.svg");
+    --svg: url("./svg/keydrop-b.svg");
     @apply iconBase;
 }
 .icon-kiosk {
-    --svg: url("../assets/svg/Kiosk.svg");
+    --svg: url("./svg/Kios-b.svg");
     @apply iconBase;
 }
 .icon-locker-key {
-    --svg: url("../assets/svg/Locker-key.svg");
+    --svg: url("./svg/smartlocker-b.svg");
     @apply iconBase;
 }
 .icon-productivity {
-    --svg: url("../assets/svg/productivity.svg");
+    --svg: url("./svg/productivity.svg");
     @apply iconBase;
 }
 .icon-reduce {
-    --svg: url("../assets/svg/reduce.svg");
+    --svg: url("./svg/reduce.svg");
     @apply iconBase;
 }
 .icon-translation {
-    --svg: url("../assets/svg/translation.svg");
+    --svg: url("./svg/translation.svg");
     @apply iconBase;
 }
 .icon-virtual-assistants {
-    --svg: url("../assets/svg/Virtual-assistants.svg");
+    --svg: url("./svg/agent-b.svg");
     @apply iconBase;
 }
 
 .icon-meda {
-    --svg: url("../assets/svg/meda.svg");
+    --svg: url("./svg/meda.svg");
     @apply iconBase;
 }
 .icon-verified {
-    --svg: url("../assets/svg/verified.svg");
+    --svg: url("./svg/verified.svg");
     @apply iconBase;
 }
 
 .icon-user {
-    --svg: url("../assets/svg/user.svg");
+    --svg: url("./svg/user.svg");
     @apply iconBase;
 }
 
 .icon-email {
-    --svg: url("../assets/svg/email-account.svg");
+    --svg: url("./svg/email-account.svg");
     @apply iconBase;
 }
 
 .icon-linkedin {
-    --svg: url("../assets/svg/linkedin.svg");
+    --svg: url("./svg/linkedin.svg");
     @apply iconBase;
 }
 
 .icon-youtube {
-    --svg: url("../assets/svg/play.svg");
+    --svg: url("./svg/play.svg");
     @apply iconBase;
 }
 
 .icon-instagram {
-    --svg: url("../assets/svg/camera.svg");
+    --svg: url("./svg/camera.svg");
+    @apply iconBase;
+}
+
+/* Additional icons used by Services */
+.icon-recording-03 {
+    --svg: url("./recording-03.svg");
+    @apply iconBase;
+}
+.icon-recording-01 {
+    --svg: url("./recording-01.svg");
+    @apply iconBase;
+}
+.icon-chromecast {
+    --svg: url("./chrome-cast.svg");
+    @apply iconBase;
+}
+.icon-sliders-04 {
+    --svg: url("./sliders-04.svg");
+    @apply iconBase;
+}
+.icon-plus-square {
+    --svg: url("./plus-square.png");
     @apply iconBase;
 }
 

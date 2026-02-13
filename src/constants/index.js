@@ -118,6 +118,14 @@ export const brainwaveServices = ["Location is not a problem", "24/7 assistance 
 
 export const brainwaveServicesIcons = [recording03, recording01, disc02, chromecast, sliders04];
 
+export const brainwaveServicesIconClasses = [
+    "icon-recording-03",
+    "icon-recording-01",
+    "icon-key",
+    "icon-chromecast",
+    "icon-sliders-04",
+];
+
 export const roadmap = [
     {
         id: "0",

@@ -46,11 +46,11 @@ const Header = () => {
     };
 
     const solutionsItems = [
-        { label: "Kiosk", iconClass: "icon-kiosk" },
-        { label: "Smart Locker", iconClass: "icon-locker-key" },
-        { label: "KeyDrop", iconClass: "icon-key" },
-        { label: "Acoustic Cabin Booth", iconClass: "icon-acoustic-cabin" },
-        { label: "Agents", iconClass: "icon-agent-support" },
+        { label: "Kiosk", iconClass: "icon-kiosk", url: "/kiosk" },
+        { label: "Smart Locker", iconClass: "icon-locker-key", url: "/smart-locker" },
+        { label: "KeyDrop", iconClass: "icon-key", url: "/keydrop" },
+        { label: "Acoustic Cabin Booth", iconClass: "icon-acoustic-cabin", url: "/acoustic-cabin" },
+        { label: "Agents", iconClass: "icon-agent-support", url: "/agents" },
     ];
 
     const isHashUrl = (url) => typeof url === "string" && url.includes("#");
@@ -153,28 +153,36 @@ const Header = () => {
                                                     style={headerGlassStyle}
                                                 >
                                                     <div className="py-4">
-                                                        {solutionsItems.map((opt) => (
-                                                            <button
-                                                                key={opt.label}
-                                                                type="button"
-                                                                className="block px-6 py-3 text-white font-semibold lowercase hover:[text-shadow:0_0_14px_rgba(255,255,255,0.85)] transform-gpu transition-[transform,color,text-shadow] duration-200 ease-out hover:scale-[1.03]"
-                                                                style={{
-                                                                    textTransform: "none",
-                                                                    transition:
-                                                                        "transform 200ms cubic-bezier(0.22,1,0.36,1), color 0.3s cubic-bezier(0.4,0,0.2,1), text-shadow 0.3s cubic-bezier(0.4,0,0.2,1)",
-                                                                }}
-                                                                onClick={() => setSolutionsOpen(false)}
-                                                            >
-                                                                <span className="flex items-center gap-3">
-                                                                    <span
-                                                                        aria-hidden="true"
-                                                                        className={`${opt.iconClass} text-white/95 opacity-90 shrink-0`}
-                                                                        style={{ width: 26, height: 26 }}
-                                                                    />
-                                                                    <span>{opt.label}</span>
-                                                                </span>
-                                                            </button>
-                                                        ))}
+                                                        {solutionsItems.map((opt) => {
+                                                            const NavTag = isHashUrl(opt.url) ? HashLink : Link;
+                                                            const to = opt.url ?? "/home";
+                                                            return (
+                                                                <NavTag
+                                                                    key={opt.label}
+                                                                    to={to}
+                                                                    smooth={isHashUrl(opt.url) ? true : undefined}
+                                                                    onClick={() => {
+                                                                        setSolutionsOpen(false);
+                                                                        if (opt.url) handleClick();
+                                                                    }}
+                                                                    className="block px-6 py-3 text-white font-semibold lowercase hover:[text-shadow:0_0_14px_rgba(255,255,255,0.85)] transform-gpu transition-[transform,color,text-shadow] duration-200 ease-out hover:scale-[1.03]"
+                                                                    style={{
+                                                                        textTransform: "none",
+                                                                        transition:
+                                                                            "transform 200ms cubic-bezier(0.22,1,0.36,1), color 0.3s cubic-bezier(0.4,0,0.2,1), text-shadow 0.3s cubic-bezier(0.4,0,0.2,1)",
+                                                                    }}
+                                                                >
+                                                                    <span className="flex items-center gap-3">
+                                                                        <span
+                                                                            aria-hidden="true"
+                                                                            className={`${opt.iconClass} text-white/95 opacity-90 shrink-0`}
+                                                                            style={{ width: 26, height: 26 }}
+                                                                        />
+                                                                        <span>{opt.label}</span>
+                                                                    </span>
+                                                                </NavTag>
+                                                            );
+                                                        })}
                                                     </div>
                                                 </div>
                                             </div>
@@ -294,25 +302,30 @@ const Header = () => {
                                                     transition: "max-height 350ms cubic-bezier(0.22,1,0.36,1), opacity 320ms cubic-bezier(0.22,1,0.36,1)",
                                                 }}
                                             >
-                                                {solutionsItems.map((opt) => (
-                                                    <button
-                                                        key={opt.label}
-                                                        type="button"
-                                                        className="flex items-center gap-4 px-8 py-5 text-white text-xl font-semibold lowercase hover:[text-shadow:0_0_14px_rgba(255,255,255,0.85)] transition-[transform,color,text-shadow] duration-200 ease-out hover:scale-[1.05]"
-                                                        style={{ textTransform: "none", transition: "transform 200ms cubic-bezier(0.22,1,0.36,1), color 0.3s cubic-bezier(0.4,0,0.2,1), text-shadow 0.3s cubic-bezier(0.4,0,0.2,1)" }}
-                                                        onClick={() => {
-                                                            setMobileSolutionsOpen(false);
-                                                            handleClick();
-                                                        }}
-                                                    >
-                                                        <span
-                                                            aria-hidden="true"
-                                                            className={`${opt.iconClass} text-white/95 opacity-90 shrink-0`}
-                                                            style={{ width: 34, height: 34 }}
-                                                        />
-                                                        <span>{opt.label}</span>
-                                                    </button>
-                                                ))}
+                                                {solutionsItems.map((opt) => {
+                                                    const NavTag = isHashUrl(opt.url) ? HashLink : Link;
+                                                    const to = opt.url ?? "/home";
+                                                    return (
+                                                        <NavTag
+                                                            key={opt.label}
+                                                            to={to}
+                                                            smooth={isHashUrl(opt.url) ? true : undefined}
+                                                            onClick={() => {
+                                                                setMobileSolutionsOpen(false);
+                                                                handleClick();
+                                                            }}
+                                                            className="flex items-center gap-4 px-8 py-5 text-white text-xl font-semibold lowercase hover:[text-shadow:0_0_14px_rgba(255,255,255,0.85)] transition-[transform,color,text-shadow] duration-200 ease-out hover:scale-[1.05]"
+                                                            style={{textTransform: "none", transition: "transform 200ms cubic-bezier(0.22,1,0.36,1), color 0.3s cubic-bezier(0.4,0,0.2,1), text-shadow 0.3s cubic-bezier(0.4,0,0.2,1)"}}
+                                                        >
+                                                            <span
+                                                                aria-hidden="true"
+                                                                className={`${opt.iconClass} text-white/95 opacity-90 shrink-0`}
+                                                                style={{ width: 34, height: 34 }}
+                                                            />
+                                                            <span>{opt.label}</span>
+                                                        </NavTag>
+                                                    );
+                                                })}
                                             </div>
                                         </div>
                                 );

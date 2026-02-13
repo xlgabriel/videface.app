@@ -5,10 +5,19 @@ const Footer = ({ className = "" }) => {
     return (
         <Section customPaddings="py-0" className={className}>
             <div className="px-6 pb-8">
-                <div className="mx-auto flex w-full max-w-[1200px] items-center justify-between text-white">
-                    <p className="text-white/80 text-sm">© {new Date().getFullYear()}. VideFace</p>
+                <div className="mx-auto flex w-full max-w-[1200px] flex-col md:flex-row items-center md:items-center justify-between text-white gap-4 md:gap-0">
+                    <div className="w-full md:w-auto text-center md:text-left">
+                        <p className="text-white/80 text-sm flex items-center justify-center md:justify-start gap-3">
+                            © {new Date().getFullYear()} VideFace.
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-white/80">
+                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.09 4.18 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.72c.12 1.05.35 2.07.68 3.04a2 2 0 0 1-.45 2.11L9.91 9.91a16 16 0 0 0 6 6l1.04-1.04a2 2 0 0 1 2.11-.45c.97.33 1.99.56 3.04.68A2 2 0 0 1 22 16.92z" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                                </svg>
+                                <span>+1 (407) 558-6889</span>
+                            
+                        </p>
+                    </div>
 
-                    <div className="flex items-center gap-5">
+                    <div className="flex items-center gap-5 justify-center md:justify-end w-full md:w-auto">
                         <a
                             href="https://www.youtube.com/@videfaceapp"
                             target="_blank"

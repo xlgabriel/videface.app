@@ -2,11 +2,11 @@ import { useEffect, useRef, useState } from "react";
 import { BackgroundCircles } from "../../../design/Hero";
 import ExperienceCard from "../homeComponents/ExperienceCard";
 
-import KioskIcon from "../../../../assets/svg/Kiosk.svg";
-import KeyIcon from "../../../../assets/svg/Key.svg";
-import VirtualAssistantsIcon from "../../../../assets/svg/Virtual-assistants.svg";
-import LockerKeyIcon from "../../../../assets/svg/Locker-key.svg";
-import AcousticCabinIcon from "../../../../assets/svg/Acoustic-cabin.svg";
+import KioskIcon from "../../../../assets/svg/Kios-b.svg";
+import KeyIcon from "../../../../assets/svg/keydrop-b.svg";
+import VirtualAssistantsIcon from "../../../../assets/svg/agent-b.svg";
+import LockerKeyIcon from "../../../../assets/svg/smartlocker-b.svg";
+import AcousticCabinIcon from "../../../../assets/svg/acoustic-cabin-b.svg";
 import CarSystemIcon from "../../../../assets/svg/Car-system.svg";
 
 const EXPERIENCES = [

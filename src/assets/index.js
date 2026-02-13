@@ -31,6 +31,8 @@ import darkmode from "./darkmode.svg";
 
 import curve from "./hero/curve.png";
 import heroBackground from "./hero/hero-background.webp";
+import homeOG from "./OG/homeOG.webp";
+import kioskOG from "./OG/KioskOG.webp";
 
 import curve1 from "./collaboration/curve-1.svg";
 import curve2 from "./collaboration/curve-2.svg";
@@ -159,6 +161,7 @@ export {
     background,
     curve,
     heroBackground,
+    homeOG,
     curve1,
     curve2,
     discord,
