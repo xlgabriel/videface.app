@@ -345,7 +345,7 @@ const KioskServices = () => {
                         </h3>
 
                         <div className="flex justify-center mt-10">
-                            <Button href="#contact" color="bg-[#0A6CFF]" textColor="text-white" size="lg" className="hero-cta-btn">
+                            <Button color="bg-[#0A6CFF]" textColor="text-white" size="lg" className="hero-cta-btn">
                                 GET A DEMO
                             </Button>
                         </div>

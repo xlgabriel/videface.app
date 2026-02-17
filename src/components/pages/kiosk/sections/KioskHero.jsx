@@ -76,7 +76,6 @@ const KioskHero = () => {
 
                     <div className="w-full flex justify-center mt-6 hero-left-enter">
                         <Button
-                            href="#contact"
                             textColor="text-white"
                             size="lg"
                             className="hero-cta-btn"

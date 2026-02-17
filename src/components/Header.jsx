@@ -6,7 +6,7 @@ import { brainwave } from "../assets";
 import { navigation } from "../constants";
 import Button from "./Button";
 import MenuSvg from "../assets/svg/MenuSvg";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const Header = () => {
 
@@ -27,6 +27,8 @@ const Header = () => {
         backdropFilter: "blur(5px)",
         WebkitBackdropFilter: "blur(5px)",
     };
+
+    const closeSolutionsTimer = useRef(null);
 
     const toggleNavigation = () => {
         if (openNavigation) {
@@ -54,6 +56,33 @@ const Header = () => {
     ];
 
     const isHashUrl = (url) => typeof url === "string" && url.includes("#");
+
+    // Keep Solutions dropdown open briefly after mouse leaves to allow
+    // comfortable movement into the submenu.
+    const openSolutionsWithCancel = () => {
+        if (closeSolutionsTimer.current) {
+            clearTimeout(closeSolutionsTimer.current);
+            closeSolutionsTimer.current = null;
+        }
+        setSolutionsOpen(true);
+    };
+
+    const scheduleCloseSolutions = (delay = 250) => {
+        if (closeSolutionsTimer.current) clearTimeout(closeSolutionsTimer.current);
+        closeSolutionsTimer.current = setTimeout(() => {
+            setSolutionsOpen(false);
+            closeSolutionsTimer.current = null;
+        }, delay);
+    };
+
+    useEffect(() => {
+        return () => {
+            if (closeSolutionsTimer.current) {
+                clearTimeout(closeSolutionsTimer.current);
+                closeSolutionsTimer.current = null;
+            }
+        };
+    }, []);
 
 
     return (
@@ -108,8 +137,8 @@ const Header = () => {
                                             <div
                                                 key={item.id}
                                                 className="relative"
-                                                onMouseEnter={() => setSolutionsOpen(true)}
-                                                onMouseLeave={() => setSolutionsOpen(false)}
+                                                onMouseEnter={openSolutionsWithCancel}
+                                                onMouseLeave={() => scheduleCloseSolutions()}
                                             >
                                                 <button
                                                     type="button"
