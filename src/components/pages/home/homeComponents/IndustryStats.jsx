@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import Button from "../../../Button";
 
 function ensureGlitchStyles() {
     if (typeof document === "undefined") return;
@@ -211,6 +212,12 @@ export default function IndustryStats() {
                         );
                     })}
                 </div>
+                <div className="container text-center mt-28 -mb-16">
+                    <Button color="bg-white" textColor="text-[#0A6CFF]" size="lg" className="hero-cta-btn">
+                        GET A DEMO
+                    </Button>
+                </div>
+
             </div>
         </section>
     );

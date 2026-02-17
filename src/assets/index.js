@@ -162,6 +162,7 @@ export {
     curve,
     heroBackground,
     homeOG,
+    kioskOG,
     curve1,
     curve2,
     discord,

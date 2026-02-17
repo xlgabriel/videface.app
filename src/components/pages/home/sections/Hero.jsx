@@ -180,7 +180,6 @@ const Hero = () => {
                     </h1>
                     <div className="w-full flex justify-center mt-8 hero-left-enter">
                         <Button
-                            href="#contact"
                             textColor="text-white"
                             size="lg"
                             className="hero-cta-btn"
@@ -254,6 +253,16 @@ const Hero = () => {
 
             </div>
             <ImageGallery />
+            <div className="container text-center mt-8 mb-0">
+                <Button
+                    textColor="text-white"
+                    size="lg"
+                    className="hero-cta-btn"
+                >
+                    GET A DEMO
+                </Button>
+            </div>
+                    
         </div>
 
     );

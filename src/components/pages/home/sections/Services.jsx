@@ -284,7 +284,6 @@ const Services = () => {
             </div>
             <div className="flex justify-center mt-20 ">
                 <Button
-                    href="#contact"
                     color="bg-[#0A6CFF]"
                     textColor="text-white"
                     size="lg"

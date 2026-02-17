@@ -18,7 +18,7 @@ const SIZE_MAP = {
 
 const Button = ({
   className = '',
-  href,
+  href = 'https://calendar.app.google/7QTtE49EmK9HCwzn9',
   onClick,
   children,
   color = 'bg-[#0A6CFF]',
@@ -51,12 +51,27 @@ const Button = ({
   const content = (
     <span className="relative z-10 w-full text-center">{children}</span>
   );
+
+  // Deprecated: previously prompted for a URL before navigation.
+  // Kept as a no-op for backward compatibility so components that still
+  // pass `promptForHref` won't trigger a prompt; default anchor behavior
+  // will navigate directly to the `href` provided.
+  const handlePromptHref = (/* event */) => {
+    return;
+  };
+
   if (href) {
     return (
       <a
         href={href}
+        target="_blank"
+        rel="noopener noreferrer"
         className={classes}
         style={style}
+        onClick={(event) => {
+          handlePromptHref(event);
+          if (onClick) onClick(event);
+        }}
         {...rest}
       >
         {content}

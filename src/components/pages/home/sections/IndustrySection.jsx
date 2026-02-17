@@ -1,6 +1,7 @@
 import IndustryCarousel from "../homeComponents/IndustryCarousel";
 import IndustryStats from "../homeComponents/IndustryStats";
 
+
 export default function IndustrySection() {
     return (
         <section className="w-full pt-10">
@@ -45,7 +46,9 @@ export default function IndustrySection() {
 
             <div className="mt-0">
                 <IndustryStats />
+                
             </div>
+
         </section>
     );
 }

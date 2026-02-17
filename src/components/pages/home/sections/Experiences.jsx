@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { BackgroundCircles } from "../../../design/Hero";
 import ExperienceCard from "../homeComponents/ExperienceCard";
+import Button from "../../../Button";
 
 import KioskIcon from "../../../../assets/svg/Kios-b.svg";
 import KeyIcon from "../../../../assets/svg/keydrop-b.svg";
@@ -246,10 +247,20 @@ const Experiences = () => {
               ))}
             </div>
           </div>
+          <div className="flex justify-center mt-8">
+            <Button
+              color="bg-white"
+              textColor="text-[#0A6CFF]"
+              size="lg"
+              className="hero-cta-btn"
+            >
+              GET A DEMO
+            </Button>
+          </div>
         </div>
       </section>
 
-      {/* Nuevo apartado tipo tarjetas como la imagen */}
+      {/* New section*/}
       <section
         ref={loveSectionRef}
         className="w-full py-20 flex flex-col items-center mt-5 sm:mt-20"

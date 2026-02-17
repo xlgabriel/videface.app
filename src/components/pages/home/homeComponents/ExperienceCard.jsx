@@ -4,6 +4,23 @@ const ExperienceCard = ({ title, iconSrc }) => {
   const [isMobile, setIsMobile] = useState(false);
   const [hovered, setHovered] = useState(false);
 
+  const Icon = ({ className }) => (
+    <span
+      aria-hidden="true"
+      className={className}
+      style={{
+        WebkitMaskImage: `url(${iconSrc})`,
+        maskImage: `url(${iconSrc})`,
+        WebkitMaskRepeat: "no-repeat",
+        maskRepeat: "no-repeat",
+        WebkitMaskSize: "100% 100%",
+        maskSize: "100% 100%",
+        WebkitMaskPosition: "center",
+        maskPosition: "center",
+      }}
+    />
+  );
+
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 640);
     checkMobile();
@@ -19,11 +36,7 @@ const ExperienceCard = ({ title, iconSrc }) => {
       >
         <div className="relative z-10 flex h-full flex-col items-center justify-center text-center experience-card__content">
           {hovered ? (
-            <img
-              src={iconSrc}
-              alt=""
-              className="h-16 w-16 transition duration-300 [filter:brightness(0)_invert(1)] group-hover:[filter:none]"
-            />
+            <Icon className="h-16 w-16 block bg-current text-white transition-colors duration-300 group-hover:text-color-1" />
           ) : (
             <h3 className="whitespace-pre-line text-base font-bold uppercase leading-tight tracking-wide text-white transition-colors duration-300 group-hover:text-[#064199]">
               {title}
@@ -46,11 +59,7 @@ const ExperienceCard = ({ title, iconSrc }) => {
         <h3 className="whitespace-pre-line text-base font-bold uppercase leading-tight tracking-wide text-white transition-colors duration-300 group-hover:text-[#064199]">
           {title}
         </h3>
-        <img
-          src={iconSrc}
-          alt=""
-          className="mt-6 h-28 w-28 transition duration-300 [filter:brightness(0)_invert(1)] group-hover:[filter:none]"
-        />
+        <Icon className="mt-6 h-28 w-28 block bg-current text-white transition-colors duration-300 group-hover:text-color-1" />
         <style>{`
           .experience-card:hover .experience-card__content {
             filter: drop-shadow(0 0 60px rgba(255, 255, 255, 1)) drop-shadow(0 0 220px rgba(255, 255, 255, 0.7));
