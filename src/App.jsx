@@ -8,6 +8,7 @@ import Form from "./components/Form";
 import DottedBackground from "./components/DottedBackground";
 import ScrollToTop from "./components/ScrollToTop";
 import usePageView from "./hooks/usePageView";
+import VidefaceSmartLocker from "./components/pages/SmarLocker/VidefaceSmartLocker";
 
 const App = () => {
     // Track page views at the app level. This hook is safe to call once here
@@ -22,6 +23,7 @@ const App = () => {
                     <Route path="/products" element={<Products />}></Route>
                     <Route path="/pricing" element={<PricingPage />}></Route>
                     <Route path="/kiosk" element={<VidefaceKiosk />}></Route>
+                    <Route path="/smart-locker" element={<VidefaceSmartLocker />}></Route>
                     <Route path="/form" element={<Form />}></Route>
                 </Routes>
             </div>

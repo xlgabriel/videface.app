@@ -1,14 +1,11 @@
 import Header from "../../Header";
-import KioskHero from "./sections/KioskHero";
-import KioskServices from "./sections/KioskServices";
-import KioskSolutions from "./sections/KioskSolutions";
-import Questions from "../../Questions";
-import { kioskFaqItems } from "../../../constants/faqs";
-import Contact from "../../Contact";
 import Seo from "../../Seo";
+import Questions from "../../Questions";
+import Contact from "../../Contact";
 import { kioskOG } from "../../../assets";
+import { kioskFaqItems } from "../../../constants/faqs";
 
-export default function VidefaceKiosk() {
+export default function VidefaceSmartLocker() {
     return (
         <>
             <Seo title="VideFace Kiosk | Advanced Self-Service Kiosk Solution"
@@ -16,9 +13,7 @@ export default function VidefaceKiosk() {
                 canonical="https://videface.com/kiosk"
                 image={kioskOG} />
             <Header />
-            <KioskHero />
-            <KioskServices />
-            <KioskSolutions />
+            
             <Questions items={kioskFaqItems} headingTop="You have questions?" headingEmphasis="We have answers" id="kiosk-questions" />
             <div id="contact">
                 <Contact />

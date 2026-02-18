@@ -11,36 +11,24 @@ const faqItems = [
         title: 'Question 1?',
         description:
             'Videface converts text or audio prompts into short personalized videos using AI models trained on professional presentations. You provide a script, choose a style, and our engine renders a talking-head video with synchronized audio and lip movement.',
-        collapsedDescription: 'Videface converts text or audio prompts into short personalized videos using AI models trained on professional presentations. You provide a script, choose a style, and our engine renders a talking-head video with synchronized audio and lip movement.',
-        price: null,
-        features: [],
     },
     {
         id: 2,
         title: 'Question 2?',
         description:
             'Yes. Videface allows you to upload logos, background images, and brand colors. We provide templates so your videos always look on-brand. Advanced plans include custom fonts and enterprise-branding support.',
-        collapsedDescription: 'Yes. Videface allows you to upload logos, background images, and brand colors. We provide templates so your videos always look on-brand.',
-        price: null,
-        features: [],
     },
     {
         id: 3,
         title: 'Question 3?',
         description:
             'Output formats include MP4, GIF, and web-optimized H.264. You can select resolution presets including 720p, 1080p, and custom sizes for social previews or kiosks.',
-        collapsedDescription: 'Output formats include MP4, GIF, and web-optimized H.264. You can select resolution presets including 720p, 1080p, and custom sizes for social previews or kiosks.',
-        price: null,
-        features: [],
     },
     {
         id: 4,
         title: 'Question 4?',
         description:
             'We store media and scripts encrypted at rest and in transit. Access controls, per-team workspaces, and enterprise SSO are available. We also offer data residency on enterprise plans.',
-        collapsedDescription: 'We store media and scripts encrypted at rest and in transit. Access controls, per-team workspaces, and enterprise SSO are available.',
-        price: null,
-        features: [],
     },
 ];
 
@@ -76,9 +64,8 @@ function GradientArrow({ direction = "down" }) {
 function QuestionCard({
     title,
     showMedal,
-    collapsedDescription,
+    description,
     button,
-    features,
     expanded,
     pinned,
     onClick,
@@ -93,8 +80,8 @@ function QuestionCard({
 
     const innerStyle = expanded
         ? {
-              background: `linear-gradient(180deg, ${BORDER_GRADIENT.from} 0%, ${BORDER_GRADIENT.to} 100%)`,
-          }
+            background: `linear-gradient(180deg, ${BORDER_GRADIENT.from} 0%, ${BORDER_GRADIENT.to} 100%)`,
+        }
         : { background: "#FFFFFF" };
 
     return (
@@ -113,30 +100,32 @@ function QuestionCard({
             <div
                 className={
                     "rounded-[1rem] overflow-hidden transition-[height] duration-600 ease-[cubic-bezier(0.22,1,0.36,1)] p-2 " +
-                    (expanded ? "h-[25rem] lg:h-[25rem]" : "h-[6rem] lg:h-[6rem]")
+                    (expanded ? "h-[25rem] lg:h-[25rem]" : "h-[6.5rem] sm:h-[7.75rem] md:h-[10rem] lg:h-[10rem]")
                 }
                 style={innerStyle}
             >
                 <div
                     className={
-                        "h-full rounded-[0.9rem] transition-[border-color,box-shadow] duration-600 ease-[cubic-bezier(0.22,1,0.36,1)] px-5 pt-6 pb-5 border-2 " +
+                        "h-full rounded-[0.9rem] transition-[border-color,box-shadow] duration-600 ease-[cubic-bezier(0.22,1,0.36,1)] px-5 pt-3 pb-5 border-2 " +
                         (expanded
                             ? "border-white shadow-[0_0_0_1px_rgba(255,255,255,0.45)]"
                             : "border-transparent")
                     }
                 >
                     <div className="h-full flex flex-col ">
-                        <div className="text-center min-h-[4.75rem] flex flex-col items-center justify-start">
-                            <h3
-                                className={
-                                    "font-bold leading-tight whitespace-pre-line " +
-                                    (expanded
-                                        ? "text-white text-3xl"
-                                        : "text-[#1486FF] text-2xl")
-                                }
-                            >
-                                {title}
-                            </h3>
+                            <div className="text-center min-h-[4rem] flex flex-col items-center justify-start w-full">
+                            <div className="w-full">
+                                <h3
+                                    className={
+                                        "font-bold leading-tight whitespace-pre-line break-words text-center mx-2 " +
+                                        (expanded
+                                            ? "text-white text-2xl md:text-[1.6rem]"
+                                            : "text-[#1486FF] text-lg md:text-xl lg:text-2xl")
+                                    }
+                                >
+                                    {title}
+                                </h3>
+                            </div>
                             {showMedal && (
                                 <div className="mt-2 flex justify-center">
                                     <span
@@ -166,15 +155,15 @@ function QuestionCard({
                                 }
                             >
                                 {expanded
-                                    ? collapsedDescription
-                                    : (collapsedDescription.length > 140
-                                        ? `${collapsedDescription.slice(0, 140)}…`
-                                        : collapsedDescription)}
+                                    ? (description || "")
+                                    : ((description || "").length > 140
+                                        ? `${(description || "").slice(0, 140)}…`
+                                        : (description || ""))}
                             </h3>
                         </div>
 
                         {!expanded && (
-                            <div className="flex justify-center -mt-10 pb-0">
+                            <div className="flex justify-center sm:-mt-4 md:mt-10 -mt-3 pb-0">
                                 <GradientArrow direction="down" />
                             </div>
                         )}
@@ -187,28 +176,7 @@ function QuestionCard({
                                     : "grid-rows-[0fr] opacity-0 -translate-y-2")
                             }
                         >
-                            <div className="min-h-0 overflow-hidden">
-                                {expanded ? (
-                                    <div>
-                                        <ul className="mt-4">
-                                            {features.map((text, idx) => (
-                                                <li
-                                                    key={`${title}-${idx}`}
-                                                    className="flex gap-3 py-4 border-t-2 border-white/70"
-                                                >
-                                                    <span
-                                                        className="iconBase icon-verified text-white shrink-0"
-                                                        aria-hidden="true"
-                                                    />
-                                                    <h3 className="text-white text-[1.05rem] leading-snug whitespace-pre-line">
-                                                        {text}
-                                                    </h3>
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                ) : null}
-                            </div>
+                            <div className="min-h-0 overflow-hidden" />
                         </div>
 
 
@@ -225,7 +193,7 @@ function QuestionCard({
     );
 }
 
-function QuestionCards() {
+function QuestionCards({ items = faqItems }) {
     const [pinnedOpen, setPinnedOpen] = useState(() => new Set());
     const [hasRevealed, setHasRevealed] = useState(false);
     const listRef = useRef(null);
@@ -267,7 +235,7 @@ function QuestionCards() {
             ref={listRef}
             className="flex flex-col gap-6 items-center w-full pb-6 md:grid md:grid-cols-2 md:gap-8 md:items-start md:justify-items-center lg:grid lg:grid-cols-2 lg:gap-8 lg:items-start lg:justify-items-center xl:flex xl:flex-row xl:flex-nowrap xl:justify-center xl:gap-6 xl:overflow-x-visible xl:overflow-y-visible"
         >
-            {faqItems.map((opt, idx) => (
+            {items.map((opt, idx) => (
                 <div
                     key={opt.title}
                     className={hasRevealed ? "pricing-reveal" : "pricing-reveal pricing-reveal--hidden"}
@@ -277,8 +245,7 @@ function QuestionCards() {
                     <QuestionCard
                         title={opt.title}
                         showMedal={opt.showMedal}
-                        collapsedDescription={opt.collapsedDescription}
-                        features={opt.features}
+                        description={opt.description}
                         expanded={isExpanded(idx)}
                         pinned={pinnedOpen.has(idx)}
                         onClick={() => togglePinned(idx)}
@@ -327,12 +294,12 @@ function QuestionCards() {
     );
 }
 
-const Questions = () => {
+const Questions = ({ items = faqItems, headingTop = 'You have questions?', headingEmphasis = 'We have answers', id = 'pricing' }) => {
     return (
-        <section className="overflow-visible pt-36 pb-28" id="pricing">
+        <section className="overflow-visible pt-36 pb-28" id={id}>
             <div className="container">
                 <h2 className="font-medium text-4xl md:text-5xl pb-2 text-center">
-                    You have questions? <br />
+                    {headingTop} <br />
                     <span
                         className="block md:inline pl-0 md:pl-4 text-5xl md:text-7xl font-bold text-center"
                         style={{
@@ -343,11 +310,11 @@ const Questions = () => {
                             display: 'inline-block',
                         }}
                     >
-                        We have answers
+                        {headingEmphasis}
                     </span>
                 </h2>
                 <div className="mt-20">
-                    <QuestionCards />
+                    <QuestionCards items={items} />
                 </div>
             </div>
         </section>

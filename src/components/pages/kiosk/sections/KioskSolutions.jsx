@@ -212,7 +212,11 @@ export default function KioskSolutions() {
                             };
 
                             return (
-                                <div key={item.title} className="kiosk-solution flex flex-col items-center" style={cardStyle}>
+                                <div
+                                    key={item.title}
+                                    className={`kiosk-solution flex flex-col items-center ${index === 2 ? 'sm:col-span-2 lg:col-span-1' : ''}`}
+                                    style={cardStyle}
+                                >
                                     <div className="kiosk-solution__visual relative w-full flex justify-center items-end">
                                         <div
                                             className="kiosk-solution__circle absolute left-1/2 top-[56%] rounded-full bg-white"
