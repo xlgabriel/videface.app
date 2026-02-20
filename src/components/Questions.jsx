@@ -100,7 +100,7 @@ function QuestionCard({
             <div
                 className={
                     "rounded-[1rem] overflow-hidden transition-[height] duration-600 ease-[cubic-bezier(0.22,1,0.36,1)] p-2 " +
-                    (expanded ? "h-[25rem] lg:h-[25rem]" : "h-[6.5rem] sm:h-[7.75rem] md:h-[10rem] lg:h-[10rem]")
+                    (expanded ? "h-[25rem] lg:h-[25rem]" : "h-[8.5rem] sm:h-[9.25rem] md:h-[12rem] lg:h-[14rem] xl:h-[12rem]")
                 }
                 style={innerStyle}
             >
@@ -112,8 +112,8 @@ function QuestionCard({
                             : "border-transparent")
                     }
                 >
-                    <div className="h-full flex flex-col ">
-                            <div className="text-center min-h-[4rem] flex flex-col items-center justify-start w-full">
+                        <div className="h-full flex flex-col ">
+                            <div className={`text-center min-h-[5.25rem] md:min-h-[6rem] lg:min-h-[7rem] xl:min-h-[7.5rem] flex flex-col items-center ${expanded ? 'justify-start' : 'justify-center'} w-full`}>
                             <div className="w-full">
                                 <h3
                                     className={
@@ -163,7 +163,7 @@ function QuestionCard({
                         </div>
 
                         {!expanded && (
-                            <div className="flex justify-center sm:-mt-4 md:mt-10 -mt-3 pb-0">
+                            <div className="flex justify-center mt-0 sm:mt-2 md:mt-4 pb-0">
                                 <GradientArrow direction="down" />
                             </div>
                         )}
@@ -296,7 +296,7 @@ function QuestionCards({ items = faqItems }) {
 
 const Questions = ({ items = faqItems, headingTop = 'You have questions?', headingEmphasis = 'We have answers', id = 'pricing' }) => {
     return (
-        <section className="overflow-visible pt-36 pb-28" id={id}>
+        <section className="overflow-visible pt-44 pb-36" id={id}>
             <div className="container">
                 <h2 className="font-medium text-4xl md:text-5xl pb-2 text-center">
                     {headingTop} <br />

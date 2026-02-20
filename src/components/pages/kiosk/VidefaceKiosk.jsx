@@ -1,14 +1,73 @@
 import Header from "../../Header";
-import KioskHero from "./sections/KioskHero";
-import KioskServices from "./sections/KioskServices";
-import KioskSolutions from "./sections/KioskSolutions";
 import Questions from "../../Questions";
 import { kioskFaqItems } from "../../../constants/faqs";
 import Contact from "../../Contact";
 import Seo from "../../Seo";
+import Hero from "../sections/hero/Hero";
+import Solutions from "../sections/solutions/Solutions";
+import Services from "../sections/services/Services";
+import Metrics from "../sections/metrics/Metrics";
+import Industries from "../sections/industries/Industries";
 import { kioskOG } from "../../../assets";
+import ImageKioskBG from "../../../assets/hero/kioskbg.webp";
+import ImageKioskUSER from "../../../assets/hero/kioskuser.webp";
+import VideFaceKeydrop from "../../../assets/webp/VideFace-Keydrop.webp";
+import VideFaceSmartLocker from "../../../assets/webp/VideFace-Smart-Locker.webp";
+import AllInOne from "../../../assets/webp/All-in-one-edit.webp";
+import ReallTimeTranslation from "../../../assets/webp/Reall-time-translation.webp";
+import DocumentCameraScanner from "../../../assets/webp/Document-camera-scanner.webp";
+import AllInteractionsRecorded from "../../../assets/webp/All-interactions-recorded.webp";
+import CallEmotionDetection from "../../../assets/webp/Call-Emotion-Dectection.webp";
 
 export default function VidefaceKiosk() {
+    const serviceItems = [
+        {
+            title: "Call emotion\ndetector",
+            image: CallEmotionDetection,
+            alt: "Call emotion detector",
+            description: "Detect customer sentiment in real time to adapt responses and improve service quality.",
+        },
+        {
+            title: "Real time translation\nto any language",
+            image: ReallTimeTranslation,
+            alt: "Real time translation support",
+            description: "Break language barriers instantly with live multilingual voice and text assistance.",
+        },
+        {
+            title: "Document\ncamera/scanner",
+            image: DocumentCameraScanner,
+            alt: "Document camera and scanner",
+            description: "Capture and process IDs or documents directly at the kiosk with guided scanning.",
+        },
+        {
+            title: "All interactions\nrecorded",
+            image: AllInteractionsRecorded,
+            alt: "All interactions recorded",
+            description: "Keep complete interaction logs for compliance, analytics, and service optimization.",
+        },
+    ];
+
+    const solutionItems = [
+        {
+            title: "KeyDrop",
+            image: VideFaceKeydrop,
+            alt: "VideFace KeyDrop kiosk",
+            imageClassName: "solution-card__img--keydrop",
+        },
+        {
+            title: "Smart Locker",
+            image: VideFaceSmartLocker,
+            alt: "VideFace Smart Locker key management",
+            imageClassName: "solution-card__img--locker",
+        },
+        {
+            title: "All in One",
+            image: AllInOne,
+            alt: "VideFace all-in-one kiosk",
+            imageClassName: "solution-card__img--allinone",
+        },
+    ];
+
     return (
         <>
             <Seo title="VideFace Kiosk | Advanced Self-Service Kiosk Solution"
@@ -16,9 +75,37 @@ export default function VidefaceKiosk() {
                 canonical="https://videface.com/kiosk"
                 image={kioskOG} />
             <Header />
-            <KioskHero />
-            <KioskServices />
-            <KioskSolutions />
+            <Hero
+                id="kiosk-hero"
+                title="Smart Self-Service Kiosk"
+                subtitlePrefix="Built to Transform"
+                subtitleHighlight="Customer Operations"
+                bgImage={ImageKioskBG}
+                bgAlt="Kiosk background"
+                userImage={ImageKioskUSER}
+                userAlt="Kiosk user"
+            />
+            <Services
+                title={(
+                    <>
+                        What Makes the VideFace <br />
+                        <span className="font-bold">Self-Service Kiosk</span> Stand Out
+                    </>
+                )}
+                items={serviceItems}
+            />
+            <Metrics />
+            <Industries />
+
+            <Solutions
+                items={solutionItems}
+                title={(
+                    <>
+                        Combine Your <span className="font-bold">Kiosk</span> with More Virtual <br />
+                        Assistance <span className="font-bold">Solutions</span>
+                    </>
+                )}
+            />
             <Questions items={kioskFaqItems} headingTop="You have questions?" headingEmphasis="We have answers" id="kiosk-questions" />
             <div id="contact">
                 <Contact />

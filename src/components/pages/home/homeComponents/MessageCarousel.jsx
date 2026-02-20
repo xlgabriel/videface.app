@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 
-export default function MessageCarousel({ items = [], autoPlay = true, interval = 6000 }) {
+export default function MessageCarousel({ items = [], autoPlay = true, interval = 6000, onItemClick }) {
     const [index, setIndex] = useState(0);
     const timerRef = useRef(null);
     const count = items.length;
@@ -18,7 +18,7 @@ export default function MessageCarousel({ items = [], autoPlay = true, interval 
 
     return (
         <div className="relative w-full py-10">
-            <div className="relative w-full max-w-[980px] mx-auto h-[320px] md:h-[340px] perspective">
+            <div className="relative w-full max-w-[980px] mx-auto h-[300px] md:h-[340px] perspective">
 
                 {items.map((item, i) => {
                     const offset = ((i - index + count) % count + count) % count;
@@ -26,7 +26,7 @@ export default function MessageCarousel({ items = [], autoPlay = true, interval 
                     if (offset === 0) pos = "current";
                     if (offset === 1) pos = "next";
                     if (offset === count - 1) pos = "prev";
-                    return <StackCard key={i} item={item} pos={pos} />;
+                    return <StackCard key={i} item={item} pos={pos} onClick={() => onItemClick && onItemClick(item)} />;
                 })}
 
                 <button onClick={() => slide(-1)} className="nav left">‹</button>
@@ -71,7 +71,7 @@ export default function MessageCarousel({ items = [], autoPlay = true, interval 
     );
 }
 
-function StackCard({ item, pos }) {
+function StackCard({ item, pos, onClick }) {
     const sizeClass =
         pos === "current"
                         ? "w-[92vw] max-w-[560px] md:w-[600px] md:max-w-none"
@@ -79,7 +79,8 @@ function StackCard({ item, pos }) {
                                 ? "w-[92vw] max-w-[560px] md:w-[360px]"
                                 : "w-[92vw] max-w-[560px] md:w-[320px]";
 
-    const cardHeightClass = pos === "current" ? "h-[400px] md:h-[300px]" : "h-[240px]";
+    // Use a consistent min-height for all cards so size doesn't jump between states
+    const cardHeightClass = "min-h-[280px] md:min-h-[300px]";
 
     const base =
         "absolute inset-0 mx-auto transition-[transform,opacity] duration-[650ms] ease-[cubic-bezier(.22,1,.36,1)] will-change-[transform,opacity] ";
@@ -112,18 +113,21 @@ function StackCard({ item, pos }) {
     };
 
     const isBackground = pos !== "current";
-
-    const clampStyle = isBackground
-        ? {
-            display: "-webkit-box",
-            WebkitLineClamp: 4,
-            WebkitBoxOrient: "vertical",
-            overflow: "hidden",
-        }
-        : undefined;
+    const PREVIEW_CHAR_LIMIT = 200;
+    const sourceText = typeof item.text === "string" ? item.text : "";
+    const isTruncated = sourceText.length > PREVIEW_CHAR_LIMIT;
+    const previewText = isTruncated
+        ? `${sourceText.slice(0, PREVIEW_CHAR_LIMIT).trimEnd()}...`
+        : sourceText;
 
     return (
-        <div className={base + sizeClass} style={states[pos]}>
+        <div
+            className={base + sizeClass}
+            style={states[pos]}
+            onClick={pos === 'current' && onClick ? onClick : undefined}
+            role={pos === 'current' && onClick ? 'button' : undefined}
+            tabIndex={pos === 'current' && onClick ? 0 : undefined}
+        >
             <div
                 className={"bg-white rounded-md border border-gray-100 relative overflow-hidden " + cardHeightClass}
                 style={{ boxShadow: "8px 12px 0 0 rgba(59,130,246,0.40)" }}
@@ -132,15 +136,19 @@ function StackCard({ item, pos }) {
                     <span className="iconBase icon-user w-12 h-12 text-[#007FFF] block" />
                 </div>
 
-                <div className={isBackground ? "px-8 py-6 pr-24" : "px-10 py-7 pr-28"}>
-                    <p className={isBackground ? "text-[#1486FF] font-bold text-lg" : "text-[#1486FF] font-bold text-2xl"}>{item.name}</p>
-                    <p className={isBackground ? "text-sm font-semibold text-gray-800" : "text-base font-semibold text-gray-800"}>{item.role}</p>
+                <div className={isBackground ? "px-8 py-6" : "px-10 py-7"}>
+                    <p className={isBackground ? "text-[#1486FF] font-bold text-lg pr-16" : "text-[#1486FF] font-bold text-2xl pr-16"}>{item.name}</p>
+                    <p className={isBackground ? "text-sm font-semibold text-gray-800 pr-16" : "text-base font-semibold text-gray-800 pr-16"}>{item.role}</p>
                     <p
                         className={isBackground ? "mt-4 text-base text-gray-700 leading-relaxed" : "mt-6 text-lg text-gray-700 leading-relaxed"}
-                        style={clampStyle}
                     >
-                        {item.text}
+                        {previewText}
                     </p>
+                    {isTruncated && (
+                        <div className="mt-4">
+                            <span className="text-sm font-semibold text-[#007FFF]">See full</span>
+                        </div>
+                    )}
                 </div>
             </div>
         </div>

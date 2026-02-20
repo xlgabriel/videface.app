@@ -263,7 +263,7 @@ const Header = () => {
                             </HashLink>
                         </div>
 
-                        <Button className="ml-auto lg:hidden" px="px-3" onClick={toggleNavigation}>
+                        <Button href={null} className="ml-auto lg:hidden" px="px-3" onClick={toggleNavigation}>
                             <MenuSvg openNavigation={openNavigation} />
                         </Button>
                         </div>

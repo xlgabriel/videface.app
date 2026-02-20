@@ -2,18 +2,26 @@ import React, { useEffect, useRef, useState } from "react";
 import MessageCarousel from "../homeComponents/MessageCarousel";
 
 const sampleItems = [
-
     {
         name: "Mr. Ebrima",
         role: "Cargreen rental car, Minneapolis, MN",
         text:
             "The system has been great! My customers love it. I recommend it 100%. It has made our operations smoother and more efficient. We’ve seen a real improvement in how we serve our clients every day.",
     },
-    
-    
+    {
+        name: "Eddie",
+        role: "Carwiz, Orlando, FL",
+        text: `At first, I was skeptical about using a screen-based system for renter check-ins. However, now that we’re going into our third week of using the Videface remote check-in system, I can confidently say it has exceeded my expectations.
+The system has proven to be extremely reliable, and we’ve noticed a clear increase in customer traffic. Renters find it both interesting and reassuring to be able to speak with a real person remotely — amazing feedback from customers. It also presents our brand in a highly professional way. Having the check-in process available at the touch of a screen is far more convenient than waiting for staff to align with scheduled hours.
+We did experience a few minor technical glitches in the beginning, which is completely normal when implementing a new system. However, Videface’s technical support team was there exactly when we needed them and resolved every issue remotely within minutes.
+I would definitely recommend this system and plan to add another screen as our fleet continues to grow. Thank you, Chris, for helping usher in this new and exciting phase for Carwiz in Orlando.`,
+    },
+
 ];
 
 export default function Testimonials({ items = sampleItems }) {
+    const [selectedTestimonial, setSelectedTestimonial] = useState(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
     const sectionRef = useRef(null);
     const [phase, setPhase] = useState("hidden");
     const count = Array.isArray(items) ? items.length : 0;
@@ -67,6 +75,16 @@ export default function Testimonials({ items = sampleItems }) {
     // Mini-carousel for 2 reviews
     const [twoIndex, setTwoIndex] = useState(0);
     const [fade, setFade] = useState(false);
+    const PREVIEW_CHAR_LIMIT = 200;
+
+    const getPreview = (text) => {
+        const safeText = typeof text === "string" ? text : "";
+        const isTruncated = safeText.length > PREVIEW_CHAR_LIMIT;
+        const previewText = isTruncated
+            ? `${safeText.slice(0, PREVIEW_CHAR_LIMIT).trimEnd()}...`
+            : safeText;
+        return { previewText, isTruncated };
+    };
 
     // Handles fade animation when changing review
     const handleTwoIndex = (i) => {
@@ -75,9 +93,39 @@ export default function Testimonials({ items = sampleItems }) {
         setTimeout(() => {
             setTwoIndex(i);
             setFade(false);
-        }, 220); 
+        }, 220);
     };
     const showMiniCarousel = count === 2 && !useCarousel;
+    const currentMiniItem = showMiniCarousel ? items[twoIndex] : null;
+    const miniPreview = currentMiniItem ? getPreview(currentMiniItem.text) : null;
+
+    useEffect(() => {
+        if (!showMiniCarousel) return;
+        const id = setInterval(() => {
+            // trigger fade then advance index
+            setFade(true);
+            setTwoIndex((prev) => {
+                const next = (prev + 1) % 2;
+                setTimeout(() => setFade(false), 220);
+                return next;
+            });
+        }, 15000);
+        return () => clearInterval(id);
+    }, [showMiniCarousel]);
+
+    useEffect(() => {
+        if (selectedTestimonial) {
+            // open modal with animation
+            // small timeout to ensure classes apply on mount
+            requestAnimationFrame(() => setIsModalOpen(true));
+        }
+    }, [selectedTestimonial]);
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+        // wait for animation to finish then unmount
+        window.setTimeout(() => setSelectedTestimonial(null), 300);
+    };
 
     return (
         <section ref={sectionRef} className="py-24" id="testimonials">
@@ -108,7 +156,7 @@ export default function Testimonials({ items = sampleItems }) {
                         style={phase === "shown" ? { transitionDelay: "180ms" } : undefined}
                     >
                         {useCarousel ? (
-                            <MessageCarousel items={items} />
+                            <MessageCarousel items={items} onItemClick={(it) => setSelectedTestimonial(it)} />
                         ) : showMiniCarousel ? (
                             <div className="w-full max-w-[560px] mx-auto py-10 flex flex-col items-center">
                                 <div className="w-full relative flex items-center justify-center">
@@ -120,15 +168,25 @@ export default function Testimonials({ items = sampleItems }) {
                                         &#8249;
                                     </button>
                                     <div
-                                        className={`bg-white rounded-md border border-gray-100 relative overflow-hidden px-10 py-7 pr-28 transition-opacity duration-200 ${fade ? 'opacity-0' : 'opacity-100'}`}
+                                        className={`bg-white rounded-md border border-gray-100 relative overflow-hidden px-10 py-7 transition-opacity duration-200 ${fade ? 'opacity-0' : 'opacity-100'} min-h-[280px] md:min-h-[300px]`}
                                         style={{ boxShadow: "8px 12px 0 0 rgba(59,130,246,0.40)" }}
+                                        onClick={() => setSelectedTestimonial(items[twoIndex])}
+                                        role="button"
+                                        tabIndex={0}
                                     >
                                         <div className="absolute top-4 right-4">
                                             <span className="iconBase icon-user w-12 h-12 text-[#007FFF] block" />
                                         </div>
-                                        <p className="text-[#1486FF] font-bold text-2xl">{items[twoIndex].name}</p>
-                                        <p className="text-base font-semibold text-gray-800">{items[twoIndex].role}</p>
-                                        <p className="mt-6 text-lg text-gray-700 leading-relaxed">{items[twoIndex].text}</p>
+                                        <p className="text-[#1486FF] font-bold text-2xl pr-16">{items[twoIndex].name}</p>
+                                        <p className="text-base font-semibold text-gray-800 pr-16">{items[twoIndex].role}</p>
+                                        <p className="mt-6 text-lg text-gray-700 leading-relaxed">
+                                            {miniPreview?.previewText}
+                                        </p>
+                                        {miniPreview?.isTruncated && (
+                                            <div className="mt-4">
+                                                <span className="text-sm font-semibold text-[#007FFF]">See full</span>
+                                            </div>
+                                        )}
                                     </div>
                                     <button
                                         onClick={() => handleTwoIndex((twoIndex + 1) % 2)}
@@ -151,30 +209,73 @@ export default function Testimonials({ items = sampleItems }) {
                         ) : (
                             <div className="w-full max-w-[980px] mx-auto py-10">
                                 <div className="flex justify-center">
-                                    {items.map((item, i) => (
-                                        <div
-                                            key={i}
-                                            className="w-[92vw] max-w-[560px] md:w-full"
-                                        >
+                                    {items.map((item, i) => {
+                                        const preview = getPreview(item.text);
+                                        return (
                                             <div
-                                                className="bg-white rounded-md border border-gray-100 relative overflow-hidden px-10 py-7 pr-28"
-                                                style={{ boxShadow: "8px 12px 0 0 rgba(59,130,246,0.40)" }}
+                                                key={i}
+                                                className="w-[92vw] max-w-[560px] md:w-full"
                                             >
-                                                <div className="absolute top-4 right-4">
-                                                    <span className="iconBase icon-user w-12 h-12 text-[#007FFF] block" />
+                                                <div
+                                                    className="bg-white rounded-md border border-gray-100 relative overflow-hidden px-10 py-7 min-h-[280px] md:min-h-[300px]"
+                                                    style={{ boxShadow: "8px 12px 0 0 rgba(59,130,246,0.40)" }}
+                                                    onClick={() => setSelectedTestimonial(item)}
+                                                    role="button"
+                                                    tabIndex={0}
+                                                >
+                                                    <div className="absolute top-4 right-4">
+                                                        <span className="iconBase icon-user w-12 h-12 text-[#007FFF] block" />
+                                                    </div>
+                                                    <p className="text-[#1486FF] font-bold text-2xl pr-16">{item.name}</p>
+                                                    <p className="text-base font-semibold text-gray-800 pr-16">{item.role}</p>
+                                                    <p className="mt-6 text-lg text-gray-700 leading-relaxed">{preview.previewText}</p>
+                                                    {preview.isTruncated && (
+                                                        <div className="mt-4">
+                                                            <span className="text-sm font-semibold text-[#007FFF]">See full</span>
+                                                        </div>
+                                                    )}
                                                 </div>
-                                                <p className="text-[#1486FF] font-bold text-2xl">{item.name}</p>
-                                                <p className="text-base font-semibold text-gray-800">{item.role}</p>
-                                                <p className="mt-6 text-lg text-gray-700 leading-relaxed">{item.text}</p>
                                             </div>
-                                        </div>
-                                    ))}
+                                        );
+                                    })}
                                 </div>
                             </div>
                         )}
                     </div>
 
                 </div>
+
+                {/* Testimonial modal */}
+                {selectedTestimonial && (
+                        <div className="fixed inset-0 z-50 flex items-center justify-center">
+                        <div
+                            className={`absolute inset-0 bg-black/40 transition-opacity duration-300 ${isModalOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+                            onClick={() => closeModal()}
+                        />
+                        <div
+                            key={`${selectedTestimonial.name}-${selectedTestimonial.role}`}
+                                className={`relative bg-white max-w-3xl w-[92vw] mx-auto p-5 md:p-8 rounded-lg z-60 max-h-[62vh] md:max-h-[82vh] overflow-hidden testimonial-modal ${isModalOpen ? 'open' : 'closed'}`}
+                            role="dialog"
+                            aria-modal="true"
+                        >
+                            <button
+                                type="button"
+                                className="absolute top-4 right-4 text-xl"
+                                onClick={() => closeModal()}
+                                aria-label="Cerrar"
+                            >
+                                ✕
+                            </button>
+                            <div className="mb-4">
+                                <p className="text-[#1486FF] font-bold text-2xl">{selectedTestimonial.name}</p>
+                                <p className="text-base font-semibold text-gray-800">{selectedTestimonial.role}</p>
+                            </div>
+                            <div className="text-gray-700 leading-relaxed text-lg max-h-[calc(62vh-6.5rem)] md:max-h-[calc(82vh-7.5rem)] overflow-y-auto pr-1">
+                                {selectedTestimonial.fullText || selectedTestimonial.text}
+                            </div>
+                        </div>
+                    </div>
+                )}
             </div>
 
             <style>{`
@@ -217,6 +318,32 @@ export default function Testimonials({ items = sampleItems }) {
                         transform: none !important;
                         transition: none !important;
                     }
+                    .testimonial-modal,
+                    .testimonial-modal.open,
+                    .testimonial-modal.closed {
+                        transition: none !important;
+                        transform: none !important;
+                        opacity: 1 !important;
+                    }
+                }
+
+                /* Modal enter/exit: bubble effect centered */
+                .testimonial-modal {
+                    transform-origin: center center;
+                    transform: scale(.86) translateY(0);
+                    opacity: 0;
+                    transition: transform 300ms cubic-bezier(.2,.8,.2,1), opacity 240ms ease;
+                    will-change: transform, opacity;
+                }
+
+                .testimonial-modal.open {
+                    transform: scale(1) translateY(0);
+                    opacity: 1;
+                }
+
+                .testimonial-modal.closed {
+                    transform: scale(.94) translateY(-6px);
+                    opacity: 0;
                 }
             `}</style>
         </section>

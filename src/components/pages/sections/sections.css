@@ -1,0 +1,177 @@
+.solution-card__visual {
+    position: relative;
+    height: clamp(300px, 34vw, 420px);
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding-bottom: 12px;
+    overflow: hidden;
+}
+
+.solution-card__circle {
+    width: clamp(240px, 26vw, 340px);
+    height: clamp(240px, 26vw, 340px);
+    opacity: 0.95;
+    pointer-events: none;
+}
+
+.solution-card__img {
+    display: block;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    transform-origin: center bottom;
+    will-change: transform;
+    align-self: flex-end;
+    margin-bottom: 0;
+    position: relative;
+}
+
+.solution-card__img--keydrop {
+    max-width: clamp(190px, 20vw, 250px);
+}
+
+.solution-card__img--locker {
+    max-width: clamp(250px, 28vw, 360px);
+}
+
+.solution-card__img--kiosk {
+    max-width: clamp(240px, 26vw, 340px);
+}
+
+.solution-card__img--allinone {
+    max-width: clamp(200px, 22vw, 270px);
+}
+
+.solution-card:hover .solution-card__img {
+    animation: solution-card-shake 520ms ease-in-out;
+}
+
+.solution-card:hover .solution-card__name {
+    filter: drop-shadow(0 0 14px rgba(255, 255, 255, 0.92));
+}
+
+.solution-card__name {
+    transition: filter 260ms ease;
+}
+
+@keyframes solution-card-shake {
+    0% {
+        transform: translateX(var(--img-offset-x, 0px)) translateY(var(--img-offset-y, 0px)) scale(var(--img-scale, 1)) rotate(0deg);
+    }
+
+    15% {
+        transform: translateX(calc(var(--img-offset-x, 0px) - 3px)) translateY(var(--img-offset-y, 0px)) scale(var(--img-scale, 1)) rotate(-0.8deg);
+    }
+
+    30% {
+        transform: translateX(calc(var(--img-offset-x, 0px) + 3px)) translateY(var(--img-offset-y, 0px)) scale(var(--img-scale, 1)) rotate(0.8deg);
+    }
+
+    45% {
+        transform: translateX(calc(var(--img-offset-x, 0px) - 2px)) translateY(var(--img-offset-y, 0px)) scale(var(--img-scale, 1)) rotate(-0.5deg);
+    }
+
+    60% {
+        transform: translateX(calc(var(--img-offset-x, 0px) + 2px)) translateY(var(--img-offset-y, 0px)) scale(var(--img-scale, 1)) rotate(0.5deg);
+    }
+
+    75% {
+        transform: translateX(calc(var(--img-offset-x, 0px) - 1px)) translateY(var(--img-offset-y, 0px)) scale(var(--img-scale, 1)) rotate(-0.2deg);
+    }
+
+    100% {
+        transform: translateX(var(--img-offset-x, 0px)) translateY(var(--img-offset-y, 0px)) scale(var(--img-scale, 1)) rotate(0deg);
+    }
+}
+
+.metrics-bubble {
+    position: relative;
+    opacity: 0;
+    transform: translateY(22px) scale(0.68);
+    will-change: transform, opacity;
+}
+
+.metrics-bubble::after {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    width: calc(100% - 16px);
+    height: calc(100% - 16px);
+    border-radius: 50%;
+    border: 5px solid rgba(255, 255, 255, 0.95);
+    transform-origin: center center;
+    transition: transform 320ms cubic-bezier(.2, .9, .2, 1);
+    box-sizing: border-box;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.metrics-bubble:hover::after {
+    transform: scale(1.06);
+}
+
+.metrics-bubble__inner {
+    transform: scale(1);
+    transform-origin: center center;
+    transition: transform 320ms cubic-bezier(.2, .9, .2, 1);
+    will-change: transform;
+}
+
+.metrics-bubble:hover .metrics-bubble__inner {
+    transform: scale(1.06);
+}
+
+.metrics-bubble--enter {
+    animation: metrics-bubble-in 860ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes metrics-bubble-in {
+    0% {
+        opacity: 0;
+        transform: translateY(24px) scale(0.62);
+    }
+
+    45% {
+        opacity: 1;
+        transform: translateY(-4px) scale(1.1);
+    }
+
+    70% {
+        opacity: 1;
+        transform: translateY(0) scale(0.98);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.metrics-bubble--leave {
+    animation: metrics-bubble-out 720ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes metrics-bubble-out {
+    0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+    30% {
+        opacity: 1;
+        transform: translateY(-4px) scale(1.06);
+    }
+
+    70% {
+        opacity: 1;
+        transform: translateY(6px) scale(0.98);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(24px) scale(0.62);
+    }
+}

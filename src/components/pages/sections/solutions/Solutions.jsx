@@ -1,36 +1,11 @@
 import { useEffect, useRef, useState } from "react";
-import "../kiosk.css";
-
-import VideFaceKeydrop from "../../../../assets/webp/VideFace-Keydrop.webp";
-import VideFaceSmartLocker from "../../../../assets/webp/VideFace-Smart-Locker.webp";
-import AllInOne from "../../../../assets/webp/All-in-one-edit.webp";
-
-const SOLUTIONS = [
-    {
-        title: "KeyDrop",
-        image: VideFaceKeydrop,
-        alt: "VideFace KeyDrop kiosk",
-        imgClassName: "kiosk-solution__img--keydrop",
-    },
-    {
-        title: "Smart Locker",
-        image: VideFaceSmartLocker,
-        alt: "VideFace Smart Locker key management",
-        imgClassName: "kiosk-solution__img--locker",
-    },
-    {
-        title: "All in One",
-        image: AllInOne,
-        alt: "VideFace all-in-one kiosk",
-        imgClassName: "kiosk-solution__img--allinone",
-    },
-];
+import "../sections.css";
 
 const clamp01 = (v) => Math.max(0, Math.min(1, v));
 const smoothstep = (t) => t * t * (3 - 2 * t);
 const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
 
-export default function KioskSolutions() {
+export default function Solutions({ title, items = [] }) {
     const sectionRef = useRef(null);
     const titleRef = useRef(null);
     const [scrollProgress, setScrollProgress] = useState(0);
@@ -168,23 +143,20 @@ export default function KioskSolutions() {
                                         : "none",
                             }}
                         >
-                            Combine Your <span className="font-bold">Kiosk</span> with More Virtual <br />
-                            Assistance <span className="font-bold">Solutions</span>
+                            {title}
                         </span>
                     </h2>
                 </div>
 
                 <div className="mt-14 sm:mt-20">
                     <div className="grid grid-cols-1 gap-14 sm:grid-cols-2 lg:grid-cols-3">
-                        {SOLUTIONS.map((item, index) => {
+                        {items.map((item, index) => {
                             const localDelay = 140 * index;
                             const isEntered = inView;
 
                             const cardStyle = {
                                 opacity: isEntered ? 1 : 0,
-                                transform: isEntered
-                                    ? "translateY(0px)"
-                                    : "translateY(26px)",
+                                transform: isEntered ? "translateY(0px)" : "translateY(26px)",
                                 transition:
                                     "transform 720ms cubic-bezier(.2,.9,.2,1), opacity 620ms ease",
                                 transitionDelay: `${isEntered ? localDelay : 0}ms`,
@@ -202,9 +174,17 @@ export default function KioskSolutions() {
                                 willChange: "transform, opacity",
                             };
 
+                            const imgOffsetX = Number.isFinite(item.imgOffsetX) ? item.imgOffsetX : 0;
+                            const imgOffsetY = Number.isFinite(item.imgOffsetY) ? item.imgOffsetY : 0;
+                            const imgScale = isEntered ? 1 : 0.92;
+
                             const imgStyle = {
                                 opacity: isEntered ? 1 : 0,
-                                transform: isEntered ? "scale(1)" : "scale(0.92)",
+                                "--img-offset-x": `${imgOffsetX}px`,
+                                "--img-offset-y": `${imgOffsetY}px`,
+                                "--img-scale": imgScale,
+                                transform:
+                                    "translateX(var(--img-offset-x)) translateY(var(--img-offset-y)) scale(var(--img-scale))",
                                 transition:
                                     "transform 760ms cubic-bezier(.2,.9,.2,1), opacity 620ms ease",
                                 transitionDelay: `${isEntered ? 200 + localDelay : 0}ms`,
@@ -214,24 +194,24 @@ export default function KioskSolutions() {
                             return (
                                 <div
                                     key={item.title}
-                                    className={`kiosk-solution flex flex-col items-center ${index === 2 ? 'sm:col-span-2 lg:col-span-1' : ''}`}
+                                    className={`solution-card flex flex-col items-center ${index === 2 ? "sm:col-span-2 lg:col-span-1" : ""}`}
                                     style={cardStyle}
                                 >
-                                    <div className="kiosk-solution__visual relative w-full flex justify-center items-end">
+                                    <div className="solution-card__visual relative w-full flex justify-center items-end">
                                         <div
-                                            className="kiosk-solution__circle absolute left-1/2 top-[56%] rounded-full bg-white"
+                                            className="solution-card__circle absolute left-1/2 top-[56%] rounded-full bg-white"
                                             style={circleStyle}
                                         />
 
                                         <img
                                             src={item.image}
                                             alt={item.alt}
-                                            className={`kiosk-solution__img relative z-10 ${item.imgClassName}`}
+                                            className={`solution-card__img relative z-10 ${item.imageClassName}`}
                                             style={imgStyle}
                                         />
                                     </div>
 
-                                    <h3 className="kiosk-solution__name mt-8 text-center text-3xl md:text-4xl font-semibold text-white whitespace-pre-line leading-tight">
+                                    <h3 className="solution-card__name mt-8 text-center text-3xl md:text-4xl font-semibold text-white whitespace-pre-line leading-tight">
                                         {item.title}
                                     </h3>
                                 </div>

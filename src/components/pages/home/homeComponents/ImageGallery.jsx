@@ -72,7 +72,8 @@ export default function ImageGallery({ className = "" }) {
     const sectionRef = useRef(null);
     const [phase, setPhase] = useState("hidden");
     const [imgMeta, setImgMeta] = useState({});
-    const swipeStartXRef = useRef(null);
+    const mainSwipeRef = useRef({ x: 0, y: 0, moved: false, active: false });
+    const lightboxSwipeRef = useRef({ x: 0, y: 0, moved: false, active: false });
 
     // Intersection observer for scroll-triggered animation
     useEffect(() => {
@@ -110,13 +111,18 @@ export default function ImageGallery({ className = "" }) {
         };
     }, [selectedIndex]);
 
-    // Auto-play: advance every 3 seconds
-    useEffect(() => {
+    // Auto-play: advance every 5 seconds, reset on manual interaction
+    const autoplayTimerRef = useRef(null);
+    const resetAutoplay = () => {
+        if (autoplayTimerRef.current) clearInterval(autoplayTimerRef.current);
         if (images.length <= 1) return;
-        const interval = setInterval(() => {
+        autoplayTimerRef.current = setInterval(() => {
             setActiveIndex((prev) => (prev + 1) % images.length);
         }, 5000);
-        return () => clearInterval(interval);
+    };
+    useEffect(() => {
+        resetAutoplay();
+        return () => { if (autoplayTimerRef.current) clearInterval(autoplayTimerRef.current); };
     }, [images.length]);
 
     const getPuzzleStyle = (i) => {
@@ -151,26 +157,99 @@ export default function ImageGallery({ className = "" }) {
 
     const goPrev = () => {
         if (!images.length) return;
+        resetAutoplay();
         setActiveIndex((i) => (i - 1 + images.length) % images.length);
     };
 
     const goNext = () => {
         if (!images.length) return;
+        resetAutoplay();
         setActiveIndex((i) => (i + 1) % images.length);
     };
 
-    const onThumbsPointerDown = (e) => {
-        swipeStartXRef.current = e.clientX;
+    const handleMainPointerDown = (e) => {
+        mainSwipeRef.current = {
+            x: e.clientX,
+            y: e.clientY,
+            moved: false,
+            active: true,
+        };
     };
 
-    const onThumbsPointerUp = (e) => {
-        const startX = swipeStartXRef.current;
-        swipeStartXRef.current = null;
-        if (startX === null) return;
-        const dx = e.clientX - startX;
-        if (Math.abs(dx) < 35) return;
-        if (dx < 0) goNext();
-        else goPrev();
+    const handleMainPointerMove = (e) => {
+        const state = mainSwipeRef.current;
+        if (!state.active) return;
+        const dx = Math.abs(e.clientX - state.x);
+        const dy = Math.abs(e.clientY - state.y);
+        if (dx > 8 || dy > 8) state.moved = true;
+    };
+
+    const handleMainPointerUp = (e) => {
+        const state = mainSwipeRef.current;
+        if (!state.active) return;
+
+        const dx = e.clientX - state.x;
+        const dy = e.clientY - state.y;
+        const absDx = Math.abs(dx);
+        const absDy = Math.abs(dy);
+
+        mainSwipeRef.current = { x: 0, y: 0, moved: false, active: false };
+
+        if (absDx > absDy && absDx > 42) {
+            if (dx < 0) goNext();
+            else goPrev();
+            return;
+        }
+
+        if (!state.moved) {
+            resetAutoplay();
+            setSelectedIndex(activeIndex);
+        }
+    };
+
+    const handleMainPointerCancel = () => {
+        mainSwipeRef.current = { x: 0, y: 0, moved: false, active: false };
+    };
+
+    const handleLightboxPointerDown = (e) => {
+        e.stopPropagation();
+        lightboxSwipeRef.current = {
+            x: e.clientX,
+            y: e.clientY,
+            moved: false,
+            active: true,
+        };
+    };
+
+    const handleLightboxPointerMove = (e) => {
+        const state = lightboxSwipeRef.current;
+        if (!state.active) return;
+        const dx = Math.abs(e.clientX - state.x);
+        const dy = Math.abs(e.clientY - state.y);
+        if (dx > 8 || dy > 8) state.moved = true;
+    };
+
+    const handleLightboxPointerUp = (e) => {
+        e.stopPropagation();
+        const state = lightboxSwipeRef.current;
+        if (!state.active) return;
+
+        const dx = e.clientX - state.x;
+        const dy = e.clientY - state.y;
+        const absDx = Math.abs(dx);
+        const absDy = Math.abs(dy);
+
+        lightboxSwipeRef.current = { x: 0, y: 0, moved: false, active: false };
+
+        if (absDx > absDy && absDx > 42) {
+            if (dx < 0) goNext();
+            else goPrev();
+        }
+    };
+
+    const handleLightboxPointerCancel = (e) => {
+        e.stopPropagation();
+        lightboxSwipeRef.current = { x: 0, y: 0, moved: false, active: false };
     };
 
     const isVertical =
@@ -180,17 +259,17 @@ export default function ImageGallery({ className = "" }) {
     // For vertical photos, we lower the framing to show more of the object and people.
     const mainObjectPosition = isVertical ? "center 55%" : "center";
 
-    const maxThumbs = 5;
-    const visibleThumbs = Math.min(images.length, maxThumbs);
-    const half = Math.floor(visibleThumbs / 2);
-    const thumbsStart =
-        images.length <= visibleThumbs
-            ? 0
-            : Math.min(
-                  Math.max(activeIndex - half, 0),
-                  images.length - visibleThumbs
-              );
-    const thumbSlice = images.slice(thumbsStart, thumbsStart + visibleThumbs);
+    const thumbsContainerRef = useRef(null);
+
+    // Auto-scroll thumbs to keep active one visible
+    useEffect(() => {
+        const container = thumbsContainerRef.current;
+        if (!container) return;
+        const activeThumb = container.children[activeIndex];
+        if (!activeThumb) return;
+        const left = activeThumb.offsetLeft - container.offsetWidth / 2 + activeThumb.offsetWidth / 2;
+        container.scrollTo({ left, behavior: "smooth" });
+    }, [activeIndex]);
 
     return (
         <section
@@ -218,7 +297,7 @@ export default function ImageGallery({ className = "" }) {
                                 />
                             </svg>
                         </button>
-                        <AnimatePresence mode="wait" initial={false}>
+                        <AnimatePresence mode="popLayout" initial={false}>
                             <motion.img
                                 key={activeSrc}
                                 className="featured-main-img"
@@ -236,18 +315,11 @@ export default function ImageGallery({ className = "" }) {
                                 animate={{ opacity: 1, scale: 1 }}
                                 exit={{ opacity: 0, scale: 0.99 }}
                                 transition={{ duration: 0.22, ease: "easeOut" }}
-                                onClick={() => setSelectedIndex(activeIndex)}
+                                onPointerDown={handleMainPointerDown}
+                                onPointerMove={handleMainPointerMove}
+                                onPointerUp={handleMainPointerUp}
+                                onPointerCancel={handleMainPointerCancel}
                                 draggable={false}
-                                drag={images.length > 1 ? "x" : false}
-                                dragConstraints={{ left: -80, right: 80 }}
-                                dragElastic={0.25}
-                                dragSnapToOrigin
-                                onDragEnd={(_, info) => {
-                                    const dx = info.offset.x;
-                                    const vx = info.velocity.x;
-                                    if (dx < -55 || vx < -700) goNext();
-                                    if (dx > 55 || vx > 700) goPrev();
-                                }}
                             />
                         </AnimatePresence>
                         <button
@@ -269,26 +341,18 @@ export default function ImageGallery({ className = "" }) {
                         </button>
                     </div>
 
-                    <motion.div
+                    <div
+                        ref={thumbsContainerRef}
                         className="featured-thumbs"
                         role="group"
                         aria-label="Miniaturas"
-                        drag="x"
-                        dragMomentum={false}
-                        dragElastic={0}
-                        onDrag={(event, info) => {
-                            const el = event.currentTarget;
-                            el.scrollLeft -= info.delta.x;
-                        }}
                     >
-                        {thumbSlice.map((src, i) => {
-                            const index = thumbsStart + i;
-                            return (
+                        {images.map((src, index) => (
                             <button
                                 key={src}
                                 type="button"
                                 className={`thumb ${index === activeIndex ? "thumb-active" : ""}`}
-                                onClick={() => setActiveIndex(index)}
+                                onClick={() => { resetAutoplay(); setActiveIndex(index); }}
                                 aria-label={`Seleccionar imagen ${index + 1}`}
                             >
                                 <img
@@ -306,9 +370,8 @@ export default function ImageGallery({ className = "" }) {
                                     draggable={false}
                                 />
                             </button>
-                            );
-                        })}
-                    </motion.div>
+                        ))}
+                    </div>
 
                     <div className="featured-dots" aria-label="Navegación por puntos">
                         {images.map((src, index) => (
@@ -357,6 +420,10 @@ export default function ImageGallery({ className = "" }) {
                             exit={{ scale: 0.85, opacity: 0 }}
                             transition={{ type: "spring", stiffness: 260, damping: 28 }}
                             onClick={(e) => e.stopPropagation()}
+                            onPointerDown={handleLightboxPointerDown}
+                            onPointerMove={handleLightboxPointerMove}
+                            onPointerUp={handleLightboxPointerUp}
+                            onPointerCancel={handleLightboxPointerCancel}
                             draggable={false}
                         />
                         <button
@@ -441,16 +508,24 @@ export default function ImageGallery({ className = "" }) {
                     transform: scale(1.1);
                 }
 
-                /* Thumbnails row */
+                /* Thumbnails row – scrollable */
                 .featured-thumbs {
-                    display: grid;
-                    grid-template-columns: repeat(4, minmax(0, 1fr));
+                    display: flex;
                     gap: 10px;
+                    overflow-x: auto;
+                    overflow-y: hidden;
+                    scroll-behavior: smooth;
+                    -webkit-overflow-scrolling: touch;
+                    scrollbar-width: none;
+                    padding-bottom: 4px;
+                }
+
+                .featured-thumbs::-webkit-scrollbar {
+                    display: none;
                 }
 
                 @media (min-width: 768px) {
                     .featured-thumbs {
-                        grid-template-columns: repeat(5, minmax(0, 1fr));
                         gap: 16px;
                     }
                 }
@@ -460,10 +535,12 @@ export default function ImageGallery({ className = "" }) {
                     border-radius: 10px;
                     overflow: hidden;
                     border: none;
-                    padding : 0;
+                    padding: 0;
                     background: transparent;
                     cursor: pointer;
                     height: 72px;
+                    min-width: 100px;
+                    flex-shrink: 0;
                     box-shadow:
                         8px 8px 0px rgba(37, 99, 235, 0.18),
                         0 0 0 1px rgba(37, 99, 235, 0.18);
@@ -565,19 +642,24 @@ export default function ImageGallery({ className = "" }) {
                 .lightbox-backdrop {
                     position: absolute;
                     inset: 0;
-                    background: rgba(0, 0, 0, 0.85);
-                    backdrop-filter: blur(12px);
-                    -webkit-backdrop-filter: blur(12px);
+                    background: rgba(0, 0, 0, 0.12);
+                    backdrop-filter: none;
+                    -webkit-backdrop-filter: none;
                 }
 
                 .lightbox-img {
                     position: relative;
                     z-index: 10;
-                    max-width: 90vw;
-                    max-height: 85vh;
+                    width: auto;
+                    height: auto;
+                    max-width: 96vw;
+                    max-height: 92vh;
                     object-fit: contain;
-                    border-radius: 12px;
-                    box-shadow: 0 20px 60px rgba(37, 99, 235, 0.5);
+                    object-position: center;
+                    border-radius: 0;
+                    box-shadow: none;
+                    background: transparent;
+                    touch-action: pan-y;
                 }
 
                 .lightbox-close {

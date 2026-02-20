@@ -1,9 +1,9 @@
 import { useMemo, useState, useEffect, useRef } from "react";
 
-import HotelImage from "../../../../assets/hero/Hotel.jpg";
-import HealthImage from "../../../../assets/hero/Health.jpg";
-import RentCarImage from "../../../../assets/hero/RentCar.jpg";
-import RestaurantImage from "../../../../assets/hero/Restaurant.jpg";
+import HotelImage from "../../../../assets/hero/Hotel.webp";
+import HealthImage from "../../../../assets/hero/Health.webp";
+import RentCarImage from "../../../../assets/hero/RentCar.webp";
+import RestaurantImage from "../../../../assets/hero/Restaurant.webp";
 
 const DEFAULT_ACTIVE_INDEX = 2;
 
