@@ -86,8 +86,8 @@ function QuestionCard({
 
     return (
         <div
-            className={
-                "pricing-card rounded-2xl p-[3px] cursor-pointer select-none transition-[box-shadow,transform] duration-600 ease-[cubic-bezier(0.22,1,0.36,1)] w-[92vw] max-w-[720px] sm:w-[88vw] md:w-[20rem] lg:w-[28rem] xl:w-[20rem] 2xl:w-[20rem] relative transform-gpu " +
+                className={
+                "pricing-card rounded-2xl p-[2px] cursor-pointer select-none transition-[box-shadow,transform] duration-600 ease-[cubic-bezier(0.22,1,0.36,1)] w-[90vw] max-w-[640px] sm:w-[86vw] md:w-[18rem] lg:w-[24rem] xl:w-[18rem] relative transform-gpu " +
                 (expanded
                     ? "shadow-blue-500 shadow-lg pricing-active"
                     : "shadow-[0_10px_25px_rgba(0,0,0,0.18)] pricing-neon hover:scale-105 hover:-translate-y-2 hover:shadow-[0_15px_35px_rgba(0,0,0,0.25)]")
@@ -99,28 +99,28 @@ function QuestionCard({
         >
             <div
                 className={
-                    "rounded-[1rem] overflow-hidden transition-[height] duration-600 ease-[cubic-bezier(0.22,1,0.36,1)] p-2 " +
-                    (expanded ? "h-[25rem] lg:h-[25rem]" : "h-[8.5rem] sm:h-[9.25rem] md:h-[12rem] lg:h-[14rem] xl:h-[12rem]")
+                    "rounded-[1rem] overflow-hidden transition-[height] duration-600 ease-[cubic-bezier(0.22,1,0.36,1)] p-0 " +
+                        (expanded ? "h-[18rem] lg:h-[18rem]" : "min-h-[5.0rem] sm:min-h-[6.0rem] md:min-h-[7.5rem] lg:min-h-[7.5rem] xl:min-h-[7.5rem]")
                 }
                 style={innerStyle}
             >
                 <div
                     className={
-                        "h-full rounded-[0.9rem] transition-[border-color,box-shadow] duration-600 ease-[cubic-bezier(0.22,1,0.36,1)] px-5 pt-3 pb-5 border-2 " +
+                        "h-full rounded-[0.9rem] transition-[border-color,box-shadow] duration-600 ease-[cubic-bezier(0.22,1,0.36,1)] px-5 pt-0 pb-5 border-2 " +
                         (expanded
                             ? "border-white shadow-[0_0_0_1px_rgba(255,255,255,0.45)]"
                             : "border-transparent")
                     }
                 >
                         <div className="h-full flex flex-col ">
-                            <div className={`text-center min-h-[5.25rem] md:min-h-[6rem] lg:min-h-[7rem] xl:min-h-[7.5rem] flex flex-col items-center ${expanded ? 'justify-start' : 'justify-center'} w-full`}>
+                            <div className={`text-center min-h-[4rem] md:min-h-[4.5rem] lg:min-h-[5.5rem] xl:min-h-[6rem] flex flex-col items-center ${expanded ? 'justify-start' : 'justify-center'} w-full`}>
                             <div className="w-full">
                                 <h3
                                     className={
                                         "font-bold leading-tight whitespace-pre-line break-words text-center mx-2 " +
                                         (expanded
-                                            ? "text-white text-2xl md:text-[1.6rem]"
-                                            : "text-[#1486FF] text-lg md:text-xl lg:text-2xl")
+                                            ? "text-white text-2xl md:text-[1.4rem] mt-8"
+                                            : "text-[#1486FF] text-base md:text-lg lg:text-xl mt-4")
                                     }
                                 >
                                     {title}
@@ -144,14 +144,14 @@ function QuestionCard({
 
                         <div
                             className={
-                                "flex flex-col items-center justify-start " +
-                                (expanded ? "min-h-[7.5rem]" : "min-h-0")
+                                "flex flex-col items-center " +
+                                (expanded ? "min-h-[7.5rem] justify-center" : "min-h-0")
                             }
                         >
                             <h3
                                 className={
-                                    "whitespace-pre-line text-[1.05rem] leading-snug text-center " +
-                                    (expanded ? "text-white pt-6 pb-4 block" : "hidden")
+                                    "whitespace-pre-line text-sm leading-snug text-center " +
+                                    (expanded ? "text-white pt-4 pb-0 block" : "hidden")
                                 }
                             >
                                 {expanded
@@ -163,7 +163,7 @@ function QuestionCard({
                         </div>
 
                         {!expanded && (
-                            <div className="flex justify-center mt-0 sm:mt-2 md:mt-4 pb-0">
+                            <div className="flex justify-center -mt-0 sm:-mt-0 md:-mt-0 pb-0">
                                 <GradientArrow direction="down" />
                             </div>
                         )}
@@ -233,7 +233,7 @@ function QuestionCards({ items = faqItems }) {
     return (
         <div
             ref={listRef}
-            className="flex flex-col gap-6 items-center w-full pb-6 md:grid md:grid-cols-2 md:gap-8 md:items-start md:justify-items-center lg:grid lg:grid-cols-2 lg:gap-8 lg:items-start lg:justify-items-center xl:flex xl:flex-row xl:flex-nowrap xl:justify-center xl:gap-6 xl:overflow-x-visible xl:overflow-y-visible"
+            className="flex flex-col gap-4 items-center w-full pb-6 md:grid md:grid-cols-2 md:gap-6 md:items-start md:justify-items-center lg:grid lg:grid-cols-2 lg:gap-6 lg:items-start lg:justify-items-center xl:flex xl:flex-row xl:flex-nowrap xl:justify-center xl:gap-4 xl:overflow-x-visible xl:overflow-y-visible"
         >
             {items.map((opt, idx) => (
                 <div
@@ -296,7 +296,7 @@ function QuestionCards({ items = faqItems }) {
 
 const Questions = ({ items = faqItems, headingTop = 'You have questions?', headingEmphasis = 'We have answers', id = 'pricing' }) => {
     return (
-        <section className="overflow-visible pt-44 pb-36" id={id}>
+        <section className="overflow-visible pt-32 pb-24" id={id}>
             <div className="container">
                 <h2 className="font-medium text-4xl md:text-5xl pb-2 text-center">
                     {headingTop} <br />
