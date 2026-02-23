@@ -25,25 +25,25 @@ export default function VidefaceKiosk() {
             title: "Call emotion\ndetector",
             image: CallEmotionDetection,
             alt: "Call emotion detector",
-            description: "Detect customer sentiment in real time to adapt responses and improve service quality.",
+            description: "Real-time sentiment analysis.",
         },
         {
             title: "Real time translation\nto any language",
             image: ReallTimeTranslation,
             alt: "Real time translation support",
-            description: "Break language barriers instantly with live multilingual voice and text assistance.",
+            description: "Instant multilingual communication.",
         },
         {
             title: "Document\ncamera/scanner",
             image: DocumentCameraScanner,
             alt: "Document camera and scanner",
-            description: "Capture and process IDs or documents directly at the kiosk with guided scanning.",
+            description: "Fast and secure ID scanning.",
         },
         {
             title: "All interactions\nrecorded",
             image: AllInteractionsRecorded,
             alt: "All interactions recorded",
-            description: "Keep complete interaction logs for compliance, analytics, and service optimization.",
+            description: "Complete interaction traceability.",
         },
     ];
 

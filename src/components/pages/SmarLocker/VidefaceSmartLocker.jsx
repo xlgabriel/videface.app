@@ -46,25 +46,25 @@ export default function VidefaceSmartLocker() {
             title: "Touchscreen Interface",
             image: TouchscreenInterface,
             alt: "Touchscreen interface",
-            description: "Falta texto",
+            description: "Intuitive and easy-to-use control.",
         },
         {
             title: "Agent Interaction",
             image: AgentInteraction,
             alt: "Agent interaction",
-            description: "Falta texto",
+            description: "Live remote assistance anytime.",
         },
         {
             title: "Automated Key Management",
             image: AutomatedKeyManagement,
             alt: "Automated key management",
-            description: "Falta texto",
+            description: "Secure and automated key control.",
         },
         {
             title: "Faster, Smarter Pick-Ups",
             image: FasterPickUps,
             alt: "Faster pickups",
-            description: "Falta texto",
+            description: "Reduce wait times instantly.",
         },
     ];
 

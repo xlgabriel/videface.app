@@ -46,7 +46,7 @@ export default function Keydrop() {
             title: "Secure Key Box",
             image: SecureKeyBox,
             alt: "Secure key box",
-            description: "Secure storage with controlled access and real-time tracking.",
+            description: "Tamper-proof key storage.",
         },
         {
             title: "Virtual Agent Support",
