@@ -12,6 +12,8 @@ export default function Hero({
     userAlt,
     bgImageClassName = "block h-auto w-full hero-bg-enter",
     userImageClassName = "hero-user-enter h-auto w-[100%] rounded-[28px]",
+    userPositionClass = "lg:right-0 md:right-0 left-0",
+    userScaleClass = "lg:scale-100 md:scale-90 scale-75",
 }) {
     const heroRef = useRef(null);
     const [scrollProgress, setScrollProgress] = useState(0);
@@ -96,8 +98,8 @@ export default function Hero({
                     </div>
                 </div>
 
-                <div className="w-full lg:flex-1 relative z-10 flex justify-center lg:justify-end">
-                    <div className="relative w-full max-w-[450px] rounded-[28px] overflow-visible">
+                <div className="w-full lg:flex-1 relative z-10 flex justify-center lg:justify-end items-end">
+                    <div className="relative flex justify-center items-end w-full max-w-[450px]">
                         <div style={bgWrapStyle}>
                             <img
                                 src={bgImage}
@@ -107,7 +109,7 @@ export default function Hero({
                             />
                         </div>
 
-                        <div className="absolute bottom-0 right-0 z-10 pointer-events-none" style={userWrapStyle}>
+                        <div className={`absolute bottom-0 z-10 pointer-events-none ${userPositionClass} ${userScaleClass}`} style={{...userWrapStyle, transformOrigin: 'bottom right'}}>
                             <img src={userImage} alt={userAlt} className={userImageClassName} style={{ borderRadius: 24 }} />
                         </div>
                     </div>

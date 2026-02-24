@@ -111,7 +111,7 @@ const Header = () => {
                     >
                         <div className="flex items-center px-5 lg:px-7.5 xl:px-10 max-lg:py-4">
                         <Link
-                            className="block w-[12rem] hover:scale-110 transition-transform duration-100"
+                            className="block w-[22rem] md:w-[14rem] lg:w-[12rem] hover:scale-110 transition-transform duration-100"
                             to="/home"
                             onMouseEnter={e => {
                                 e.currentTarget.querySelector('img').style.filter = 'drop-shadow(0 0 16px rgba(255,255,255,1))';
@@ -288,7 +288,7 @@ const Header = () => {
                 />
 
                 <div
-                    className={`fixed top-[7rem] left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] max-w-[1600px] rounded-3xl border border-white/15 transform transition-[transform,opacity] duration-320 ease-in-out ${
+                    className={`fixed top-[7rem] left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] max-w-[1600px] max-h-[calc(100vh-9rem)] overflow-y-auto rounded-3xl border border-white/15 transform transition-[transform,opacity] duration-320 ease-in-out ${
                         openNavigation
                             ? "translate-y-0 opacity-100 delay-100"
                             : "translate-y-[100vh] opacity-0 delay-0"

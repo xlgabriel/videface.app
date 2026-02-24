@@ -72,7 +72,7 @@ export default function VidefaceSmartLocker() {
         <>
             <Seo title="VideFace Smart Locker | Secure Key Management & Automated Locker System"
                 description="Improve operations with a rental locker that automates key dispensing, boosts key tracking, and enhances security through a smart, digital locker system."
-                canonical="https://videface.com/kiosk"
+                canonical="https://videface.com/smart-locker"
                 image={kioskOG} />
 
             <Header />
@@ -85,8 +85,9 @@ export default function VidefaceSmartLocker() {
                 bgAlt="Smart Locker background"
                 userImage={ImageSmartUSER}
                 userAlt="Smart Locker user"
-                bgImageClassName="block w-[260px] h-[260px] md:w-[320px] md:h-[320px] lg:w-[450px] lg:h-[450px] hero-bg-enter object-cover"
-                userImageClassName="hero-user-enter w-[220px] h-[220px] md:w-[280px] md:h-[280px] lg:w-[450px] lg:h-[450px] object-cover rounded-[28px]"
+                bgImageClassName="block w-[220px] h-[220px] md:w-[320px] md:h-[320px] lg:w-[450px] lg:h-[450px] hero-bg-enter object-cover"
+                userImageClassName="hero-user-enter w-[220px] h-[220px] md:w-[320px] md:h-[320px] lg:w-[450px] lg:h-[450px] object-cover rounded-[28px]"
+                userPositionClass="left-22 md:left-16 sm:left-28 lg:left-0"
             />
 
             <Services

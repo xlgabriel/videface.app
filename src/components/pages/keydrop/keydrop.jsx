@@ -6,8 +6,8 @@ import Hero from "../sections/hero/Hero";
 import Solutions from "../sections/solutions/Solutions";
 import { kioskOG } from "../../../assets";
 import { kioskFaqItems, keydropFaqItems } from "../../../constants/faqs";
-import ImageSmartBG from "../../../assets/hero/imageSmartBG.webp";
-import ImageSmartUSER from "../../../assets/hero/imageSmartUSER.webp";
+import ImageKeydropBG from "../../../assets/hero/ImageKeydropBG.webp";
+import ImageKeydropUSER from "../../../assets/hero/ImageKeydropUSER.webp";
 import VideFaceSmartLocker from "../../../assets/webp/VideFace-Smart-Locker.webp";
 import VideFaceKiosk from "../../../assets/webp/VideFace-Kiosk.webp";
 import AllInOne from "../../../assets/webp/All-in-one-edit.webp";
@@ -72,7 +72,7 @@ export default function Keydrop() {
         <>
             <Seo title="Secure Key Drop System | VideFace"
                 description="Automate your key drop process with secure key management technology, and protects your rental operation."
-                canonical="https://videface.com/kiosk"
+                canonical="https://videface.com/keydrop"
                 image={kioskOG} />
 
             <Header />
@@ -81,12 +81,13 @@ export default function Keydrop() {
                 title="Key Drop"
                 subtitlePrefix="Designed to reduce risk, prevent disputes, and"
                 subtitleHighlight="Streamline rental operations"
-                bgImage={ImageSmartBG}
+                bgImage={ImageKeydropBG}
                 bgAlt="KeyDrop background"
-                userImage={ImageSmartUSER}
+                userImage={ImageKeydropUSER}
                 userAlt="KeyDrop user"
-                bgImageClassName="block w-[260px] h-[260px] md:w-[320px] md:h-[320px] lg:w-[450px] lg:h-[450px] hero-bg-enter object-cover"
-                userImageClassName="hero-user-enter w-[220px] h-[220px] md:w-[280px] md:h-[280px] lg:w-[450px] lg:h-[450px] object-cover rounded-[28px]"
+                bgImageClassName="block w-[220px] h-[220px] md:w-[320px] md:h-[320px] lg:w-[450px] lg:h-[450px] hero-bg-enter object-cover"
+                userImageClassName="hero-user-enter w-[220px] h-[220px] md:w-[320px] md:h-[320px] lg:w-[450px] lg:h-[450px] object-cover rounded-[28px]"
+                userPositionClass="left-22 md:left-16 sm:left-28 lg:left-0"
             />
 
             <Services
