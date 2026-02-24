@@ -49,10 +49,10 @@ const Header = () => {
 
     const solutionsItems = [
         { label: "Kiosk", iconClass: "icon-kiosk", url: "/kiosk" },
-        { label: "Smart Locker", iconClass: "icon-locker-key", url: "/smart-locker" },
+        { label: "Smart Locker", iconClass: "icon-locker-key", url: "/key-management" },
         { label: "KeyDrop", iconClass: "icon-key", url: "/keydrop" },
-        { label: "Acoustic Cabin Booth", iconClass: "icon-acoustic-cabin", url: "/acoustic-cabin" },
-        { label: "Agents", iconClass: "icon-agent-support", url: "/agents" },
+/*         { label: "Acoustic Cabin Booth", iconClass: "icon-acoustic-cabin", url: "/acoustic-cabin" },
+        { label: "Agents", iconClass: "icon-agent-support", url: "/agents" }, */
     ];
 
     const isHashUrl = (url) => typeof url === "string" && url.includes("#");

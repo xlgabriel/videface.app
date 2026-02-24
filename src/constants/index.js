@@ -1,20 +1,7 @@
 import {
-    benefitIcon1,
-    benefitIcon2,
-    benefitIcon3,
-    benefitIcon4,
-    benefitIcon5,
-    benefitIcon6,
-    benefitImage1,
-    benefitImage2,
-    benefitImage3,
-    benefitImage4,
-    benefitImage5,
-    benefitImage6,
     chromecast,
     disc02,
     discord,
-    // discordBlack,
     facebook,
     figma,
     file02,
@@ -31,10 +18,7 @@ import {
     raindrop,
     recording01,
     recording03,
-    roadmap1,
-    roadmap2,
-    roadmap3,
-    roadmap4,
+    // roadmap images removed from assets
     searchMd,
     slack,
     sliders04,
@@ -71,12 +55,8 @@ import {
     seven24,
     Nola,
     Flex,
-    benefitCard1,
-    benefitCard2,
-    benefitCard3,
-    benefitCard4,
-    benefitCard5,
-    benefitCard6,
+    curve1,
+    curve2,
 } from "../assets";
 
 export const navigation = [
@@ -133,7 +113,7 @@ export const roadmap = [
         text: "Enable the chatbot to understand and respond to voice commands, making it easier for users to interact with the app hands-free.",
         date: "May 2023",
         status: "done",
-        imageUrl: roadmap1,
+        imageUrl: null,
         colorful: true,
     },
     {
@@ -142,7 +122,7 @@ export const roadmap = [
         text: "Add game-like elements, such as badges or leaderboards, to incentivize users to engage with the chatbot more frequently.",
         date: "May 2023",
         status: "progress",
-        imageUrl: roadmap2,
+        imageUrl: null,
     },
     {
         id: "2",
@@ -150,7 +130,7 @@ export const roadmap = [
         text: "Allow users to customize the chatbot's appearance and behavior, making it more engaging and fun to interact with.",
         date: "May 2023",
         status: "done",
-        imageUrl: roadmap3,
+        imageUrl: null,
     },
     {
         id: "3",
@@ -158,7 +138,7 @@ export const roadmap = [
         text: "Allow the chatbot to access external data sources, such as weather APIs or news APIs, to provide more relevant recommendations.",
         date: "May 2023",
         status: "progress",
-        imageUrl: roadmap4,
+        imageUrl: null,
     },
 ];
 
@@ -293,63 +273,6 @@ export const pricing = [
             "It's easier to manage everything in one place. Definitely worth it!",
             "Priority support and assistance for any needs.",
         ],
-    },
-];
-
-export const benefits = [
-    {
-        id: "0",
-        title: "Real time videocall",
-        text: "You'll have everything you need to make the most out of your video calls. Manage them in harmony with your team. Unlimited, secure and reliable.",
-        backgroundUrl: benefitCard1,
-        iconUrl: benefitIcon1,
-        imageUrl: benefitImage1,
-        light: true,
-    },
-    {
-        id: "1",
-        title: "Offices management",
-        text: "You can manage your offices with their agents, kiosks, cars and more. Everything inside our software. Easy, fast and secure.",
-        backgroundUrl: benefitCard2,
-        iconUrl: benefitIcon2,
-        imageUrl: benefitImage2,
-        light: true,
-    },
-    {
-        id: "2",
-        title: "Cars management",
-        text: "Create and edit your cars, add photos, damages, dates and more. Clients will have access to this information in real time.",
-        backgroundUrl: benefitCard3,
-        iconUrl: benefitIcon3,
-        imageUrl: benefitImage3,
-        light: true,
-    },
-    {
-        id: "3",
-        title: "Real time car inspection",
-        text: "Your clients can inspect the car, take their own pictures and send them to you. No more misunderstandings or surprises. It's a win-win situation.",
-        backgroundUrl: benefitCard4,
-        iconUrl: benefitIcon4,
-        imageUrl: benefitImage4,
-        light: true,
-    },
-    {
-        id: "4",
-        title: "AutoKeys system",
-        text: "Give your clients the possibility to pick up and drop off the car without your presence. It's easy, fast and secure. Just one click away!",
-        backgroundUrl: benefitCard5,
-        iconUrl: benefitIcon5,
-        imageUrl: benefitImage5,
-        light: true,
-    },
-    {
-        id: "5",
-        title: "Global customization",
-        text: "Set close and open hours, personalize your kiosks, send notifications to your team, see what's going on in real time with our Cloud servers!",
-        backgroundUrl: benefitCard6,
-        iconUrl: benefitIcon6,
-        imageUrl: benefitImage6,
-        light: true,
     },
 ];
 

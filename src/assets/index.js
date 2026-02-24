@@ -3,7 +3,6 @@ import check from "./check.svg";
 import brainwaveSymbol from "./brainwave-symbol.svg";
 import brainwaveWhiteSymbol from "./brainwave-symbol-white.svg";
 import play from "./play.svg";
-import gradient from "./gradient.png";
 import grid from "./grid.png";
 import check2 from "./check-02.svg";
 import loading1 from "./loading-01.svg";
@@ -25,7 +24,7 @@ import disc02 from "./plus-square.png";
 import chromecast from "./chrome-cast.svg";
 import sliders04 from "./sliders-04.svg";
 import loading from "./loading.png";
-import background from "./background.webp";
+import gradient from "./gradient.png";
 import lightmode from "./lightmode.svg";
 import darkmode from "./darkmode.svg";
 
@@ -54,14 +53,7 @@ import service3 from "./services/service-3.webp";
 import lines from "./pricing/lines.svg";
 import stars from "./pricing/stars.svg";
 
-import coins from "./roadmap/coins.png";
-import done from "./roadmap/done.svg";
-import hero from "./roadmap/hero.png";
-import roadmap1 from "./roadmap/image-1.png";
-import roadmap2 from "./roadmap/image-2.png";
-import roadmap3 from "./roadmap/image-3.png";
-import roadmap4 from "./roadmap/image-4.png";
-import undone from "./roadmap/undone.svg";
+// Roadmap images removed — references cleaned
 
 import notification1 from "./notification/image-1.png";
 import notification2 from "./notification/image-2.png";
@@ -94,7 +86,7 @@ import telegram from "./socials/telegram.svg";
 import twitter from "./socials/twitter.svg";
 import youtube from "./socials/youtube.svg";
 
-import message1 from "./message1.webp";
+/* import message1 from "./message1.webp"; */
 
 import logowhite from "./LogoWhite.png";
 import Economy from "./LogosCompanies/Economy.png";
@@ -130,6 +122,7 @@ import Nola from "./LogosCompanies/Nola.png";
 import Flex from "./LogosCompanies/Flex.png";
 
 export {
+    gradient,
     logowhite,
     brainwave,
     check,
@@ -138,7 +131,6 @@ export {
     brainwaveSymbol,
     brainwaveWhiteSymbol,
     play,
-    gradient,
     grid,
     companyLogo1,
     companyLogo2,
@@ -158,7 +150,6 @@ export {
     chromecast,
     sliders04,
     loading,
-    background,
     curve,
     heroBackground,
     homeOG,
@@ -179,14 +170,7 @@ export {
     service3,
     lines,
     stars,
-    coins,
-    done,
-    hero,
-    roadmap1,
-    roadmap2,
-    roadmap3,
-    roadmap4,
-    undone,
+    // roadmap images removed
     notification1,
     notification2,
     notification3,
@@ -217,7 +201,7 @@ export {
     youtube,
     lightmode,
     darkmode,
-    message1,
+    // message1 removed
     // LogosCompanies
     Economy,
     Mex,
