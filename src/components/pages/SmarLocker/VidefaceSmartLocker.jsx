@@ -5,7 +5,7 @@ import Contact from "../../Contact";
 import Hero from "../sections/hero/Hero";
 import Solutions from "../sections/solutions/Solutions";
 import { kioskOG } from "../../../assets";
-import { kioskFaqItems } from "../../../constants/faqs";
+import { smartLockerFaqItems } from "../../../constants/faqs";
 import ImageSmartBG from "../../../assets/hero/imageSmartBG.webp";
 import ImageSmartUSER from "../../../assets/hero/imageSmartUSER.webp";
 import VideFaceKeydrop from "../../../assets/webp/VideFace-Keydrop.webp";
@@ -115,7 +115,7 @@ export default function VidefaceSmartLocker() {
                 )}
             />
 
-            <Questions items={kioskFaqItems} headingTop="You have questions?" headingEmphasis="We have answers" id="kiosk-questions" />
+            <Questions items={smartLockerFaqItems} headingTop="You have questions?" headingEmphasis="We have answers" id="kiosk-questions" />
 
 
             <div id="contact">

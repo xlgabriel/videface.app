@@ -2,27 +2,27 @@
 export const kioskFaqItems = [
     {
         id: 1,
-        title: 'What is a Smart Locker System?',
+        title: 'How does VideFace Kiosk enhance virtual assistance?',
         description:
-            'A smart locker system is a digital locker solution that automates key storage, pick-ups, and returns with secure, real-time tracking.',
+            'VideFace Kiosk boosts virtual assistance by letting customers connect with remote agents instantly, reducing wait times and improving service flow while keeping operations efficient and easy to manage.',
     },
     {
         id: 2,
-        title: 'How Does Automated Key Management Help Rental Businesses?',
+        title: 'What makes this self-service kiosk different?',
         description:
-            'Automated key management reduces manual work, prevents loss, speeds up handovers, and makes rental operations more efficient.',
+            'Our self-service kiosk blends automation with real human support, offering fast identity checks, real-time translation, and smooth interactions that typical automated kiosk solutions cannot deliver.',
     },
     {
         id: 3,
-        title: 'Is the Digital Locker System Secure?',
+        title: 'Is VideFace Kiosk useful for rental technology?',
         description:
-            'Yes. It uses identity verification, tracking logs, and controlled access to ensure every key or item is stored and retrieved safely.',
+            'Yes. VideFace Kiosk strengthens rental technology by handling check-ins, customer support, and secure verifications, making car rental automation faster, safer, and more consistent.',
     },
     {
         id: 4,
-        title: 'Can the Rental Locker Integrate With My Current Software?',
+        title: 'Who benefits from a virtual kiosk like VideFace?',
         description:
-            'Absolutely. The rental locker connects easily with existing rental or fleet systems to sync user data, key status, and transactions.',
+            'A virtual kiosk works great for car rentals, retail, and service points needing quick, reliable interactions. It lets teams streamline tasks and offer better service with modern self-service kiosks.',
     },
 ];
 
@@ -53,4 +53,31 @@ export const keydropFaqItems = [
     },
 ];
 
-export default { kioskFaqItems };
+export const smartLockerFaqItems = [
+    {
+        id: 1,
+        title: 'What is a Smart Locker System?',
+        description:
+            'A smart locker system is a digital locker solution that automates key storage, pick-ups, and returns with secure, real-time tracking.',
+    },
+    {
+        id: 2,
+        title: 'How Does Automated Key Management Help Rental Businesses?',
+        description:
+            'Automated key management reduces manual work, prevents loss, speeds up handovers, and makes rental operations more efficient.',
+    },
+    {
+        id: 3,
+        title: 'Is the Digital Locker System Secure?',
+        description:
+            'Yes. It uses identity verification, tracking logs, and controlled access to ensure every key or item is stored and retrieved safely.',
+    },
+    {
+        id: 4,
+        title: 'Can the Rental Locker Integrate With My Current Software?',
+        description:
+            'Absolutely. The rental locker connects easily with existing rental or fleet systems to sync user data, key status, and transactions.',
+    },
+];
+
+export default { kioskFaqItems, smartLockerFaqItems, keydropFaqItems};

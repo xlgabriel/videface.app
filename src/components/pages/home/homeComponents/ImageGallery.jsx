@@ -41,10 +41,6 @@ export default function ImageGallery({ className = "" }) {
             alt: "Office with Virtual Assistance Booths",
             title: "Office with three virtual assistance booths for customer service operations",
         },
-        "5.webp": {
-            alt: "Digitally Transformed Office",
-            title: "Digitally transformed office with virtual assistance and automation elements",
-        },
         "6.webp": {
             alt: "Car Rental Customer Service Office",
             title: "Car rental office with virtual customer service booths for vehicle rentals",

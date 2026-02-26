@@ -6,9 +6,12 @@ export default defineConfig({
   plugins: [
     react(),
     visualizer({
-      open: true,       // abre el reporte automáticamente
-      gzipSize: true,   // muestra tamaño real comprimido
-      brotliSize: true, // muestra tamaño brotli
+      open: true,
+      gzipSize: true,
+      brotliSize: true,
     })
   ],
+  build: {
+    assetsInlineLimit: 0 
+  }
 })

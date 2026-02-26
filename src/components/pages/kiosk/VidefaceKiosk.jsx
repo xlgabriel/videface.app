@@ -95,7 +95,11 @@ export default function VidefaceKiosk() {
                 items={serviceItems}
             />
             <Metrics />
-            <Industries />
+            <Industries
+                headingTop={"A Smart Kiosk Solution that adapts to"}
+                headingHighlight={"Any Industry"}
+                className="mt-28 mb-28"
+            />
 
             <Solutions
                 items={solutionItems}
