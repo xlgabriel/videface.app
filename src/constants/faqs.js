@@ -74,9 +74,9 @@ export const smartLockerFaqItems = [
     },
     {
         id: 4,
-        title: 'Can the Rental Locker Integrate With My Current Software?',
+        title: 'Can it operate without onsite staff?',
         description:
-            'Absolutely. The rental locker connects easily with existing rental or fleet systems to sync user data, key status, and transactions.',
+            'Yes. With virtual assistance and remote control, operations run securely 24/7 without full onsite teams.',
     },
 ];
 

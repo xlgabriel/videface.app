@@ -85,9 +85,9 @@ export default function Keydrop() {
                 bgAlt="KeyDrop background"
                 userImage={ImageKeydropUSER}
                 userAlt="KeyDrop user"
-                bgImageClassName="block w-[220px] h-[220px] md:w-[320px] md:h-[320px] lg:w-[450px] lg:h-[450px] hero-bg-enter object-cover"
-                userImageClassName="hero-user-enter w-[220px] h-[220px] md:w-[320px] md:h-[320px] lg:w-[450px] lg:h-[450px] object-cover rounded-[28px]"
-                userPositionClass="left-22 md:left-16 sm:left-28 lg:left-0"
+                bgImageClassName="block w-[400px] h-[400px] md:w-[320px] md:h-[320px] lg:w-[450px] lg:h-[450px] hero-bg-enter object-cover"
+                userImageClassName="hero-user-enter w-[400px] h-[400px] md:w-[320px] md:h-[320px] lg:w-[450px] lg:h-[450px] object-cover rounded-[28px]"
+                userPositionClass="left-22 md:left-16 sm:left-30 lg:left-0"
             />
 
             <Services
