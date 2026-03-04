@@ -1,4 +1,5 @@
 import { useRef, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Section from "./Section";
 import { BackgroundCircles } from "./design/Hero";
 import ReactDOMServer from "react-dom/server";
@@ -11,7 +12,39 @@ const clamp01 = (v) => Math.max(0, Math.min(1, v));
 const smoothstep = (t) => t * t * (3 - 2 * t);
 const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
 
+// USA phone: digits only, max 10, display as (XXX) XXX-XXXX
+const formatUSAPhone = (digits) => {
+    const d = (digits || "").replace(/\D/g, "").slice(0, 10);
+    if (d.length <= 3) return d;
+    if (d.length <= 6) return `(${d.slice(0, 3)}) ${d.slice(3)}`;
+    return `(${d.slice(0, 3)}) ${d.slice(3, 6)}-${d.slice(6)}`;
+};
+
+// Map browser region (e.g. US, GB) to country option value "code-name"
+const REGION_TO_COUNTRY = {
+    US: "+1-United States",
+    CA: "+1-Canada",
+    GB: "+44-United Kingdom",
+    MX: "+52-Mexico",
+    AU: "+61-Australia",
+    DE: "+49-Germany",
+    FR: "+33-France",
+    IN: "+91-India",
+    BR: "+55-Brazil",
+    ES: "+34-Spain",
+    IT: "+39-Italy",
+    NL: "+31-Netherlands",
+    JP: "+81-Japan",
+    CN: "+86-China",
+    KR: "+82-South Korea",
+    CO: "+57-Colombia",
+    AR: "+54-Argentina",
+    PE: "+51-Peru",
+    CL: "+56-Chile",
+};
+
 const Contact = () => {
+    const navigate = useNavigate();
     const formRef = useRef();
     const sectionRef = useRef(null);
     const titleRef = useRef(null);
@@ -27,6 +60,7 @@ const Contact = () => {
         message: "",
         phoneCountry: "+1-United States",
         phoneNumber: "",
+        wantsToSchedule: false,
     });
 
     const [loading, setLoading] = useState(false);
@@ -40,6 +74,25 @@ const Contact = () => {
 
     const [glowAmount, setGlowAmount] = useState(0);
     const [scrollProgress, setScrollProgress] = useState(0);
+
+    // Auto-select country code from browser locale (runs once on mount)
+    useEffect(() => {
+        let region = "";
+        try {
+            if (typeof navigator !== "undefined" && navigator.language) {
+                const locale = navigator.language;
+                region = (locale.split("-")[1] || locale.split("-")[0] || "").toUpperCase();
+            }
+            if (typeof Intl !== "undefined" && Intl.Locale) {
+                const r = new Intl.Locale(navigator.language).region;
+                if (r) region = r.toUpperCase();
+            }
+        } catch (_) {}
+        const optionValue = region ? REGION_TO_COUNTRY[region] : null;
+        if (optionValue) {
+            setForm((prev) => ({ ...prev, phoneCountry: optionValue }));
+        }
+    }, []);
 
     // Main scroll progress tracker for the section
     useEffect(() => {
@@ -167,10 +220,17 @@ const Contact = () => {
     //};
 
     const handleChange = (e) => {
-        const { id, value } = e.target;
+        const { id, value, type, checked } = e.target;
+        if (id === "phoneNumber") {
+            const digitsOnly = value.replace(/\D/g, "");
+            const isUSA = (form.phoneCountry || "").includes("United States");
+            const next = isUSA ? digitsOnly.slice(0, 10) : digitsOnly.slice(0, 15);
+            setForm((prevForm) => ({ ...prevForm, phoneNumber: next }));
+            return;
+        }
         setForm((prevForm) => ({
             ...prevForm,
-            [id]: value,
+            [id]: type === "checkbox" ? checked : value,
         }));
     };
 
@@ -197,6 +257,20 @@ const Contact = () => {
 
         setLoading(true);
 
+        // Localhost test: skip backend when on localhost and email is test@gmail.com
+        const isLocalhost =
+            typeof window !== "undefined" &&
+            /^https?:\/\/localhost(:\d+)?(\/|$)/i.test(window.location.origin);
+        const isTestEmail = form.email.trim().toLowerCase() === "test@gmail.com";
+        if (isLocalhost && isTestEmail) {
+            setLoading(false);
+            navigate("/thank-you", {
+                replace: true,
+                state: { name: form.name, company: form.company, wantsToSchedule: form.wantsToSchedule },
+            });
+            return;
+        }
+
         const data = {
             name: form.name,
             email: form.email,
@@ -218,15 +292,9 @@ const Contact = () => {
             .then(
                 () => {
                     setLoading(false);
-                    setEmailSent(true);
-
-                    setForm({
-                        name: "",
-                        company: "",
-                        email: "",
-                        message: "",
-                        phoneCountry: "+1-United States",
-                        phoneNumber: "",
+                    navigate("/thank-you", {
+                        replace: true,
+                        state: { name: form.name, company: form.company, wantsToSchedule: form.wantsToSchedule },
                     });
                 },
                 (error) => {
@@ -420,9 +488,13 @@ const Contact = () => {
                                             <input
                                                 id="phoneNumber"
                                                 type="tel"
+                                                inputMode="numeric"
+                                                autoComplete="tel-national"
                                                 className="w-full h-10 rounded-md bg-white px-3 text-sm text-slate-900 outline-none ring-1 ring-white/40 focus:ring-2 focus:ring-white/70"
-                                                placeholder="Phone number"
-                                                value={form.phoneNumber}
+                                                placeholder={(form.phoneCountry || "").includes("United States") ? "(555) 555-5555" : "Phone number"}
+                                                value={(form.phoneCountry || "").includes("United States")
+                                                    ? formatUSAPhone(form.phoneNumber)
+                                                    : form.phoneNumber}
                                                 onChange={handleChange}
                                             />
                                         </div>
@@ -450,25 +522,35 @@ const Contact = () => {
                                         )}
                                     </div>
 
+                                    <div className="mb-6">
+                                        <label className="flex items-center gap-3 cursor-pointer select-none">
+                                            <input
+                                                id="wantsToSchedule"
+                                                type="checkbox"
+                                                checked={form.wantsToSchedule || false}
+                                                onChange={handleChange}
+                                                className="h-5 w-5 rounded border-white/40 bg-white/90 text-[#0A6CFF] focus:ring-2 focus:ring-white/70 focus:ring-offset-0 cursor-pointer"
+                                                aria-label="I'm interested in scheduling a meeting"
+                                            />
+                                            <span className="text-white/90 text-sm font-medium">
+                                                I'm interested in scheduling a meeting
+                                            </span>
+                                        </label>
+                                    </div>
+
                                     <div className="flex justify-center">
                                         <button
                                             type="submit"
-                                            disabled={emailSent}
+                                            disabled={loading}
                                             className={`h-10 w-36 rounded-md border border-white/40 text-white font-semibold tracking-wide uppercase text-sm transition-colors ${
-                                                emailSent
+                                                loading
                                                     ? "opacity-60 cursor-not-allowed"
                                                     : "hover:bg-white/10"
                                             }`}
                                         >
-                                            {loading ? "Sending..." : emailSent ? "Sent" : "Send"}
+                                            {loading ? "Sending..." : "Send"}
                                         </button>
                                     </div>
-
-                                    {emailSent && (
-                                        <div className="mt-4 text-center text-white font-semibold text-lg">
-                                            Form submitted successfully!
-                                        </div>
-                                    )}
                                 </form>
                             </div>
                         </div>

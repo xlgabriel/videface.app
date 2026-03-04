@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Button from "./Button";
 import Heading from "./Heading";
 import Section from "./Section";
@@ -7,7 +8,16 @@ import { BackgroundCircles } from "./design/Hero";
 import ReactDOMServer from "react-dom/server";
 import ContactEmailTemplate from "./ContactEmailTemplate";
 
+// USA phone: digits only, max 10, display as (XXX) XXX-XXXX
+const formatUSAPhone = (digits) => {
+    const d = (digits || "").replace(/\D/g, "").slice(0, 10);
+    if (d.length <= 3) return d;
+    if (d.length <= 6) return `(${d.slice(0, 3)}) ${d.slice(3)}`;
+    return `(${d.slice(0, 3)}) ${d.slice(3, 6)}-${d.slice(6)}`;
+};
+
 const Form = () => {
+    const navigate = useNavigate();
     const formRef = useRef();
     const [form, setForm] = useState({
         name: "",
@@ -15,7 +25,8 @@ const Form = () => {
         email: "",
         message: "",
         cars: "<100",
-        phone: "+1",
+        phone: "",
+        wantsToSchedule: false,
     });
 
     const [loading, setLoading] = useState(false);
@@ -57,10 +68,15 @@ const Form = () => {
     //};
 
     const handleChange = (e) => {
-        const { id, value } = e.target;
+        const { id, value, type, checked } = e.target;
+        if (id === "phone") {
+            const digitsOnly = value.replace(/\D/g, "").slice(0, 10);
+            setForm((prevForm) => ({ ...prevForm, phone: digitsOnly }));
+            return;
+        }
         setForm((prevForm) => ({
             ...prevForm,
-            [id]: value,
+            [id]: type === "checkbox" ? checked : value,
         }));
     };
 
@@ -87,10 +103,24 @@ const Form = () => {
 
         setLoading(true);
 
+        // Localhost test: skip backend when on localhost and email is test@gmail.com
+        const isLocalhost =
+            typeof window !== "undefined" &&
+            /^https?:\/\/localhost(:\d+)?(\/|$)/i.test(window.location.origin);
+        const isTestEmail = form.email.trim().toLowerCase() === "test@gmail.com";
+        if (isLocalhost && isTestEmail) {
+            setLoading(false);
+            navigate("/thank-you", {
+                replace: true,
+                state: { name: form.name, company: form.company, wantsToSchedule: form.wantsToSchedule },
+            });
+            return;
+        }
+
         const data = {
             name: form.name,
             email: form.email,
-            phone: form.phone,
+            phone: form.phone ? `+1 ${form.phone}` : "+1",
             companyId: "VideFace",
             office: "Webpage",
             emailConfig: emailConfig,
@@ -108,20 +138,10 @@ const Form = () => {
             .then(
                 () => {
                     setLoading(false);
-                    setEmailSent(true);
-
-                    setForm({
-                        name: "",
-                        company: "",
-                        email: "",
-                        message: "",
-                        cars: "<100",
-                        phone: "+1",
+                    navigate("/thank-you", {
+                        replace: true,
+                        state: { name: form.name, company: form.company, wantsToSchedule: form.wantsToSchedule },
                     });
-
-                    setTimeout(() => {
-                        setEmailSent(false);
-                    }, 3000);
                 },
                 (error) => {
                     setLoading(false);
@@ -199,9 +219,11 @@ const Form = () => {
                             <input
                                 id="phone"
                                 type="tel"
+                                inputMode="numeric"
+                                autoComplete="tel-national"
                                 className="w-full p-2 border border-gray-300 rounded bg-n-7"
-                                placeholder="+1 555 555 5555"
-                                value={form.phone}
+                                placeholder="(555) 555-5555"
+                                value={formatUSAPhone(form.phone)}
                                 onChange={handleChange}
                             />
                         </div>
@@ -237,14 +259,29 @@ const Form = () => {
                                 <option value="other">Not specified</option>
                             </select>
                         </div>
+                        <div className="mb-4">
+                            <label className="flex items-center gap-3 cursor-pointer select-none">
+                                <input
+                                    id="wantsToSchedule"
+                                    type="checkbox"
+                                    checked={form.wantsToSchedule || false}
+                                    onChange={handleChange}
+                                    className="h-5 w-5 rounded border-n-6 bg-n-7 text-[#0A6CFF] focus:ring-2 focus:ring-n-6 focus:ring-offset-0 cursor-pointer"
+                                    aria-label="I'm interested in scheduling a meeting"
+                                />
+                                <span className="text-n-1 text-sm font-medium">
+                                    I'm interested in scheduling a meeting
+                                </span>
+                            </label>
+                        </div>
                         <Button
                             className={`w-full mb-6 mt-4 ${
-                                emailSent ? "bg-transparent cursor-not-allowed" : "bg-transparent hover:text-n-6"
+                                loading ? "bg-transparent cursor-not-allowed" : "bg-transparent hover:text-n-6"
                             }`}
-                            disabled={emailSent}
+                            disabled={loading}
                             onClick={handleSubmit}
                         >
-                            {loading ? "Sending..." : emailSent ? "Email sent successfully!" : "Send"}
+                            {loading ? "Sending..." : "Send"}
                         </Button>
                         <p className="text-sm text-center">
                             You can also email to{" "}

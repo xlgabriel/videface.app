@@ -1,7 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
-const Seo = React.memo(({ title, description, canonical, image, type = 'website' }) => {
+const Seo = React.memo(({ title, description, canonical, image, type = 'website', robots = 'index, follow' }) => {
     const defaultTitle = 'VideFace';
     const defaultDescription = 'Innovative virtual assistance solutions for modern businesses.';
 
@@ -27,8 +27,7 @@ const Seo = React.memo(({ title, description, canonical, image, type = 'website'
             <meta name="twitter:description" content={finalDescription} />
             {image && <meta name="twitter:image" content={image} />}
 
-            {/* Robots (default) */}
-            <meta name="robots" content="index, follow" />
+            <meta name="robots" content={robots} />
         </Helmet>
     );
 });

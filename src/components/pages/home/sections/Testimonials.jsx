@@ -3,20 +3,18 @@ import MessageCarousel from "../homeComponents/MessageCarousel";
 
 const sampleItems = [
     {
-        name: "Mr. Ebrima",
-        role: "Cargreen rental car, Minneapolis, MN",
-        text:
-            "The system has been great! My customers love it. I recommend it 100%. It has made our operations smoother and more efficient. We’ve seen a real improvement in how we serve our clients every day.",
+        name: "Ebrima Jallow",
+        role: "Cargreen Rentals, Minneapolis, MN",
+        text: "The system has been great! My customers love it. I recommend it 100%. It has made our operations smoother and more efficient. We’ve seen a real improvement in how we serve our clients every day.",
     },
     {
         name: "Eddie",
         role: "Carwiz, Orlando, FL",
-        text: `At first, I was skeptical about using a screen-based system for renter check-ins. However, now that we’re going into our third week of using the Videface remote check-in system, I can confidently say it has exceeded my expectations.
+        text: `At first, I was skeptical about using a screen-based system for renter check-ins. However, now that we’re going into our third week of using the VideFace remote check-in system, I can confidently say it has exceeded my expectations.
 The system has proven to be extremely reliable, and we’ve noticed a clear increase in customer traffic. Renters find it both interesting and reassuring to be able to speak with a real person remotely — amazing feedback from customers. It also presents our brand in a highly professional way. Having the check-in process available at the touch of a screen is far more convenient than waiting for staff to align with scheduled hours.
-We did experience a few minor technical glitches in the beginning, which is completely normal when implementing a new system. However, Videface’s technical support team was there exactly when we needed them and resolved every issue remotely within minutes.
-I would definitely recommend this system and plan to add another screen as our fleet continues to grow. Thank you, Chris, for helping usher in this new and exciting phase for Carwiz in Orlando.`,
+We did experience a few minor technical glitches in the beginning, which is completely normal when implementing a new system. However, VideFace’s technical support team was there exactly when we needed them and resolved every issue remotely within minutes.
+I would definitely recommend this system and plan to add another screen as our fleet continues to grow. Thank you for helping in this new and exciting phase for Carwiz in Orlando.`,
     },
-
 ];
 
 export default function Testimonials({ items = sampleItems }) {
@@ -44,7 +42,7 @@ export default function Testimonials({ items = sampleItems }) {
             {
                 threshold: 0.01,
                 rootMargin: "-35% 0px -35% 0px",
-            }
+            },
         );
 
         io.observe(el);
@@ -62,15 +60,15 @@ export default function Testimonials({ items = sampleItems }) {
         phase === "hidden"
             ? "z-2 max-w-[560px] tst-hidden-left"
             : phase === "shown"
-                ? "z-2 max-w-[560px] tst-shown"
-                : "z-2 max-w-[560px] tst-exit";
+              ? "z-2 max-w-[560px] tst-shown"
+              : "z-2 max-w-[560px] tst-exit";
 
     const carouselClass =
         phase === "hidden"
             ? "flex justify-center lg:justify-end tst-hidden-right"
             : phase === "shown"
-                ? "flex justify-center lg:justify-end tst-shown"
-                : "flex justify-center lg:justify-end tst-exit";
+              ? "flex justify-center lg:justify-end tst-shown"
+              : "flex justify-center lg:justify-end tst-exit";
 
     // Mini-carousel for 2 reviews
     const [twoIndex, setTwoIndex] = useState(0);
@@ -80,9 +78,7 @@ export default function Testimonials({ items = sampleItems }) {
     const getPreview = (text) => {
         const safeText = typeof text === "string" ? text : "";
         const isTruncated = safeText.length > PREVIEW_CHAR_LIMIT;
-        const previewText = isTruncated
-            ? `${safeText.slice(0, PREVIEW_CHAR_LIMIT).trimEnd()}...`
-            : safeText;
+        const previewText = isTruncated ? `${safeText.slice(0, PREVIEW_CHAR_LIMIT).trimEnd()}...` : safeText;
         return { previewText, isTruncated };
     };
 
@@ -136,25 +132,27 @@ export default function Testimonials({ items = sampleItems }) {
                         <h2 className="text-[2.3rem] leading-tight md:text-6xl font-medium text-gray-900">
                             What our&nbsp;
                             <div className="mt-2">
-                                <span className="text-[2.3rem] leading-tight md:text-6xl font-bold" style={{
-                                    background: 'linear-gradient(90deg, #00438B 0%, #007FFF 57%)',
-                                    WebkitBackgroundClip: 'text',
-                                    WebkitTextFillColor: 'transparent',
-                                    color: 'transparent',
-                                    display: 'inline-block',
-                                }}>
+                                <span
+                                    className="text-[2.3rem] leading-tight md:text-6xl font-bold"
+                                    style={{
+                                        background: "linear-gradient(90deg, #00438B 0%, #007FFF 57%)",
+                                        WebkitBackgroundClip: "text",
+                                        WebkitTextFillColor: "transparent",
+                                        color: "transparent",
+                                        display: "inline-block",
+                                    }}
+                                >
                                     #VideFaceLovers&nbsp;
                                 </span>
-                                <span className="text-[2.3rem] leading-tight md:text-6xl font-medium text-gray-900">say</span>
+                                <span className="text-[2.3rem] leading-tight md:text-6xl font-medium text-gray-900">
+                                    say
+                                </span>
                             </div>
                         </h2>
                     </div>
 
                     {/* Carousel o mini-carrusel */}
-                    <div
-                        className={carouselClass}
-                        style={phase === "shown" ? { transitionDelay: "180ms" } : undefined}
-                    >
+                    <div className={carouselClass} style={phase === "shown" ? { transitionDelay: "180ms" } : undefined}>
                         {useCarousel ? (
                             <MessageCarousel items={items} onItemClick={(it) => setSelectedTestimonial(it)} />
                         ) : showMiniCarousel ? (
@@ -168,7 +166,7 @@ export default function Testimonials({ items = sampleItems }) {
                                         &#8249;
                                     </button>
                                     <div
-                                        className={`bg-white rounded-md border border-gray-100 relative overflow-hidden px-10 py-7 transition-opacity duration-200 ${fade ? 'opacity-0' : 'opacity-100'} min-h-[280px] md:min-h-[300px]`}
+                                        className={`bg-white rounded-md border border-gray-100 relative overflow-hidden px-10 py-7 transition-opacity duration-200 ${fade ? "opacity-0" : "opacity-100"} min-h-[280px] md:min-h-[300px]`}
                                         style={{ boxShadow: "8px 12px 0 0 rgba(59,130,246,0.40)" }}
                                         onClick={() => setSelectedTestimonial(items[twoIndex])}
                                         role="button"
@@ -177,8 +175,12 @@ export default function Testimonials({ items = sampleItems }) {
                                         <div className="absolute top-4 right-4">
                                             <span className="iconBase icon-user w-12 h-12 text-[#007FFF] block" />
                                         </div>
-                                        <p className="text-[#1486FF] font-bold text-2xl pr-16">{items[twoIndex].name}</p>
-                                        <p className="text-base font-semibold text-gray-800 pr-16">{items[twoIndex].role}</p>
+                                        <p className="text-[#1486FF] font-bold text-2xl pr-16">
+                                            {items[twoIndex].name}
+                                        </p>
+                                        <p className="text-base font-semibold text-gray-800 pr-16">
+                                            {items[twoIndex].role}
+                                        </p>
                                         <p className="mt-6 text-lg text-gray-700 leading-relaxed">
                                             {miniPreview?.previewText}
                                         </p>
@@ -212,10 +214,7 @@ export default function Testimonials({ items = sampleItems }) {
                                     {items.map((item, i) => {
                                         const preview = getPreview(item.text);
                                         return (
-                                            <div
-                                                key={i}
-                                                className="w-[92vw] max-w-[560px] md:w-full"
-                                            >
+                                            <div key={i} className="w-[92vw] max-w-[560px] md:w-full">
                                                 <div
                                                     className="bg-white rounded-md border border-gray-100 relative overflow-hidden px-10 py-7 min-h-[280px] md:min-h-[300px]"
                                                     style={{ boxShadow: "8px 12px 0 0 rgba(59,130,246,0.40)" }}
@@ -226,12 +225,20 @@ export default function Testimonials({ items = sampleItems }) {
                                                     <div className="absolute top-4 right-4">
                                                         <span className="iconBase icon-user w-12 h-12 text-[#007FFF] block" />
                                                     </div>
-                                                    <p className="text-[#1486FF] font-bold text-2xl pr-16">{item.name}</p>
-                                                    <p className="text-base font-semibold text-gray-800 pr-16">{item.role}</p>
-                                                    <p className="mt-6 text-lg text-gray-700 leading-relaxed">{preview.previewText}</p>
+                                                    <p className="text-[#1486FF] font-bold text-2xl pr-16">
+                                                        {item.name}
+                                                    </p>
+                                                    <p className="text-base font-semibold text-gray-800 pr-16">
+                                                        {item.role}
+                                                    </p>
+                                                    <p className="mt-6 text-lg text-gray-700 leading-relaxed">
+                                                        {preview.previewText}
+                                                    </p>
                                                     {preview.isTruncated && (
                                                         <div className="mt-4">
-                                                            <span className="text-sm font-semibold text-[#007FFF]">See full</span>
+                                                            <span className="text-sm font-semibold text-[#007FFF]">
+                                                                See full
+                                                            </span>
                                                         </div>
                                                     )}
                                                 </div>
@@ -242,19 +249,18 @@ export default function Testimonials({ items = sampleItems }) {
                             </div>
                         )}
                     </div>
-
                 </div>
 
                 {/* Testimonial modal */}
                 {selectedTestimonial && (
-                        <div className="fixed inset-0 z-50 flex items-center justify-center">
+                    <div className="fixed inset-0 z-50 flex items-center justify-center">
                         <div
-                            className={`absolute inset-0 bg-black/40 transition-opacity duration-300 ${isModalOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+                            className={`absolute inset-0 bg-black/40 transition-opacity duration-300 ${isModalOpen ? "opacity-100" : "opacity-0 pointer-events-none"}`}
                             onClick={() => closeModal()}
                         />
                         <div
                             key={`${selectedTestimonial.name}-${selectedTestimonial.role}`}
-                                className={`relative bg-white max-w-3xl w-[92vw] mx-auto p-5 md:p-8 rounded-lg z-60 max-h-[62vh] md:max-h-[82vh] overflow-hidden testimonial-modal ${isModalOpen ? 'open' : 'closed'}`}
+                            className={`relative bg-white max-w-3xl w-[92vw] mx-auto p-5 md:p-8 rounded-lg z-60 max-h-[62vh] md:max-h-[82vh] overflow-hidden testimonial-modal ${isModalOpen ? "open" : "closed"}`}
                             role="dialog"
                             aria-modal="true"
                         >

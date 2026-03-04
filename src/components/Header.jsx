@@ -246,21 +246,23 @@ const Header = () => {
                         </nav>
 
                         <div className="w-[12rem] xl:w-[14rem] lg:w-[13rem] ml-auto lg:flex-shrink-0">
-                            <HashLink
-                                to="/home/#contact"
-                                smooth
-                                className="hidden lg:flex text-xl font-bold text-white px-8 py-4 hover:text-white hover:scale-110 transition-all lowercase"
-                                style={{ textTransform: "none", transition: "color 0.3s cubic-bezier(0.4,0,0.2,1), filter 0.35s cubic-bezier(0.4,0,0.2,1), transform 0.3s cubic-bezier(0.4,0,0.2,1)" }}
-                                onMouseEnter={e => {
-                                    e.currentTarget.style.filter = 'drop-shadow(0 0 16px rgba(255,255,255,1))';
-                                }}
-                                onMouseLeave={e => {
-                                    e.currentTarget.style.filter = '';
-                                }}
-                            >
-                                <span className="icon-user w-7 h-7 mr-2" />
-                                Contact us
-                            </HashLink>
+                            {location.pathname === "/thank-you" && (
+                                <a
+                                    href="https://calendar.app.google/7QTtE49EmK9HCwzn9"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="hidden lg:flex text-xl font-bold text-white px-8 py-4 hover:text-white hover:scale-110 transition-all lowercase items-center"
+                                    style={{ textTransform: "none", transition: "color 0.3s cubic-bezier(0.4,0,0.2,1), filter 0.35s cubic-bezier(0.4,0,0.2,1), transform 0.3s cubic-bezier(0.4,0,0.2,1)" }}
+                                    onMouseEnter={e => {
+                                        e.currentTarget.style.filter = 'drop-shadow(0 0 16px rgba(255,255,255,1))';
+                                    }}
+                                    onMouseLeave={e => {
+                                        e.currentTarget.style.filter = '';
+                                    }}
+                                >
+                                    Schedule demo
+                                </a>
+                            )}
                         </div>
 
                         <Button href={null} className="ml-auto lg:hidden" px="px-3" onClick={toggleNavigation}>
@@ -379,22 +381,24 @@ const Header = () => {
                             );
                         })}
 
-                        <HashLink
-                            to="/home/#contact"
-                            smooth
-                            onClick={handleClick}
-                            className="flex items-center text-2xl text-white font-semibold px-8 py-5 hover:text-white hover:scale-110 transition-all lowercase"
-                            style={{ textTransform: "none", transition: "color 0.3s cubic-bezier(0.4,0,0.2,1), filter 0.35s cubic-bezier(0.4,0,0.2,1), transform 0.3s cubic-bezier(0.4,0,0.2,1)" }}
-                            onMouseEnter={e => {
-                                e.currentTarget.style.filter = 'drop-shadow(0 0 16px rgba(255,255,255,1))';
-                            }}
-                            onMouseLeave={e => {
-                                e.currentTarget.style.filter = '';
-                            }}
-                        >
-                            <span className="icon-user w-7 h-7 mr-2" />
-                            Contact us
-                        </HashLink>
+                        {location.pathname === "/thank-you" && (
+                            <a
+                                href="https://calendar.app.google/7QTtE49EmK9HCwzn9"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={handleClick}
+                                className="flex items-center text-2xl text-white font-semibold px-8 py-5 hover:text-white hover:scale-110 transition-all lowercase"
+                                style={{ textTransform: "none", transition: "color 0.3s cubic-bezier(0.4,0,0.2,1), filter 0.35s cubic-bezier(0.4,0,0.2,1), transform 0.3s cubic-bezier(0.4,0,0.2,1)" }}
+                                onMouseEnter={e => {
+                                    e.currentTarget.style.filter = 'drop-shadow(0 0 16px rgba(255,255,255,1))';
+                                }}
+                                onMouseLeave={e => {
+                                    e.currentTarget.style.filter = '';
+                                }}
+                            >
+                                Schedule demo
+                            </a>
+                        )}
                     </div>
                 </div>
             </div>
