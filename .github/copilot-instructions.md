@@ -1,61 +1,103 @@
 # Instrucciones para agentes (videface.app)
 
-## Stack y entrypoints
-- App SPA con **Vite + React 18** y **React Router v6**.
-- Bootstrap: `src/main.jsx` monta `BrowserRouter` y renderiza `App`.
-- Rutas reales: `src/App.jsx` define `Routes` internas (Home/Products/Pricing/Kiosk/Form).
+## 1) Stack, bootstrap y rutas reales
+- SPA con **Vite + React 18 + React Router v6**.
+- Entrada principal: `src/main.jsx` (monta `BrowserRouter` y renderiza `App`).
+- Enrutamiento real en `src/App.jsx`.
 
-## Comandos de desarrollo
+Rutas actuales:
+- `/*` → `Home`
+- `/pricing` → `PricingPage`
+- `/kiosk` → `VidefaceKiosk`
+- `/key-management` → `VidefaceSmartLocker`
+- `/keydrop` → `Keydrop`
+- `/form` → `Form`
+- `/thank-you` → `ThankYou`
+
+## 2) Comandos de desarrollo
 - Instalar: `npm install`
 - Dev server: `npm run dev`
 - Build: `npm run build`
-- Preview: `npm run preview`
+- Preview build: `npm run preview`
 - Lint: `npm run lint`
 
-## Convenciones de routing y navegación
-- `src/main.jsx` enruta `/` y `/*` a `App`; dentro de `App` se decide la página.
-- Home es el “catch-all” vía `<Route path="/*" element={<Home />}/>`; por eso links como `/home` funcionan.
-- Para anchors dentro de Home se usa **HashLink** (e.g. `/home/#contact`) en `src/components/Header.jsx`.
-- Menú: editar items en `src/constants/index.js` (`navigation`). Nota: `title: "Solutions"` con `url: null` NO es un link; el dropdown lo maneja `Header.jsx`.
+## 3) Convenciones de navegación
+- Home usa `/*` como catch-all.
+- Menú principal y links globales se mantienen desde `src/constants/index.js` (`navigation`) y `src/components/Header.jsx`.
+- Para anchors internos (ej. contacto) mantener comportamiento consistente entre páginas.
+- `Button` por defecto debe dirigir a `#contact` en la página actual, salvo que se pase `href` explícito.
 
-## Componentes “base” a reutilizar
-- Layout/secciones: `src/components/Section.jsx` (padding/crosses) y `src/components/Heading.jsx`.
-- CTA/Button: `src/components/Button.jsx` (props `size`, `color`, `textColor`, `rounded`, `boxShadow`).
-- Header con overlay + scroll lock: `src/components/Header.jsx` (usa `scroll-lock`).
-- Fondo: `src/components/DottedBackground.jsx` (paper effect con backgroundPosition ligado a scroll).
+## 4) Estructura de componentes (reutilización para subpáginas)
 
-## Estilos (Tailwind + utilidades del proyecto)
-- Tokens/clases globales en `tailwind.config.js`:
-  - Colores: `theme.extend.colors.color.*` y `colors.n.*`.
-  - Clases de tipografía/layout: `.container`, `.h1..h6`, `.body-1`, `.body-2`, `.tagline`, `.button`.
-- CSS global y animaciones reutilizables en `src/index.css`:
-  - Entradas Hero: `.hero-left-enter`, `.hero-bg-enter`, `.hero-user-enter`, `.hero-gif-enter`
-  - CTA sheen: `.hero-cta-btn`
-  - Header drop: `.headerbar-enter`
-  - Pricing glow: `.pricing-neon`
-  - Cards “flag”: `.flag-in` + `.flag-in--play` (usa `--flag-delay`)
-- Evita inventar nuevos estilos si ya existe una clase/animación equivalente arriba.
+### 4.1 Base global (`src/components/`)
+- Layout/estructura: `Section.jsx`, `Heading.jsx`, `Tagline.jsx`.
+- Navegación y shell: `Header.jsx`, `Footer.jsx`, `ScrollToTop.jsx`, `Announcement.jsx`.
+- CTAs/UI: `Button.jsx`, `Notification.jsx`, `Questions.jsx`.
+- Contacto: `Contact.jsx`, `ContactEmailTemplate.jsx`, `Form.jsx`.
+- SEO/fondo: `Seo.jsx`, `DottedBackground.jsx`.
+- Pricing reutilizable: carpeta `src/components/pricing/`.
+- Productos reutilizable: carpeta `src/components/Products/`.
 
-## Sistema de íconos (importante para reusar)
-- `src/assets/svg-icons.css` define íconos por **mask-image** (`.icon-kiosk`, `.icon-key`, `.icon-user`, etc.).
-- Se usan como `<span className="icon-kiosk text-[#0A6CFF]" />` y el color se controla con `text-*` (porque usa `bg-current`).
+### 4.2 Home (`src/components/pages/home/`)
+- `Home.jsx` orquesta secciones.
+- Secciones en `sections/` (Hero, Experiences, IndustrySection, Services, Testimonials).
+- Componentes internos en `homeComponents/` (cards, carousels, gallery, stats).
+ - Nota: Las carpetas `sections/` dentro de `src/components/pages/...` contienen bloques/"secciones" que funcionan como componentes reutilizables y, en este proyecto, **se reutilizan ampliamente en las subpáginas**.
+   - Trátalas como componentes desde el principio: si una sección puede ser usada en otras páginas, promuévela directamente a `src/components/`.
+   - Regla práctica: Si una sección se usará en 2+ páginas, moverla a `src/components/` y exponerla como componente reutilizable.
+   - Mantén en `sections/` solo las secciones estrictamente específicas de una sola página.
 
-## Animaciones y motion (reusar patrones existentes)
-- Patrón común “scroll-driven” con `requestAnimationFrame` + clamp/easing:
-  - Ejemplos: `src/components/pages/home/sections/Hero.jsx`, `.../Experiences.jsx`, `src/components/Contact.jsx`.
-  - Cuando agregues animaciones por scroll, copia este enfoque (rAF throttle + `prefers-reduced-motion` cuando aplique).
-- **Framer Motion** se usa puntualmente en la galería:
-  - `src/components/pages/home/homeComponents/ImageGallery.jsx` usa `AnimatePresence` + `motion.*` (transiciones cortas + lightbox).
-- **Parallax**: `react-just-parallax` (`MouseParallax`) en `src/components/design/Hero.jsx`.
+### 4.3 Otras páginas
+- Kiosk: `src/components/pages/kiosk/`
+- Smart Locker: `src/components/pages/SmarLocker/`
+- Keydrop: `src/components/pages/keydrop/`
+- Página de agradecimiento: `src/components/pages/ThankYou.jsx`
 
-## Assets y data (constantes)
-- Assets se importan como named exports desde `src/assets/index.js`.
-- Datos/copy viven en `src/constants/*.js`.
-- Galería: `ImageGallery.jsx` carga imágenes con `import.meta.glob` desde `src/assets/gallery/` y las ordena por número en el filename; agrega nuevas imágenes siguiendo ese patrón (e.g. `11.webp`).
+Regla de reutilización:
+- Si el componente sirve a **2+ páginas**, promoverlo a `src/components/`.
+- Si es específico de una página, mantenerlo dentro de su carpeta `pages/...`.
 
-## SEO, analytics e integración de contacto
-- SEO por página: `src/components/Seo.jsx` (Helmet). Home lo usa en `src/components/pages/home/Home.jsx`.
-- Analytics: `src/hooks/usePageView.js` se invoca una sola vez en `src/App.jsx` y envía `page_view` vía `window.gtag`.
-- Contacto: `src/components/Contact.jsx`:
-  - Genera HTML email con `ReactDOMServer.renderToString(ContactEmailTemplate)`.
-  - Envía `POST` al backend (endpoint `.../emails/contact`) con un payload específico; mantén el shape si lo modificas.
+## 5) Estilos y design system
+- Tailwind + utilidades globales definidas en `tailwind.config.js` y `src/index.css`.
+- Reusar tokens existentes (`colors`, tipografías, utilidades `.container`, `.h1..h6`, `.body-*`, `.button`).
+- Evitar colores/sombras hardcodeadas nuevas si ya existe un token o clase equivalente.
+- Mantener responsive con breakpoints Tailwind; evitar CSS ad-hoc innecesario.
+
+## 6) Animaciones (actualizado: SIN framer-motion)
+- **No usar `framer-motion`** en este proyecto.
+- Para animaciones usar:
+  - Transiciones/`@keyframes` CSS.
+  - Patrones scroll-driven con `requestAnimationFrame` + clamp/easing.
+  - Respeto de `prefers-reduced-motion` cuando aplique.
+- Referencias de patrón:
+  - `src/components/pages/home/sections/Hero.jsx`
+  - `src/components/pages/home/sections/Experiences.jsx`
+  - `src/components/Contact.jsx`
+
+## 7) Íconos y assets
+- Íconos por máscara en `src/assets/svg-icons.css` (`.icon-*` con `bg-current`).
+- Usar con clases `text-*` para color.
+- Assets centralizados en `src/assets/index.js` como named exports cuando sea posible.
+- Galería: `ImageGallery.jsx` usa `import.meta.glob` desde `src/assets/gallery/` con orden numérico por filename.
+
+## 8) Datos y constantes
+- Copys/listas en `src/constants/*.js`.
+- Evitar hardcodear texto repetitivo dentro de componentes si puede ir a constantes.
+
+## 9) SEO, analytics y contacto
+- SEO por página con `src/components/Seo.jsx`.
+- Analytics global: `usePageView()` se llama una vez en `src/App.jsx`.
+- Contacto en `src/components/Contact.jsx`:
+  - Render de email HTML con `ReactDOMServer.renderToString(ContactEmailTemplate)`.
+  - `POST` al backend de emails con el shape de payload existente.
+
+## 10) Reglas para cambios de agentes
+- Hacer cambios pequeños, coherentes con el estilo actual.
+- Priorizar reutilización sobre duplicación.
+- No introducir nuevas librerías si el problema se resuelve con stack actual.
+- Si se modifica navegación/rutas, validar impactos en `Header`, `constants` y botones CTA.
+- Si se agrega una nueva subpágina:
+  1. Crear componente en `src/components/pages/<pagina>/`.
+  2. Registrar ruta en `src/App.jsx`.
+  3. Conectar entrada de navegación si aplica.
+  4. Añadir `Seo` específico de página.
