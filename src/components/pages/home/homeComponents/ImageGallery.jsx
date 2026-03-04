@@ -1,5 +1,4 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 
 function getOrderedGalleryImages() {
     const modules = import.meta.glob("../../../../assets/gallery/*.{png,jpg,jpeg,webp,avif}", {
@@ -65,7 +64,16 @@ export default function ImageGallery({ className = "" }) {
 
     const getBasename = (src) => (src || "").split("/").pop().split("?")[0];
     const [selectedIndex, setSelectedIndex] = useState(null);
+    const [lightboxClosing, setLightboxClosing] = useState(false);
     const sectionRef = useRef(null);
+
+    const closeLightbox = () => {
+        setLightboxClosing(true);
+        setTimeout(() => {
+            setSelectedIndex(null);
+            setLightboxClosing(false);
+        }, 250);
+    };
     const [phase, setPhase] = useState("hidden");
     const [imgMeta, setImgMeta] = useState({});
     const mainSwipeRef = useRef({ x: 0, y: 0, moved: false, active: false });
@@ -97,7 +105,7 @@ export default function ImageGallery({ className = "" }) {
     useEffect(() => {
         if (selectedIndex === null) return;
         const onKeyDown = (e) => {
-            if (e.key === "Escape") setSelectedIndex(null);
+            if (e.key === "Escape") closeLightbox();
         };
         document.addEventListener("keydown", onKeyDown);
         document.body.style.overflow = "hidden";
@@ -293,31 +301,25 @@ export default function ImageGallery({ className = "" }) {
                                 />
                             </svg>
                         </button>
-                        <AnimatePresence mode="popLayout" initial={false}>
-                            <motion.img
-                                key={activeSrc}
-                                className="featured-main-img"
-                                src={activeSrc}
-                                alt={(() => {
-                                    const m = imgMetadata[getBasename(activeSrc)];
-                                    return m?.alt || `Featured image ${activeIndex + 1} of VideFace`;
-                                })()}
-                                title={(() => {
-                                    const m = imgMetadata[getBasename(activeSrc)];
-                                    return m?.title ?? m?.alt ?? "Image showcasing VideFace virtual assistance services";
-                                })()}
-                                style={{ objectPosition: mainObjectPosition }}
-                                initial={{ opacity: 0, scale: 0.985 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                exit={{ opacity: 0, scale: 0.99 }}
-                                transition={{ duration: 0.22, ease: "easeOut" }}
-                                onPointerDown={handleMainPointerDown}
-                                onPointerMove={handleMainPointerMove}
-                                onPointerUp={handleMainPointerUp}
-                                onPointerCancel={handleMainPointerCancel}
-                                draggable={false}
-                            />
-                        </AnimatePresence>
+                        <img
+                            key={activeSrc}
+                            className="featured-main-img"
+                            src={activeSrc}
+                            alt={(() => {
+                                const m = imgMetadata[getBasename(activeSrc)];
+                                return m?.alt || `Featured image ${activeIndex + 1} of VideFace`;
+                            })()}
+                            title={(() => {
+                                const m = imgMetadata[getBasename(activeSrc)];
+                                return m?.title ?? m?.alt ?? "Image showcasing VideFace virtual assistance services";
+                            })()}
+                            style={{ objectPosition: mainObjectPosition }}
+                            onPointerDown={handleMainPointerDown}
+                            onPointerMove={handleMainPointerMove}
+                            onPointerUp={handleMainPointerUp}
+                            onPointerCancel={handleMainPointerCancel}
+                            draggable={false}
+                        />
                         <button
                             type="button"
                             className="nav-arrow nav-arrow-right"
@@ -384,55 +386,40 @@ export default function ImageGallery({ className = "" }) {
             </div>
 
             {/* Lightbox Modal */}
-            <AnimatePresence>
-                {selectedIndex !== null && (
-                    <motion.div
-                        className="lightbox-overlay"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.25 }}
-                        onClick={() => setSelectedIndex(null)}
+            {selectedIndex !== null && (
+                <div
+                    className={`lightbox-overlay${lightboxClosing ? " lightbox-closing" : ""}`}
+                    onClick={closeLightbox}
+                >
+                    <div className="lightbox-backdrop" />
+                    <img
+                        src={images[selectedIndex]}
+                        alt={(() => {
+                            const m = imgMetadata[getBasename(images[selectedIndex])];
+                            return m?.alt || `Image ${selectedIndex + 1} from the VideFace gallery`;
+                        })()}
+                        title={(() => {
+                            const m = imgMetadata[getBasename(images[selectedIndex])];
+                            return m?.title ?? m?.alt ?? "Image showcasing VideFace virtual assistance services";
+                        })()}
+                        className="lightbox-img"
+                        onClick={(e) => e.stopPropagation()}
+                        onPointerDown={handleLightboxPointerDown}
+                        onPointerMove={handleLightboxPointerMove}
+                        onPointerUp={handleLightboxPointerUp}
+                        onPointerCancel={handleLightboxPointerCancel}
+                        draggable={false}
+                    />
+                    <button
+                        type="button"
+                        className="lightbox-close"
+                        onClick={closeLightbox}
+                        aria-label="Cerrar"
                     >
-                        <motion.div
-                            className="lightbox-backdrop"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                        />
-                        <motion.img
-                            src={images[selectedIndex]}
-                            alt={(() => {
-                                const m = imgMetadata[getBasename(images[selectedIndex])];
-                                return m?.alt || `Image ${selectedIndex + 1} from the VideFace gallery`;
-                            })()}
-                            title={(() => {
-                                const m = imgMetadata[getBasename(images[selectedIndex])];
-                                return m?.title ?? m?.alt ?? "Image showcasing VideFace virtual assistance services";
-                            })()}
-                            className="lightbox-img"
-                            initial={{ scale: 0.85, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            exit={{ scale: 0.85, opacity: 0 }}
-                            transition={{ type: "spring", stiffness: 260, damping: 28 }}
-                            onClick={(e) => e.stopPropagation()}
-                            onPointerDown={handleLightboxPointerDown}
-                            onPointerMove={handleLightboxPointerMove}
-                            onPointerUp={handleLightboxPointerUp}
-                            onPointerCancel={handleLightboxPointerCancel}
-                            draggable={false}
-                        />
-                        <button
-                            type="button"
-                            className="lightbox-close"
-                            onClick={() => setSelectedIndex(null)}
-                            aria-label="Cerrar"
-                        >
-                            ✕
-                        </button>
-                    </motion.div>
-                )}
-            </AnimatePresence>
+                        ✕
+                    </button>
+                </div>
+            )}
 
             <style>{`
                 .featured-wrap {
@@ -487,6 +474,31 @@ export default function ImageGallery({ className = "" }) {
                     right: 10px;
                 }
 
+                @keyframes imgFadeIn {
+                    from { opacity: 0; }
+                    to   { opacity: 1; }
+                }
+
+                @keyframes lightboxOverlayIn {
+                    from { opacity: 0; }
+                    to   { opacity: 1; }
+                }
+
+                @keyframes lightboxOverlayOut {
+                    from { opacity: 1; }
+                    to   { opacity: 0; }
+                }
+
+                @keyframes lightboxImgIn {
+                    from { opacity: 0; transform: scale(0.85); }
+                    to   { opacity: 1; transform: scale(1); }
+                }
+
+                @keyframes lightboxImgOut {
+                    from { opacity: 1; transform: scale(1); }
+                    to   { opacity: 0; transform: scale(0.85); }
+                }
+
                 .featured-main-img {
                     width: 100%;
                     height: clamp(280px, 52vh, 480px);
@@ -498,6 +510,7 @@ export default function ImageGallery({ className = "" }) {
                     transform: scale(1.06);
                     transition: transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
                     will-change: transform;
+                    animation: imgFadeIn 0.22s ease-out;
                 }
 
                 .featured-main:hover .featured-main-img {
@@ -633,6 +646,11 @@ export default function ImageGallery({ className = "" }) {
                     display: flex;
                     align-items: center;
                     justify-content: center;
+                    animation: lightboxOverlayIn 0.25s ease forwards;
+                }
+
+                .lightbox-overlay.lightbox-closing {
+                    animation: lightboxOverlayOut 0.25s ease forwards;
                 }
 
                 .lightbox-backdrop {
@@ -656,6 +674,11 @@ export default function ImageGallery({ className = "" }) {
                     box-shadow: none;
                     background: transparent;
                     touch-action: pan-y;
+                    animation: lightboxImgIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+                }
+
+                .lightbox-closing .lightbox-img {
+                    animation: lightboxImgOut 0.25s ease forwards;
                 }
 
                 .lightbox-close {
@@ -695,6 +718,13 @@ export default function ImageGallery({ className = "" }) {
                     .thumb-img,
                     .featured-main-img {
                         transition: none !important;
+                        animation: none !important;
+                    }
+                    .lightbox-overlay,
+                    .lightbox-overlay.lightbox-closing,
+                    .lightbox-img,
+                    .lightbox-closing .lightbox-img {
+                        animation: none !important;
                     }
                 }
             `}</style>

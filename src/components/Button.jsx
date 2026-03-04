@@ -18,7 +18,7 @@ const SIZE_MAP = {
 
 const Button = ({
   className = '',
-  href = 'https://calendar.app.google/7QTtE49EmK9HCwzn9',
+  href = '#contact',
   onClick,
   children,
   color = 'bg-[#0A6CFF]',
@@ -47,6 +47,7 @@ const Button = ({
   ].filter(Boolean).join(' ');
 
   const style = boxShadow ? { boxShadow } : undefined;
+  const isExternalHref = typeof href === 'string' && /^(https?:)?\/\//i.test(href);
 
   const content = (
     <span className="relative z-10 w-full text-center">{children}</span>
@@ -64,8 +65,8 @@ const Button = ({
     return (
       <a
         href={href}
-        target="_blank"
-        rel="noopener noreferrer"
+        target={isExternalHref ? '_blank' : undefined}
+        rel={isExternalHref ? 'noopener noreferrer' : undefined}
         className={classes}
         style={style}
         onClick={(event) => {

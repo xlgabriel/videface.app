@@ -6,6 +6,16 @@ import CarRental from "../../../../assets/webp/Car-rental.webp";
 import "../sections.css";
 
 const DEFAULT_ITEMS = [
+
+        {
+        title: "Car Rental",
+        description: (
+            <>
+                <strong>Security</strong> and speed support with Freshchat
+            </>
+        ),
+        image: CarRental,
+    },
     {
         title: "Hotels",
         description: (
@@ -14,6 +24,15 @@ const DEFAULT_ITEMS = [
             </>
         ),
         image: Hotels,
+    },
+        {
+        title: "Air - bnb",
+        description: (
+            <>
+                <strong>Proactive support</strong> with predictive analytics
+            </>
+        ),
+        image: AirBnb,
     },
     {
         title: "Facilities\nand logistic",
@@ -24,24 +43,8 @@ const DEFAULT_ITEMS = [
         ),
         image: Logistic,
     },
-    {
-        title: "Air - bnb",
-        description: (
-            <>
-                <strong>Proactive support</strong> with predictive analytics
-            </>
-        ),
-        image: AirBnb,
-    },
-    {
-        title: "Car Rental",
-        description: (
-            <>
-                <strong>Security</strong> and speed support with Freshchat
-            </>
-        ),
-        image: CarRental,
-    },
+
+
 ];
 
 const Industries = ({
