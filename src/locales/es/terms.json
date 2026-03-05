@@ -1,0 +1,167 @@
+{
+  "linkLabel": "Términos y Condiciones",
+  "title": "Customer Service Terms and Conditions",
+  "languageLabel": "Elige tu idioma",
+  "closeLabel": "Cerrar términos y condiciones",
+  "intro": "Al acceder o utilizar los servicios de VideFace, incluidos, entre otros, sesiones de video, entrevistas, interacciones con clientes o cualquier otra comunicación realizada a través de nuestra plataforma, usted reconoce y acepta expresamente los siguientes términos relacionados con la grabación, el procesamiento de datos, el análisis de inteligencia artificial y el uso de la plataforma.",
+  "sections": {
+    "s1": {
+      "title": "1. Rol de la Plataforma y Mediación del Servicio",
+      "p1": "VideFace opera únicamente como una plataforma tecnológica que facilita la comunicación entre proveedores de servicios (como empresas de alquiler de autos, hoteles u otros negocios) y sus clientes.",
+      "p2": "VideFace no proporciona los servicios comerciales subyacentes, productos ni acuerdos contractuales ofrecidos por esos negocios.",
+      "p3": "VideFace actúa solo como un puente de comunicación entre el negocio y el cliente.",
+      "therefore": "Por lo tanto:",
+      "bullets": [
+        "VideFace no es responsable de la exactitud, legalidad, integridad o validez de la información proporcionada por los agentes de servicio durante una sesión.",
+        "VideFace no garantiza la corrección de declaraciones, explicaciones, precios, políticas o condiciones comunicadas por los agentes.",
+        "Cada proveedor de servicios es totalmente responsable de garantizar que toda la información presentada a los clientes cumpla con las leyes, regulaciones y requisitos locales aplicables en la jurisdicción donde se presta el servicio.",
+        "Los negocios que usan VideFace deben verificar de manera independiente que sus agentes brinden información precisa, legal y conforme."
+      ]
+    },
+    "s2": {
+      "title": "2. Responsabilidad de los Proveedores de Servicios",
+      "p1": "Todos los negocios que utilicen la plataforma VideFace son los únicos responsables de:",
+      "bullets": [
+        "Los productos y servicios ofrecidos a los clientes",
+        "Los términos contractuales presentados durante la interacción",
+        "El cumplimiento de regulaciones locales, nacionales o internacionales",
+        "La legalidad de cualquier servicio adicional u oferta contractual presentada en el mostrador o durante una sesión",
+        "Garantizar que sus empleados o agentes proporcionen información precisa y legal"
+      ],
+      "p2": "VideFace no participa, supervisa ni controla los acuerdos comerciales entre los proveedores de servicios y sus clientes."
+    },
+    "s3": {
+      "title": "3. Grabación de Sesiones",
+      "p1": "Todas las sesiones realizadas a través de la plataforma VideFace pueden ser grabadas, incluyendo, entre otros:",
+      "bullets": [
+        "Video",
+        "Audio",
+        "Contenido de pantalla (si aplica)",
+        "Interacciones de texto",
+        "Metadatos relacionados con la sesión"
+      ],
+      "p2": "Estas grabaciones pueden almacenarse, procesarse y utilizarse con fines operativos, analíticos, de seguridad, aseguramiento de calidad y mejora del servicio."
+    },
+    "s4": {
+      "title": "4. Transcripción y Procesamiento de Datos",
+      "p1": "VideFace puede transcribir automáticamente contenido de audio y video de las sesiones mediante tecnologías automatizadas.",
+      "p2": "Estas transcripciones pueden procesarse para extraer información como:",
+      "bullets": [
+        "Contenido hablado",
+        "Estructura de la conversación",
+        "Palabras clave",
+        "Patrones de interacción"
+      ],
+      "p3": "Las transcripciones se generan mediante sistemas automatizados de reconocimiento de voz y pueden no ser siempre completamente precisas."
+    },
+    "s5": {
+      "title": "5. Análisis de Inteligencia Artificial",
+      "p1": "VideFace puede utilizar tecnologías de inteligencia artificial y aprendizaje automático para analizar datos de sesión.",
+      "p2": "Este análisis puede incluir, entre otros:",
+      "bullets": [
+        "Análisis de sentimiento",
+        "Estimación del estado emocional",
+        "Análisis de patrones de comportamiento",
+        "Métricas de efectividad de comunicación",
+        "Métricas de participación del cliente",
+        "Analítica de conversaciones"
+      ],
+      "p3": "Estos análisis se realizan mediante sistemas automatizados con fines analíticos, de investigación, mejora del servicio y desarrollo de producto."
+    },
+    "s6": {
+      "title": "6. Indicadores Biométricos y Conductuales",
+      "p1": "Ciertas funciones de la plataforma VideFace pueden procesar señales visuales o de audio para estimar estados emocionales o indicadores conductuales.",
+      "p2": "Esto puede incluir el análisis de:",
+      "bullets": [
+        "Expresiones faciales",
+        "Tono de voz",
+        "Cadencia del habla",
+        "Lenguaje corporal",
+        "Indicadores de atención"
+      ],
+      "p3": "Estos resultados son generados por modelos de inteligencia artificial y deben interpretarse como estimaciones probabilísticas y no como conclusiones definitivas."
+    },
+    "s7": {
+      "title": "7. Verificación de Identidad y Prevención de Fraude",
+      "p1": "Al aceptar la casilla de consentimiento mostrada antes de iniciar una sesión, el usuario autoriza expresamente al proveedor del servicio a realizar procesos de validación de identidad cuando sea necesario.",
+      "p2": "Esto puede incluir la verificación o validación de documentos de identificación como:",
+      "bullets": [
+        "Licencias de conducir",
+        "Tarjetas de identificación",
+        "Otros documentos oficiales requeridos por el proveedor del servicio"
+      ],
+      "p3": "Estas verificaciones pueden realizarse para garantizar la seguridad operativa, prevenir fraude y detectar documentos falsificados o inválidos.",
+      "p4": "VideFace facilita la interfaz de comunicación utilizada para este proceso, pero no valida ni certifica de forma independiente los documentos de identificación."
+    },
+    "s8": {
+      "title": "8. Datos Sensibles del Cliente",
+      "p1": "VideFace no almacena ni administra información sensible del cliente relacionada con transacciones comerciales.",
+      "p2": "Esto incluye, entre otros:",
+      "bullets": [
+        "Registros de licencia de conducir",
+        "Información de seguros",
+        "Información de pago",
+        "Detalles financieros",
+        "Contratos de alquiler",
+        "Datos de facturación del cliente"
+      ],
+      "p3": "Dicha información se procesa y almacena exclusivamente dentro de los sistemas operados por el proveedor del servicio o su software de renta o reservas de terceros.",
+      "p4": "VideFace solo proporciona la interfaz de comunicación utilizada durante la sesión."
+    },
+    "s9": {
+      "title": "9. Uso de Datos",
+      "p1": "La información recopilada mediante grabaciones, transcripciones y análisis de IA puede utilizarse para:",
+      "bullets": [
+        "Mejora de la plataforma",
+        "Entrenamiento de modelos de aprendizaje automático",
+        "Analítica de experiencia del cliente",
+        "Desarrollo de producto",
+        "Prevención de fraude",
+        "Monitoreo de seguridad",
+        "Optimización operativa",
+        "Analítica e investigación internas"
+      ],
+      "p2": "Cuando sea posible, los datos pueden anonimizarse o agregarse."
+    },
+    "s10": {
+      "title": "10. Almacenamiento y Retención de Datos",
+      "p1": "Las sesiones grabadas, transcripciones y resultados analíticos pueden almacenarse de acuerdo con las políticas internas de retención de VideFace y los requisitos operativos.",
+      "p2": "Los datos pueden almacenarse en infraestructura en la nube segura operada por proveedores de servicios confiables."
+    },
+    "s11": {
+      "title": "11. Procesamiento por Terceros",
+      "p1": "VideFace puede depender de proveedores externos para:",
+      "bullets": [
+        "Infraestructura en la nube",
+        "Procesamiento de inteligencia artificial",
+        "Reconocimiento de voz",
+        "Analítica de datos",
+        "Servicios de seguridad"
+      ],
+      "p2": "Estos proveedores están obligados contractualmente a mantener estándares apropiados de confidencialidad y seguridad."
+    },
+    "s12": {
+      "title": "12. Consentimiento del Usuario",
+      "p1": "Al participar en una sesión de VideFace y aceptar la casilla de consentimiento, los usuarios reconocen que:",
+      "bullets": [
+        "Han sido informados de que la sesión puede ser grabada",
+        "Consienten la grabación de audio y video",
+        "Entienden que la inteligencia artificial puede analizar la interacción",
+        "Autorizan procesos de verificación de identidad cuando lo requiera el proveedor del servicio",
+        "Aceptan la recopilación y el procesamiento de datos como se describe en estos términos"
+      ],
+      "p2": "Si un usuario no está de acuerdo con estos términos, no debe participar en la sesión."
+    },
+    "s13": {
+      "title": "13. Limitaciones de la IA",
+      "p1": "Los análisis de inteligencia artificial proporcionados por VideFace son estimaciones automatizadas y pueden no ser siempre precisos.",
+      "p2": "VideFace no garantiza la confiabilidad, integridad o exactitud de los resultados generados por IA.",
+      "p3": "Estos resultados están destinados a apoyar la interpretación humana y no deben utilizarse como la única base para decisiones críticas."
+    },
+    "s14": {
+      "title": "14. Actualizaciones de Este Aviso",
+      "p1": "VideFace se reserva el derecho de modificar o actualizar estos términos en cualquier momento.",
+      "p2": "El uso continuo de la plataforma constituye la aceptación de los términos actualizados."
+    }
+  }
+}

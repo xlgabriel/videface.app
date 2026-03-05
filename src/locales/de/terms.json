@@ -1,0 +1,167 @@
+{
+  "linkLabel": "Allgemeine Geschäftsbedingungen",
+  "title": "Customer Service Terms and Conditions",
+  "languageLabel": "Sprache auswählen",
+  "closeLabel": "Allgemeine Geschäftsbedingungen schließen",
+  "intro": "Durch den Zugriff auf oder die Nutzung der VideFace-Dienste, einschließlich, aber nicht beschränkt auf Videositzungen, Interviews, Kundeninteraktionen oder sonstige Kommunikation über unsere Plattform, erkennen Sie die folgenden Bedingungen in Bezug auf Aufzeichnung, Datenverarbeitung, Analyse durch künstliche Intelligenz und Plattformnutzung ausdrücklich an und stimmen ihnen zu.",
+  "sections": {
+    "s1": {
+      "title": "1. Rolle der Plattform und Vermittlung von Dienstleistungen",
+      "p1": "VideFace fungiert ausschließlich als Technologieplattform, die die Kommunikation zwischen Dienstleistern (z. B. Autovermietungen, Hotels oder anderen Unternehmen) und deren Kunden ermöglicht.",
+      "p2": "VideFace erbringt nicht die zugrunde liegenden kommerziellen Dienstleistungen, Produkte oder Vertragsvereinbarungen, die von diesen Unternehmen angeboten werden.",
+      "p3": "VideFace dient nur als Kommunikationsbrücke zwischen Unternehmen und Kunde.",
+      "therefore": "Daher:",
+      "bullets": [
+        "VideFace ist nicht verantwortlich für die Richtigkeit, Rechtmäßigkeit, Vollständigkeit oder Gültigkeit von Informationen, die von Service-Mitarbeitern während einer Sitzung bereitgestellt werden.",
+        "VideFace garantiert nicht die Korrektheit von Aussagen, Erklärungen, Preisen, Richtlinien oder Bedingungen, die von Mitarbeitern kommuniziert werden.",
+        "Jeder Dienstleister ist vollständig dafür verantwortlich, dass alle Kunden bereitgestellten Informationen den geltenden Gesetzen, Vorschriften und lokalen Anforderungen der jeweiligen Gerichtsbarkeit entsprechen.",
+        "Unternehmen, die VideFace nutzen, müssen selbst sicherstellen, dass ihre Mitarbeiter korrekte, rechtmäßige und konforme Informationen bereitstellen."
+      ]
+    },
+    "s2": {
+      "title": "2. Verantwortung der Dienstleister",
+      "p1": "Alle Unternehmen, die die VideFace-Plattform nutzen, sind ausschließlich verantwortlich für:",
+      "bullets": [
+        "Die den Kunden angebotenen Produkte und Dienstleistungen",
+        "Die während der Interaktion dargestellten Vertragsbedingungen",
+        "Die Einhaltung lokaler, nationaler oder internationaler Vorschriften",
+        "Die Rechtmäßigkeit zusätzlicher Dienstleistungen oder Vertragsangebote am Schalter oder während einer Sitzung",
+        "Die Sicherstellung, dass ihre Mitarbeiter rechtmäßige und korrekte Informationen bereitstellen"
+      ],
+      "p2": "VideFace nimmt nicht an kommerziellen Vereinbarungen zwischen Dienstleistern und deren Kunden teil, überwacht sie nicht und kontrolliert sie nicht."
+    },
+    "s3": {
+      "title": "3. Sitzungsaufzeichnung",
+      "p1": "Alle über die VideFace-Plattform durchgeführten Sitzungen können aufgezeichnet werden, einschließlich, aber nicht beschränkt auf:",
+      "bullets": [
+        "Video",
+        "Audio",
+        "Bildschirminhalte (falls zutreffend)",
+        "Textinteraktionen",
+        "Sitzungsbezogene Metadaten"
+      ],
+      "p2": "Diese Aufzeichnungen können zu operativen, analytischen, sicherheitsbezogenen, qualitätssichernden und dienstverbessernden Zwecken gespeichert, verarbeitet und genutzt werden."
+    },
+    "s4": {
+      "title": "4. Transkription und Datenverarbeitung",
+      "p1": "VideFace kann Audio- und Videoinhalte aus Sitzungen mithilfe automatisierter Technologien automatisch transkribieren.",
+      "p2": "Diese Transkripte können verarbeitet werden, um Informationen wie folgende zu extrahieren:",
+      "bullets": [
+        "Gesprochener Inhalt",
+        "Gesprächsstruktur",
+        "Schlüsselwörter",
+        "Interaktionsmuster"
+      ],
+      "p3": "Transkriptionen werden mit automatisierten Spracherkennungssystemen erstellt und sind möglicherweise nicht immer vollständig korrekt."
+    },
+    "s5": {
+      "title": "5. Analyse durch Künstliche Intelligenz",
+      "p1": "VideFace kann Technologien der künstlichen Intelligenz und des maschinellen Lernens nutzen, um Sitzungsdaten zu analysieren.",
+      "p2": "Diese Analyse kann unter anderem Folgendes umfassen:",
+      "bullets": [
+        "Stimmungsanalyse",
+        "Schätzung des emotionalen Zustands",
+        "Analyse von Verhaltensmustern",
+        "Kennzahlen zur Kommunikationseffektivität",
+        "Kennzahlen zur Kundeninteraktion",
+        "Gesprächsanalysen"
+      ],
+      "p3": "Diese Analysen werden durch automatisierte Systeme zu analytischen, Forschungs-, Serviceverbesserungs- und Produktentwicklungszwecken durchgeführt."
+    },
+    "s6": {
+      "title": "6. Biometrische und Verhaltensindikatoren",
+      "p1": "Bestimmte Funktionen der VideFace-Plattform können visuelle oder akustische Signale verarbeiten, um emotionale Zustände oder Verhaltensindikatoren zu schätzen.",
+      "p2": "Dies kann die Analyse von Folgendem umfassen:",
+      "bullets": [
+        "Gesichtsausdrücke",
+        "Stimmton",
+        "Sprechrhythmus",
+        "Körpersprache",
+        "Aufmerksamkeitsindikatoren"
+      ],
+      "p3": "Diese Ergebnisse werden von KI-Modellen erzeugt und sollten als probabilistische Schätzungen und nicht als endgültige Schlussfolgerungen interpretiert werden."
+    },
+    "s7": {
+      "title": "7. Identitätsprüfung und Betrugsprävention",
+      "p1": "Durch das Akzeptieren des vor Sitzungsbeginn angezeigten Einwilligungs-Kontrollkästchens autorisiert der Nutzer den Dienstleister ausdrücklich, bei Bedarf Identitätsprüfungen durchzuführen.",
+      "p2": "Dies kann die Überprüfung oder Validierung von Ausweisdokumenten umfassen, wie z. B.:",
+      "bullets": [
+        "Führerscheine",
+        "Personalausweise",
+        "Weitere offizielle Dokumente, die vom Dienstleister verlangt werden"
+      ],
+      "p3": "Diese Überprüfungen können durchgeführt werden, um die operative Sicherheit zu gewährleisten, Betrug zu verhindern und gefälschte oder ungültige Dokumente zu erkennen.",
+      "p4": "VideFace stellt die für diesen Prozess genutzte Kommunikationsoberfläche bereit, validiert oder zertifiziert jedoch keine Ausweisdokumente eigenständig."
+    },
+    "s8": {
+      "title": "8. Sensible Kundendaten",
+      "p1": "VideFace speichert oder verwaltet keine sensiblen Kundendaten im Zusammenhang mit kommerziellen Transaktionen.",
+      "p2": "Dazu gehören unter anderem:",
+      "bullets": [
+        "Führerscheindaten",
+        "Versicherungsinformationen",
+        "Zahlungsinformationen",
+        "Finanzdaten",
+        "Mietverträge",
+        "Abrechnungsdaten des Kunden"
+      ],
+      "p3": "Solche Informationen werden ausschließlich in den Systemen des Dienstleisters oder dessen externer Miet-/Buchungssoftware verarbeitet und gespeichert.",
+      "p4": "VideFace stellt nur die während der Sitzung verwendete Kommunikationsoberfläche bereit."
+    },
+    "s9": {
+      "title": "9. Datennutzung",
+      "p1": "Informationen aus Aufzeichnungen, Transkripten und KI-Analysen können verwendet werden für:",
+      "bullets": [
+        "Plattformverbesserung",
+        "Training von Machine-Learning-Modellen",
+        "Analysen der Kundenerfahrung",
+        "Produktentwicklung",
+        "Betrugsprävention",
+        "Sicherheitsüberwachung",
+        "Operative Optimierung",
+        "Interne Analysen und Forschung"
+      ],
+      "p2": "Soweit möglich, können Daten anonymisiert oder aggregiert werden."
+    },
+    "s10": {
+      "title": "10. Datenspeicherung und Aufbewahrung",
+      "p1": "Aufgezeichnete Sitzungen, Transkripte und Analyseergebnisse können gemäß den internen Aufbewahrungsrichtlinien und operativen Anforderungen von VideFace gespeichert werden.",
+      "p2": "Daten können in sicherer Cloud-Infrastruktur gespeichert werden, die von vertrauenswürdigen Dienstleistern betrieben wird."
+    },
+    "s11": {
+      "title": "11. Verarbeitung durch Drittanbieter",
+      "p1": "VideFace kann auf Drittanbieter zurückgreifen für:",
+      "bullets": [
+        "Cloud-Infrastruktur",
+        "KI-Verarbeitung",
+        "Spracherkennung",
+        "Datenanalyse",
+        "Sicherheitsdienste"
+      ],
+      "p2": "Diese Anbieter sind vertraglich verpflichtet, angemessene Vertraulichkeits- und Sicherheitsstandards einzuhalten."
+    },
+    "s12": {
+      "title": "12. Nutzereinwilligung",
+      "p1": "Durch die Teilnahme an einer VideFace-Sitzung und das Akzeptieren des Einwilligungs-Kontrollkästchens bestätigen Nutzer, dass sie:",
+      "bullets": [
+        "Darüber informiert wurden, dass die Sitzung aufgezeichnet werden kann",
+        "Der Audio- und Videoaufzeichnung zustimmen",
+        "Verstehen, dass KI die Interaktion analysieren kann",
+        "Identitätsprüfungen autorisieren, sofern vom Dienstleister erforderlich",
+        "Die Erhebung und Verarbeitung von Daten gemäß diesen Bedingungen akzeptieren"
+      ],
+      "p2": "Wenn ein Nutzer diesen Bedingungen nicht zustimmt, sollte er nicht an der Sitzung teilnehmen."
+    },
+    "s13": {
+      "title": "13. KI-Einschränkungen",
+      "p1": "Von VideFace bereitgestellte KI-Analysen sind automatisierte Schätzungen und möglicherweise nicht immer korrekt.",
+      "p2": "VideFace garantiert nicht die Zuverlässigkeit, Vollständigkeit oder Genauigkeit KI-generierter Erkenntnisse.",
+      "p3": "Diese Ergebnisse dienen der Unterstützung der menschlichen Interpretation und sollten nicht als alleinige Grundlage für kritische Entscheidungen verwendet werden."
+    },
+    "s14": {
+      "title": "14. Aktualisierungen dieses Hinweises",
+      "p1": "VideFace behält sich das Recht vor, diese Bedingungen jederzeit zu ändern oder zu aktualisieren.",
+      "p2": "Die fortgesetzte Nutzung der Plattform gilt als Zustimmung zu den aktualisierten Bedingungen."
+    }
+  }
+}

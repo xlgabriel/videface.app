@@ -3,44 +3,53 @@ import { useLocation } from "react-router-dom";
 
 /**
  * usePageView
- * Sends GA4 page_view events when the route changes in a SPA.
- * - Uses `window.gtag` if available (non-blocking).
- * - Designed to be called once at the top-level of your router (e.g. inside `App`).
- * - If react-router is not used, this hook can be replaced by a single call
- *   to `window.gtag` on initial mount.
+ * Tracks virtual page views for both GA4 (via gtag) and GTM (via dataLayer)
+ * on every SPA route change.
  *
- * Measurement ID is embedded here for simplicity; move to env if needed.
+ * Called once at the top-level router (App.jsx). Covers ALL routes automatically,
+ * so individual pages don't need their own tracking code.
+ *
+ * - gtag("config", ...) → GA4 picks up the page view.
+ * - dataLayer.push({ event: "virtual_page_view", ... }) → GTM can trigger tags
+ *   (e.g. Google Ads remarketing, custom events) on any route.
  */
 const MEASUREMENT_ID = "G-BJRRZS9MQV";
 
+// Module-level guard: prevents duplicate pushes from React 18 StrictMode
+// double-mount on first render. Resets only on full page reload.
+let initialPushDone = false;
+
 export default function usePageView() {
   const location = useLocation?.();
-  const firstRunRef = useRef(true);
+  const prevPathRef = useRef(null);
 
   useEffect(() => {
-    // compute path and title
-    const page_path = location?.pathname + (location?.search || "") || window.location.pathname + window.location.search;
+    const page_path =
+      (location?.pathname || "") + (location?.search || "") ||
+      window.location.pathname + window.location.search;
     const page_title = document.title || "";
 
-    // Use optional chaining in case gtag isn't loaded yet.
-    try {
-      // Avoid double-sending on strict-mode dev double-render by honoring firstRunRef
-      // but still allow sending on actual location changes.
-      if (firstRunRef.current) {
-        // First effect run after mount
-        window.gtag?.("config", MEASUREMENT_ID, { page_path, page_title });
-        firstRunRef.current = false;
-        return;
-      }
-
-      // Subsequent location changes
-      window.gtag?.("config", MEASUREMENT_ID, { page_path, page_title });
-    } catch (err) {
-      // non-fatal: don't break the app if analytics fails
-      // eslint-disable-next-line no-console
-      console.warn("gtag error", err);
+    // Deduplicate: skip if path hasn't actually changed (StrictMode double-fire)
+    if (!initialPushDone) {
+      initialPushDone = true;
+    } else if (prevPathRef.current === page_path) {
+      return;
     }
-    // We only want to run when location changes
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    prevPathRef.current = page_path;
+
+    // GA4 via gtag
+    try {
+      window.gtag?.("config", MEASUREMENT_ID, { page_path, page_title });
+    } catch {
+      /* non-fatal */
+    }
+
+    // GTM via dataLayer — lets GTM trigger tags on every virtual page view
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: "virtual_page_view",
+      page_path,
+      page_title,
+    });
   }, [location?.pathname, location?.search]);
 }

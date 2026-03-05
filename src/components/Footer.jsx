@@ -1,12 +1,20 @@
-import React from "react";
+import { useTranslation } from "react-i18next";
 import Section from "./Section";
+import TermsModalTrigger from "./TermsModalTrigger";
 
 const Footer = ({ className = "" }) => {
+    const { t } = useTranslation("terms");
     return (
         <Section customPaddings="py-0" className={className}>
             <div className="px-6 pb-8">
                 <div className="mx-auto flex w-full max-w-[1200px] flex-col md:flex-row items-center md:items-center justify-between text-white gap-4 md:gap-0">
                     <div className="w-full md:w-auto text-center md:text-left">
+                        <div className="mb-2 text-center md:text-left">
+                            <TermsModalTrigger
+                                className="text-sm text-white/80 underline hover:text-white transition-colors"
+                                buttonLabel={t("linkLabel")}
+                            />
+                        </div>
                         <p className="text-white/80 text-sm flex items-center justify-center md:justify-start gap-3">
                             © {new Date().getFullYear()} VideFace.
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-white/80">

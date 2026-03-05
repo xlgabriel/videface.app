@@ -1,4 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 import Header from "../Header";
 import Footer from "../Footer";
 import Section from "../Section";
@@ -12,10 +13,31 @@ const SOLUTIONS = [
     { label: "KeyDrop", url: "/keydrop", icon: "icon-key" },
 ];
 
+// Module-level flag — survives React StrictMode remounts and any re-render cycle.
+// Resets only on a full page reload, which is the correct behavior for conversions.
+let conversionFired = false;
+
 export default function ThankYou() {
     const { state } = useLocation();
     const name = state?.name;
     const wantsToSchedule = state?.wantsToSchedule === true;
+
+    useEffect(() => {
+        if (conversionFired) return;
+        conversionFired = true;
+
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+            event: "conversion",
+            send_to: "AW-17972095091/thank_you",
+        });
+        window.dataLayer.push({
+            event: "thank_you_page_view",
+            page: "/thank-you",
+            page_title: "Thank You",
+            customer_name: name || null,
+        });
+    }, []);
 
     return (
         <>

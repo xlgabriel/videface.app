@@ -1,0 +1,167 @@
+{
+  "linkLabel": "Conditions générales",
+    "title": "Customer Service Terms and Conditions",
+  "languageLabel": "Choisissez votre langue",
+  "closeLabel": "Fermer les conditions générales",
+  "intro": "En accédant aux services VideFace ou en les utilisant, y compris, sans s'y limiter, les sessions vidéo, les entretiens, les interactions client ou toute autre communication effectuée via notre plateforme, vous reconnaissez et acceptez expressément les conditions suivantes concernant l'enregistrement, le traitement des données, l'analyse par intelligence artificielle et l'utilisation de la plateforme.",
+  "sections": {
+    "s1": {
+      "title": "1. Rôle de la plateforme et médiation du service",
+      "p1": "VideFace agit uniquement en tant que plateforme technologique facilitant la communication entre les prestataires de services (tels que les sociétés de location de voitures, les hôtels ou d'autres entreprises) et leurs clients.",
+      "p2": "VideFace ne fournit pas les services commerciaux sous-jacents, les produits ou les accords contractuels proposés par ces entreprises.",
+      "p3": "VideFace agit uniquement comme un pont de communication entre l'entreprise et le client.",
+      "therefore": "Par conséquent :",
+      "bullets": [
+        "VideFace n'est pas responsable de l'exactitude, de la légalité, de l'exhaustivité ou de la validité des informations fournies par les agents de service pendant une session.",
+        "VideFace ne garantit pas l'exactitude des déclarations, explications, prix, politiques ou conditions communiqués par les agents.",
+        "Chaque prestataire de services est entièrement responsable de s'assurer que toutes les informations présentées aux clients sont conformes aux lois, réglementations et exigences locales applicables dans la juridiction où le service est fourni.",
+        "Les entreprises utilisant VideFace doivent vérifier de manière indépendante que leurs agents fournissent des informations exactes, légales et conformes."
+      ]
+    },
+    "s2": {
+      "title": "2. Responsabilité des prestataires de services",
+      "p1": "Toutes les entreprises utilisant la plateforme VideFace sont seules responsables de :",
+      "bullets": [
+        "Les produits et services proposés aux clients",
+        "Les conditions contractuelles présentées pendant l'interaction",
+        "Le respect des réglementations locales, nationales ou internationales",
+        "La légalité de tout service supplémentaire ou offre contractuelle présenté au comptoir ou pendant une session",
+        "Le fait de garantir que leurs employés ou agents fournissent des informations exactes et légales"
+      ],
+      "p2": "VideFace ne participe pas, ne supervise pas et ne contrôle pas les accords commerciaux entre les prestataires de services et leurs clients."
+    },
+    "s3": {
+      "title": "3. Enregistrement des sessions",
+      "p1": "Toutes les sessions menées via la plateforme VideFace peuvent être enregistrées, y compris, sans s'y limiter :",
+      "bullets": [
+        "Vidéo",
+        "Audio",
+        "Contenu d'écran (le cas échéant)",
+        "Interactions textuelles",
+        "Métadonnées liées à la session"
+      ],
+      "p2": "Ces enregistrements peuvent être stockés, traités et utilisés à des fins opérationnelles, analytiques, de sécurité, d'assurance qualité et d'amélioration du service."
+    },
+    "s4": {
+      "title": "4. Transcription et traitement des données",
+      "p1": "VideFace peut transcrire automatiquement le contenu audio et vidéo des sessions à l'aide de technologies automatisées.",
+      "p2": "Ces transcriptions peuvent être traitées afin d'extraire des informations telles que :",
+      "bullets": [
+        "Contenu oral",
+        "Structure de la conversation",
+        "Mots-clés",
+        "Schémas d'interaction"
+      ],
+      "p3": "Les transcriptions sont générées à l'aide de systèmes automatisés de reconnaissance vocale et peuvent ne pas toujours être totalement exactes."
+    },
+    "s5": {
+      "title": "5. Analyse par intelligence artificielle",
+      "p1": "VideFace peut utiliser des technologies d'intelligence artificielle et d'apprentissage automatique pour analyser les données de session.",
+      "p2": "Cette analyse peut inclure, sans s'y limiter :",
+      "bullets": [
+        "Analyse des sentiments",
+        "Estimation de l'état émotionnel",
+        "Analyse des schémas comportementaux",
+        "Mesures d'efficacité de la communication",
+        "Mesures d'engagement client",
+        "Analyse des conversations"
+      ],
+      "p3": "Ces analyses sont réalisées à l'aide de systèmes automatisés à des fins analytiques, de recherche, d'amélioration du service et de développement produit."
+    },
+    "s6": {
+      "title": "6. Indicateurs biométriques et comportementaux",
+      "p1": "Certaines fonctionnalités de la plateforme VideFace peuvent traiter des signaux visuels ou audio afin d'estimer des états émotionnels ou des indicateurs comportementaux.",
+      "p2": "Cela peut inclure l'analyse de :",
+      "bullets": [
+        "Expressions faciales",
+        "Tonalité de la voix",
+        "Cadence de la parole",
+        "Langage corporel",
+        "Indicateurs d'attention"
+      ],
+      "p3": "Ces résultats sont générés par des modèles d'intelligence artificielle et doivent être interprétés comme des estimations probabilistes plutôt que comme des conclusions définitives."
+    },
+    "s7": {
+      "title": "7. Vérification d'identité et prévention de la fraude",
+      "p1": "En acceptant la case de consentement affichée avant le démarrage d'une session, l'utilisateur autorise expressément le prestataire de services à effectuer des processus de validation d'identité lorsque cela est requis.",
+      "p2": "Cela peut inclure la vérification ou la validation de documents d'identité tels que :",
+      "bullets": [
+        "Permis de conduire",
+        "Cartes d'identité",
+        "Autres documents officiels requis par le prestataire de services"
+      ],
+      "p3": "Ces vérifications peuvent être effectuées pour garantir la sécurité opérationnelle, prévenir la fraude et détecter les documents falsifiés ou invalides.",
+      "p4": "VideFace facilite l'interface de communication utilisée pour ce processus mais ne valide ni ne certifie de manière indépendante les documents d'identité."
+    },
+    "s8": {
+      "title": "8. Données sensibles des clients",
+      "p1": "VideFace ne stocke ni ne gère les informations sensibles des clients liées aux transactions commerciales.",
+      "p2": "Cela inclut, sans s'y limiter :",
+      "bullets": [
+        "Données de permis de conduire",
+        "Informations d'assurance",
+        "Informations de paiement",
+        "Données financières",
+        "Contrats de location",
+        "Données de facturation client"
+      ],
+      "p3": "Ces informations sont traitées et stockées exclusivement dans les systèmes exploités par le prestataire de services ou leur logiciel tiers de location/réservation.",
+      "p4": "VideFace fournit uniquement l'interface de communication utilisée pendant la session."
+    },
+    "s9": {
+      "title": "9. Utilisation des données",
+      "p1": "Les informations collectées via les enregistrements, transcriptions et analyses IA peuvent être utilisées pour :",
+      "bullets": [
+        "Amélioration de la plateforme",
+        "Entraînement de modèles d'apprentissage automatique",
+        "Analyse de l'expérience client",
+        "Développement produit",
+        "Prévention de la fraude",
+        "Surveillance de la sécurité",
+        "Optimisation opérationnelle",
+        "Analyse et recherche internes"
+      ],
+      "p2": "Lorsque cela est possible, les données peuvent être anonymisées ou agrégées."
+    },
+    "s10": {
+      "title": "10. Stockage et conservation des données",
+      "p1": "Les sessions enregistrées, transcriptions et résultats analytiques peuvent être stockés conformément aux politiques internes de conservation de VideFace et aux exigences opérationnelles.",
+      "p2": "Les données peuvent être stockées dans une infrastructure cloud sécurisée exploitée par des prestataires de services de confiance."
+    },
+    "s11": {
+      "title": "11. Traitement par des tiers",
+      "p1": "VideFace peut s'appuyer sur des prestataires tiers pour :",
+      "bullets": [
+        "Infrastructure cloud",
+        "Traitement d'intelligence artificielle",
+        "Reconnaissance vocale",
+        "Analyse de données",
+        "Services de sécurité"
+      ],
+      "p2": "Ces prestataires sont contractuellement tenus de maintenir des normes appropriées de confidentialité et de sécurité."
+    },
+    "s12": {
+      "title": "12. Consentement de l'utilisateur",
+      "p1": "En participant à une session VideFace et en acceptant la case de consentement, les utilisateurs reconnaissent qu'ils :",
+      "bullets": [
+        "Ont été informés que la session peut être enregistrée",
+        "Consentent à l'enregistrement audio et vidéo",
+        "Comprennent que l'intelligence artificielle peut analyser l'interaction",
+        "Autorisent les processus de vérification d'identité lorsque requis par le prestataire de services",
+        "Acceptent la collecte et le traitement des données comme décrit dans ces conditions"
+      ],
+      "p2": "Si un utilisateur n'accepte pas ces conditions, il ne doit pas participer à la session."
+    },
+    "s13": {
+      "title": "13. Limites de l'IA",
+      "p1": "Les analyses d'intelligence artificielle fournies par VideFace sont des estimations automatisées et peuvent ne pas toujours être exactes.",
+      "p2": "VideFace ne garantit pas la fiabilité, l'exhaustivité ou l'exactitude des informations générées par l'IA.",
+      "p3": "Ces résultats sont destinés à aider l'interprétation humaine et ne doivent pas être utilisés comme seule base pour des décisions critiques."
+    },
+    "s14": {
+      "title": "14. Mises à jour de cet avis",
+      "p1": "VideFace se réserve le droit de modifier ou de mettre à jour ces conditions à tout moment.",
+      "p2": "L'utilisation continue de la plateforme constitue l'acceptation des conditions mises à jour."
+    }
+  }
+}

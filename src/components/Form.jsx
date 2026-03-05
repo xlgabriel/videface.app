@@ -159,7 +159,7 @@ const Form = () => {
             <div className="flex flex-col justify-center items-center h-screen">
                 <Heading tag="CONTACT FORM" title="Start with VideFace" />
                 <div className="bg-n-14 border border-n-6 rounded-[2rem] p-8 rounded-lg shadow-md max-w-md w-full">
-                    <form ref={formRef} onSubmit={handleSubmit}>
+                    <form id="standalone-form" ref={formRef} onSubmit={handleSubmit}>
                         <div className="mb-4">
                             <label htmlFor="name" className="block mb-1">
                                 Client Name

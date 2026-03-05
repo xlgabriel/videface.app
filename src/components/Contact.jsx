@@ -1,4 +1,5 @@
 import { useRef, useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import Section from "./Section";
 import { BackgroundCircles } from "./design/Hero";
@@ -45,6 +46,7 @@ const REGION_TO_COUNTRY = {
 
 const Contact = () => {
     const navigate = useNavigate();
+    const { t } = useTranslation("terms");
     const formRef = useRef();
     const sectionRef = useRef(null);
     const titleRef = useRef(null);
@@ -208,6 +210,7 @@ const Contact = () => {
             "admin@videface.com",
             "ariel@videface.com",
             "nathaliabenitez@videface.com ",
+            "carolinameza@videface.com",
             form.email, // the client who wrote
         ],
     };
@@ -397,7 +400,7 @@ const Contact = () => {
 
                         <div style={formContainerStyle} className="w-full max-w-[440px] rounded-2xl border border-white/20 bg-blue-200/20  shadow-black/30 shadow-xl">
                             <div className="p-7 md:p-8">
-                                <form ref={formRef} onSubmit={handleSubmit}>
+                                <form id="contact-form" ref={formRef} onSubmit={handleSubmit}>
                                     <div className="mb-5">
                                         <label htmlFor="name" className="block text-white/90 font-semibold text-sm mb-2">
                                             Your Name
@@ -521,6 +524,22 @@ const Contact = () => {
                                             </span>
                                         )}
                                     </div>
+
+                                        <div className="mb-4 text-center">
+                                            {/* Title from translations (terms) — clickable to open Terms modal */}
+                                            <button
+                                                type="button"
+                                                onClick={() => {
+                                                    if (typeof window !== "undefined") {
+                                                        window.dispatchEvent(new Event("open-terms-modal"));
+                                                    }
+                                                }}
+                                                aria-label={t("linkLabel")}
+                                                className="text-base font-base text-white/90 underline hover:opacity-90 cursor-pointer"
+                                            >
+                                                {t("title")}
+                                            </button>
+                                        </div>
 
                                     <div className="mb-6">
                                         <label className="flex items-center gap-3 cursor-pointer select-none">

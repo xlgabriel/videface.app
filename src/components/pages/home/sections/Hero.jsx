@@ -6,6 +6,7 @@ import ImagePrincipalUSER from "../../../../assets/hero/ImagePrincipalUSER.webp"
 import ImageInterfaz from "../../../../assets/hero/interfaz.gif";
 import { useEffect, useRef, useState } from "react";
 import ImageGallery from "../homeComponents/ImageGallery";
+/* import TermsModalTrigger from "../../../TermsModalTrigger"; */
 
 const Hero = () => {
     const heroRef = useRef(null);
@@ -179,13 +180,18 @@ const Hero = () => {
                         >Virtual Assistance.</span>
                     </h1>
                     <div className="w-full flex justify-center mt-8 hero-left-enter">
-                        <Button
-                            textColor="text-white"
-                            size="lg"
-                            className="hero-cta-btn"
-                        >
-                            REQUEST A DEMO
-                        </Button>
+                        <div className="flex flex-col items-center gap-3">
+                            <Button
+                                textColor="text-white"
+                                size="lg"
+                                className="hero-cta-btn"
+                            >
+                                REQUEST A DEMO
+                            </Button>
+{/*                             <TermsModalTrigger
+                                className="mt-2 text-sm font-medium text-[#00438B] underline underline-offset-4 hover:text-[#007FFF] transition-colors"
+                            /> */}
+                        </div>
                     </div>
                 </div>
                 <div className="w-full lg:flex-1 relative z-10 flex justify-center lg:justify-end">

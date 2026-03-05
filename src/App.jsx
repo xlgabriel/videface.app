@@ -25,7 +25,7 @@ const App = () => {
                     <Route path="/kiosk" element={<VidefaceKiosk />}></Route>
                     <Route path="/key-management" element={<VidefaceSmartLocker />}></Route>
                     <Route path="/keydrop" element={<Keydrop />}></Route>
-                    <Route path="/form" element={<Form />}></Route>
+                    {/* <Route path="/form" element={<Form />}></Route> */}
                     <Route path="/thank-you" element={<ThankYou />}></Route>
                 </Routes>
             </div>
