@@ -240,6 +240,12 @@ const Contact = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+            event: "contact_form_submit_attempt",
+            form_name: "contact_form",
+        });
+
         let hasErrors = false;
         const newErrors = {
             name: form.name === "",
@@ -266,6 +272,11 @@ const Contact = () => {
             /^https?:\/\/localhost(:\d+)?(\/|$)/i.test(window.location.origin);
         const isTestEmail = form.email.trim().toLowerCase() === "test@gmail.com";
         if (isLocalhost && isTestEmail) {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                event: "generate_lead",
+                form_name: "contact_form",
+            });
             setLoading(false);
             navigate("/thank-you", {
                 replace: true,
@@ -291,9 +302,21 @@ const Contact = () => {
             },
             body: JSON.stringify(data),
         })
-            .then((response) => response.json())
+            .then((response) => {
+                if (!response.ok) {
+                    setLoading(false);
+                    alert("Ahh, something went wrong. Please try again.");
+                    return Promise.reject(new Error("Backend error"));
+                }
+                return response.json();
+            })
             .then(
                 () => {
+                    window.dataLayer = window.dataLayer || [];
+                    window.dataLayer.push({
+                        event: "generate_lead",
+                        form_name: "contact_form",
+                    });
                     setLoading(false);
                     navigate("/thank-you", {
                         replace: true,
@@ -303,8 +326,9 @@ const Contact = () => {
                 (error) => {
                     setLoading(false);
                     console.error(error);
-
-                    alert("Ahh, something went wrong. Please try again.");
+                    if (error.message !== "Backend error") {
+                        alert("Ahh, something went wrong. Please try again.");
+                    }
                 }
             );
     };

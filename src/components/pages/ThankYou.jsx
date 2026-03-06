@@ -90,31 +90,38 @@ export default function ThankYou() {
                                     </div>
 
                                     <h1 className="text-3xl md:text-5xl font-semibold text-white mb-4 thankyou-fade-enter">
-                                        {name ? (
-                                            <>Thank you, {name}!</>
-                                        ) : (
-                                            <>Thank you!</>
-                                        )}
+                                        {name ? <>Thank you, {name}!</> : <>Thank you!</>}
                                     </h1>
 
-                                    <p className="text-lg md:text-xl text-white/80 mb-6 thankyou-fade-enter" style={{ animationDelay: "120ms" }}>
-                                        {wantsToSchedule
-                                            ? "We received your message. Please schedule your demo by clicking the button below to pick a time that works for you."
-                                            : <>
+                                    <p
+                                        className="text-lg md:text-xl text-white/80 mb-6 thankyou-fade-enter"
+                                        style={{ animationDelay: "120ms" }}
+                                    >
+                                        {wantsToSchedule ? (
+                                            "We received your message. Please schedule your demo by clicking the button below to pick a time that works for you."
+                                        ) : (
+                                            <>
                                                 We received your message and will be in touch within{" "}
-                                                <span className="text-white font-semibold">24 hours</span>.
-                                                You can also schedule a demo below to get started sooner.
-                                            </>}
+                                                <span className="text-white font-semibold">24 hours</span>. You can also
+                                                schedule a demo below to get started sooner.
+                                            </>
+                                        )}
                                     </p>
 
                                     {wantsToSchedule && (
-                                        <p className="text-base md:text-lg text-white font-semibold mb-6 thankyou-fade-enter" style={{ animationDelay: "180ms" }}>
+                                        <p
+                                            className="text-base md:text-lg text-white font-semibold mb-6 thankyou-fade-enter"
+                                            style={{ animationDelay: "180ms" }}
+                                        >
                                             Click the button below to schedule your demo
                                         </p>
                                     )}
 
                                     {/* Main CTA: Schedule a demo */}
-                                    <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8 thankyou-fade-enter" style={{ animationDelay: "220ms" }}>
+                                    <div
+                                        className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8 thankyou-fade-enter"
+                                        style={{ animationDelay: "220ms" }}
+                                    >
                                         <Button
                                             size="lg"
                                             className={`hero-cta-btn w-full sm:w-auto ${wantsToSchedule ? "ring-2 ring-white ring-offset-2 ring-offset-transparent" : ""}`}
@@ -134,8 +141,14 @@ export default function ThankYou() {
                                     </div>
 
                                     {/* Contact shortcuts */}
-                                    <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-sm text-white/70 mb-8 thankyou-fade-enter" style={{ animationDelay: "320ms" }}>
-                                        <a href="mailto:contact@videface.com" className="hover:text-white transition-colors">
+                                    <div
+                                        className="flex flex-col sm:flex-row items-center justify-center gap-4 text-sm text-white/70 mb-8 thankyou-fade-enter"
+                                        style={{ animationDelay: "320ms" }}
+                                    >
+                                        <a
+                                            href="mailto:contact@videface.com"
+                                            className="hover:text-white transition-colors"
+                                        >
                                             contact@videface.com
                                         </a>
                                         <span className="hidden sm:inline text-white/30">|</span>
@@ -154,7 +167,10 @@ export default function ThankYou() {
                                                     to={s.url}
                                                     className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-5 py-2 text-sm text-white/90 font-medium transition-all hover:bg-white/15 hover:scale-105"
                                                 >
-                                                    <span aria-hidden="true" className={`${s.icon} w-5 h-5 opacity-80`} />
+                                                    <span
+                                                        aria-hidden="true"
+                                                        className={`${s.icon} w-5 h-5 opacity-80`}
+                                                    />
                                                     {s.label}
                                                 </Link>
                                             ))}

@@ -10,7 +10,6 @@ import Pricing from "../../Pricing";
 import Testimonials from "./sections/Testimonials";
 import Contact from "../../Contact";
 import Services from "./sections/Services";
-import Announcement from "../../Announcement";
 import ImageGallery from "./homeComponents/ImageGallery";
 import Seo from "../../Seo";
 import { homeOG } from "../../../assets";
@@ -26,7 +25,6 @@ export default function Home() {
             />
             <div className="pt-[4.75rem] lg:pt-[5.25rem] overflow-hidden">
                 <Header />
-                <Announcement />
                 <Hero />
                 <Experiences />
                 <IndustrySection />
