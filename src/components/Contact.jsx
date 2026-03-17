@@ -63,6 +63,7 @@ const Contact = () => {
         phoneCountry: "+1-United States",
         phoneNumber: "",
         wantsToSchedule: false,
+        acceptedPrivacy: false,
     });
 
     const [loading, setLoading] = useState(false);
@@ -549,50 +550,55 @@ const Contact = () => {
                                         )}
                                     </div>
 
-                                        <div className="mb-4 text-center">
-                                            {/* Title from translations (terms) — clickable to open Terms modal */}
-                                            <button
-                                                type="button"
-                                                onClick={() => {
-                                                    if (typeof window !== "undefined") {
-                                                        window.dispatchEvent(new Event("open-terms-modal"));
-                                                    }
-                                                }}
-                                                aria-label={t("linkLabel")}
-                                                className="text-base font-base text-white/90 underline hover:opacity-90 cursor-pointer"
-                                            >
-                                                {t("title")}
-                                            </button>
-                                        </div>
+                                        {/* removed separate Terms button — Privacy Policy link moved into checkbox label */}
 
                                     <div className="mb-6">
-                                        <label className="flex items-center gap-3 cursor-pointer select-none">
+                                        <label className="flex items-start gap-3 cursor-pointer select-none">
                                             <input
-                                                id="wantsToSchedule"
+                                                id="acceptedPrivacy"
                                                 type="checkbox"
-                                                checked={form.wantsToSchedule || false}
+                                                checked={form.acceptedPrivacy || false}
                                                 onChange={handleChange}
-                                                className="h-5 w-5 rounded border-white/40 bg-white/90 text-[#0A6CFF] focus:ring-2 focus:ring-white/70 focus:ring-offset-0 cursor-pointer"
-                                                aria-label="I'm interested in scheduling a meeting"
+                                                className="mt-1 h-5 w-5 rounded border-white/40 bg-white/90 text-[#0A6CFF] focus:ring-2 focus:ring-white/70 focus:ring-offset-0 cursor-pointer"
+                                                aria-label="I have read and accept the Privacy Policy and the processing of my personal data."
                                             />
                                             <span className="text-white/90 text-sm font-medium">
-                                                I'm interested in scheduling a meeting
+                                                I have read and accept the
+                                                {' '}
+                                                <button
+                                                    type="button"
+                                                    onClick={(e) => {
+                                                        e.stopPropagation();
+                                                        if (typeof window !== "undefined") {
+                                                            window.dispatchEvent(new Event("open-terms-modal"));
+                                                        }
+                                                    }}
+                                                    className="underline hover:opacity-90 text-white/90 font-medium"
+                                                >
+                                                    Privacy Policy
+                                                </button>
+                                                {' '}and the processing of my personal data.
                                             </span>
                                         </label>
                                     </div>
 
                                     <div className="flex justify-center">
-                                        <button
-                                            type="submit"
-                                            disabled={loading}
-                                            className={`h-10 w-36 rounded-md border border-white/40 text-white font-semibold tracking-wide uppercase text-sm transition-colors ${
-                                                loading
-                                                    ? "opacity-60 cursor-not-allowed"
-                                                    : "hover:bg-white/10"
-                                            }`}
-                                        >
-                                            {loading ? "Sending..." : "Send"}
-                                        </button>
+                                        {(() => {
+                                            const isDisabled = loading || !form.acceptedPrivacy;
+                                            return (
+                                                <button
+                                                    type="submit"
+                                                    disabled={isDisabled}
+                                                    className={`h-10 w-36 rounded-md border border-white/40 text-white font-semibold tracking-wide uppercase text-sm transition-colors ${
+                                                        isDisabled
+                                                            ? "opacity-60 cursor-not-allowed"
+                                                            : "hover:bg-white/10"
+                                                    }`}
+                                                >
+                                                    {loading ? "Sending..." : "Send"}
+                                                </button>
+                                            );
+                                        })()}
                                     </div>
                                 </form>
                             </div>
