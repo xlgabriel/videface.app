@@ -51,6 +51,7 @@ const Header = () => {
         { label: "Kiosk", iconClass: "icon-kiosk", url: "/kiosk" },
         { label: "Smart Locker", iconClass: "icon-locker-key", url: "/key-management" },
         { label: "KeyDrop", iconClass: "icon-key", url: "/keydrop" },
+        { label: "All in One", iconClass: "icon-all-in-one", url: "/all-in-one" },
 /*         { label: "Acoustic Cabin Booth", iconClass: "icon-acoustic-cabin", url: "/acoustic-cabin" },
         { label: "Agents", iconClass: "icon-agent-support", url: "/agents" }, */
     ];
@@ -205,7 +206,7 @@ const Header = () => {
                                                                         <span
                                                                             aria-hidden="true"
                                                                             className={`${opt.iconClass} text-white/95 opacity-90 shrink-0`}
-                                                                            style={{ width: 26, height: 26 }}
+                                                                            style={{ width: 40, height: 40 }}
                                                                         />
                                                                         <span>{opt.label}</span>
                                                                     </span>
@@ -351,7 +352,7 @@ const Header = () => {
                                                             <span
                                                                 aria-hidden="true"
                                                                 className={`${opt.iconClass} text-white/95 opacity-90 shrink-0`}
-                                                                style={{ width: 34, height: 34 }}
+                                                                style={{ width: 48, height: 48 }}
                                                             />
                                                             <span>{opt.label}</span>
                                                         </NavTag>

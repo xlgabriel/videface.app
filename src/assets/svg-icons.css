@@ -6,7 +6,7 @@
     mask-repeat: no-repeat;
     -webkit-mask-size: 100% 100%;
     mask-size: 100% 100%;
-    @apply size-[32px] block bg-current;
+    @apply size-[40px] block bg-current;
 }
 
 .icon-acoustic-cabin {
@@ -47,6 +47,11 @@
 }
 .icon-virtual-assistants {
     --svg: url("./svg/agent-b.svg");
+    @apply iconBase;
+}
+
+.icon-all-in-one {
+    --svg: url("./svg/All-in-one-b.svg");
     @apply iconBase;
 }
 

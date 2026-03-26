@@ -9,6 +9,7 @@ import ScrollToTop from "./components/ScrollToTop";
 import usePageView from "./hooks/usePageView";
 import VidefaceSmartLocker from "./components/pages/SmarLocker/VidefaceSmartLocker";
 import Keydrop from "./components/pages/keydrop/keydrop";
+import AllInOne from "./components/pages/allInOne/allInOne";
 import ThankYou from "./components/pages/ThankYou";
 
 const App = () => {
@@ -25,6 +26,7 @@ const App = () => {
                     <Route path="/kiosk" element={<VidefaceKiosk />}></Route>
                     <Route path="/key-management" element={<VidefaceSmartLocker />}></Route>
                     <Route path="/keydrop" element={<Keydrop />}></Route>
+                    <Route path="/all-in-one" element={<AllInOne />}></Route>
                     {/* <Route path="/form" element={<Form />}></Route> */}
                     <Route path="/thank-you" element={<ThankYou />}></Route>
                 </Routes>

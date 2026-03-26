@@ -124,6 +124,7 @@ export default function ThankYou() {
                                     >
                                         <Button
                                             size="lg"
+                                            href="https://calendar.app.google/7QTtE49EmK9HCwzn9"
                                             className={`hero-cta-btn w-full sm:w-auto ${wantsToSchedule ? "ring-2 ring-white ring-offset-2 ring-offset-transparent" : ""}`}
                                             textColor="text-[#0A6CFF]"
                                             color="bg-white"
