@@ -10,7 +10,9 @@ import usePageView from "./hooks/usePageView";
 import VidefaceSmartLocker from "./components/pages/SmarLocker/VidefaceSmartLocker";
 import Keydrop from "./components/pages/keydrop/keydrop";
 import AllInOne from "./components/pages/allInOne/allInOne";
+import AboutUs from "./components/pages/aboutUs/AboutUs";
 import ThankYou from "./components/pages/ThankYou";
+import TermsPage from "./components/pages/terms/TermsPage";
 
 const App = () => {
     // Track page views at the app level. This hook is safe to call once here
@@ -27,6 +29,8 @@ const App = () => {
                     <Route path="/key-management" element={<VidefaceSmartLocker />}></Route>
                     <Route path="/keydrop" element={<Keydrop />}></Route>
                     <Route path="/all-in-one" element={<AllInOne />}></Route>
+                    <Route path="/about-us" element={<AboutUs />}></Route>
+                    <Route path="/terms" element={<TermsPage />}></Route>
                     {/* <Route path="/form" element={<Form />}></Route> */}
                     <Route path="/thank-you" element={<ThankYou />}></Route>
                 </Routes>

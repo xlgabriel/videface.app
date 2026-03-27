@@ -14,6 +14,7 @@ export default function Hero({
     userImageClassName = "hero-user-enter h-auto w-[100%] rounded-[28px]",
     userPositionClass = "lg:right-0 md:right-0 left-0",
     userScaleClass = "lg:scale-100 md:scale-90 scale-75",
+    buttonText = "REQUEST A DEMO",
 }) {
     const heroRef = useRef(null);
     const [scrollProgress, setScrollProgress] = useState(0);
@@ -93,7 +94,7 @@ export default function Hero({
 
                     <div className="w-full flex justify-center mt-6 hero-left-enter">
                         <Button textColor="text-white" size="lg" className="hero-cta-btn">
-                            REQUEST A DEMO
+                            {buttonText}
                         </Button>
                     </div>
                 </div>

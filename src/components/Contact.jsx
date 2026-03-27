@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import Section from "./Section";
 import { BackgroundCircles } from "./design/Hero";
 import ReactDOMServer from "react-dom/server";
@@ -565,18 +565,15 @@ const Contact = () => {
                                             <span className="text-white/90 text-sm font-medium">
                                                 I have read and accept the
                                                 {' '}
-                                                <button
-                                                    type="button"
-                                                    onClick={(e) => {
-                                                        e.stopPropagation();
-                                                        if (typeof window !== "undefined") {
-                                                            window.dispatchEvent(new Event("open-terms-modal"));
-                                                        }
-                                                    }}
+                                                <Link
+                                                    to="/terms"
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    onClick={(e) => e.stopPropagation()}
                                                     className="underline hover:opacity-90 text-white/90 font-medium"
                                                 >
                                                     Privacy Policy
-                                                </button>
+                                                </Link>
                                                 {' '}and the processing of my personal data.
                                             </span>
                                         </label>

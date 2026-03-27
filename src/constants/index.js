@@ -65,16 +65,18 @@ export const navigation = [
         title: "Solutions",
         url: null, // Not clickable, only hover for dropdown
     },
-/*     {
-        id: "1",
-        title: "About Us",
-        url: "/home/#about-us",
-    }, */
+
     {
         id: "2",
         title: "Pricing",
         url: "/pricing",
     },
+
+/*         {
+        id: "1",
+        title: "About Us",
+        url: "/about-us",
+    }, */
 /*     {
         id: "3",
         title: "Blog",

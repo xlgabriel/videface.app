@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 import Section from "./Section";
-import TermsModalTrigger from "./TermsModalTrigger";
 
 const Footer = ({ className = "" }) => {
     const { t } = useTranslation("terms");
@@ -10,10 +10,9 @@ const Footer = ({ className = "" }) => {
                 <div className="mx-auto flex w-full max-w-[1200px] flex-col md:flex-row items-center md:items-center justify-between text-white gap-4 md:gap-0">
                     <div className="w-full md:w-auto text-center md:text-left">
                         <div className="mb-2 text-center md:text-left">
-                            <TermsModalTrigger
-                                className="text-sm text-white/80 underline hover:text-white transition-colors"
-                                buttonLabel={t("linkLabel")}
-                            />
+                            <Link to="/terms" className="text-sm text-white/80 underline hover:text-white transition-colors">
+                                {t("linkLabel")}
+                            </Link>
                         </div>
                         <p className="text-white/80 text-sm flex items-center justify-center md:justify-start gap-3">
                             © {new Date().getFullYear()} VideFace.
