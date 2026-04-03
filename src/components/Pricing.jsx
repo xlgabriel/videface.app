@@ -121,13 +121,13 @@ function PricingCard({
             <div
                 className={
                     "rounded-[1rem] overflow-hidden transition-[height] duration-600 ease-[cubic-bezier(0.22,1,0.36,1)] p-2 " +
-                    (expanded ? "h-[36rem] lg:h-[38rem]" : "h-[18rem] lg:h-[17rem]")
+                    (expanded ? "h-[39rem] lg:h-[41rem]" : "h-[18rem] lg:h-[17rem]")
                 }
                 style={innerStyle}
             >
                 <div
                     className={
-                        "h-full rounded-[0.9rem] transition-[border-color,box-shadow] duration-600 ease-[cubic-bezier(0.22,1,0.36,1)] px-5 pt-6 pb-5 border-2 " +
+                        "h-full rounded-[0.9rem] transition-[border-color,box-shadow] duration-600 ease-[cubic-bezier(0.22,1,0.36,1)] px-5 pt-6 pb-6 lg:pb-8 border-2 " +
                         (expanded
                             ? "border-white shadow-[0_0_0_1px_rgba(255,255,255,0.45)]"
                             : "border-transparent")
