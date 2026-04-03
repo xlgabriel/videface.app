@@ -72,11 +72,7 @@ export const navigation = [
         url: "/pricing",
     },
 
-/*         {
-        id: "1",
-        title: "About Us",
-        url: "/about-us",
-    }, */
+/*                 */
 /*     {
         id: "3",
         title: "Blog",
