@@ -1,9 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import Home from "./components/pages/home/Home";
 import PricingPage from "./components/pages/Pricing";
-import DocumentDownload from "./components/DocumentDownload";
 import VidefaceKiosk from "./components/pages/kiosk/VidefaceKiosk";
-import Form from "./components/Form";
 import DottedBackground from "./components/DottedBackground";
 import ScrollToTop from "./components/ScrollToTop";
 import usePageView from "./hooks/usePageView";
@@ -13,6 +11,7 @@ import AllInOne from "./components/pages/allInOne/allInOne";
 import AboutUs from "./components/pages/aboutUs/AboutUs";
 import ThankYou from "./components/pages/ThankYou";
 import TermsPage from "./components/pages/terms/TermsPage";
+import Icrs2026Page from "./components/pages/Icrs2026Page";
 
 const App = () => {
     // Track page views at the app level. This hook is safe to call once here
@@ -22,7 +21,10 @@ const App = () => {
     return (
         <>
             <DottedBackground spacing={30} size={0.7} opacity={0.18} color="0,0,0" speed={1} />
-            <div className="font-primary bg-transparent overflow-x-hidden">                <ScrollToTop />                <Routes>
+            <div className="font-primary bg-transparent overflow-x-hidden">
+                <ScrollToTop />
+                <Routes>
+                    <Route path="/icrs2026" element={<Icrs2026Page />} />
                     <Route path="/*" element={<Home />} />
                     <Route path="/pricing" element={<PricingPage />}></Route>
                     <Route path="/kiosk" element={<VidefaceKiosk />}></Route>
