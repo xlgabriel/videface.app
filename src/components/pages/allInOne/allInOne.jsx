@@ -83,7 +83,7 @@ export default function AllInOne() {
             <Hero
                 id="allinone-hero"
                 title="All in One"
-                subtitlePrefix="All-in-One Virtual Assitance"
+                subtitlePrefix="All-in-One Virtual Assistance"
                 subtitleHighlight="for Smarter Opertaions"
                 bgImage={AllBG}
                 bgAlt="All in One background"
