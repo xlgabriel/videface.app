@@ -26,10 +26,14 @@ export default function ThankYou() {
         if (conversionFired) return;
         conversionFired = true;
 
+        const sendTo = "AW-17966082777/e9jPCMP4i6kcENnV8vZC";
+        if (typeof window.gtag === "function") {
+            window.gtag("event", "conversion", { send_to: sendTo });
+        }
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
             event: "conversion",
-            send_to: "AW-17972095091/thank_you",
+            send_to: sendTo,
         });
         window.dataLayer.push({
             event: "thank_you_page_view",
