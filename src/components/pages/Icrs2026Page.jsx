@@ -7,6 +7,7 @@ import Seo from "../Seo";
 import { BackgroundCircles } from "../design/Hero";
 
 const BACKEND_URL = "https://videface-backend-166917106706.us-east1.run.app/api/v1";
+// const BACKEND_URL = "http://localhost:3010/api/v1"; // Localhost backend URL
 const POLL_INTERVAL_MS = 3000;
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -15,7 +16,7 @@ const PAGE_BG = "radial-gradient(ellipse 80% 80% at 50% 50%, #0A6CFF 0%, #0A6CFF
 export default function Icrs2026Page() {
     const [searchParams] = useSearchParams();
     const token = searchParams.get("token");
-    const companyId = searchParams.get("c");
+    const companyId = searchParams.get("c") ?? "rac4less";
 
     const [status, setStatus] = useState("loading");
     const [name, setName] = useState("");
@@ -30,7 +31,7 @@ export default function Icrs2026Page() {
 
     useEffect(() => {
         if (!token || !companyId) {
-            setStatus("not_found");
+            setStatus("walk_in");
             return;
         }
 
@@ -77,7 +78,7 @@ export default function Icrs2026Page() {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
-                    token,
+                    token: token || undefined,
                     companyId,
                     email: email.trim().toLowerCase(),
                     name: name.trim() || undefined,
@@ -125,7 +126,7 @@ export default function Icrs2026Page() {
                                 {(status === "not_found" || status === "error") && <NotFoundState />}
                                 {status === "expired" && <ExpiredState />}
 
-                                {(status === "ready" || status === "pending") && (
+                                {(status === "ready" || status === "pending" || status === "walk_in") && (
                                     <div className="w-full max-w-[440px]">
                                         {/* Event title */}
                                         <div className="text-center mb-8 px-2">
@@ -133,7 +134,7 @@ export default function Icrs2026Page() {
                                                 ✦ #ICRS2026 ✦
                                             </p>
                                             <p className="text-white/50 text-xs sm:text-sm mt-1 tracking-widest uppercase">
-                                                Photo · Email
+                                                {status === "walk_in" ? "Register · Stay Connected" : "Photo · Email"}
                                             </p>
                                         </div>
 
@@ -159,7 +160,9 @@ export default function Icrs2026Page() {
                                                 {!sent ? (
                                                     <form onSubmit={handleSubmit} noValidate>
                                                         <p className="text-white/70 text-sm mb-5">
-                                                            Enter your details to receive the photos by email.
+                                                            {status === "walk_in"
+                                                                ? "Enter your details to stay connected."
+                                                                : "Enter your details to receive the photos by email."}
                                                         </p>
 
                                                         <div className="mb-4">
@@ -236,7 +239,11 @@ export default function Icrs2026Page() {
                                                         </button>
                                                     </form>
                                                 ) : (
-                                                    <SuccessState email={email} wasQueued={wasQueued} />
+                                                    <SuccessState
+                                                        email={email}
+                                                        wasQueued={wasQueued}
+                                                        isWalkIn={status === "walk_in"}
+                                                    />
                                                 )}
                                             </div>
                                         </div>
@@ -289,7 +296,7 @@ function ExpiredState() {
     );
 }
 
-function SuccessState({ email, wasQueued }) {
+function SuccessState({ email, wasQueued, isWalkIn }) {
     return (
         <div className="flex flex-col items-center gap-4 py-2 text-center">
             <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full border-2 border-white/30 bg-white/10 backdrop-blur-sm">
@@ -303,8 +310,12 @@ function SuccessState({ email, wasQueued }) {
                     />
                 </svg>
             </div>
-            <p className="text-white text-xl font-semibold">Email sent!</p>
-            {wasQueued ? (
+            <p className="text-white text-xl font-semibold">{isWalkIn ? "Registered!" : "Email sent!"}</p>
+            {isWalkIn ? (
+                <p className="text-white/60 text-sm leading-relaxed max-w-[280px]">
+                    Thanks for registering at <span className="text-white/80">#ICRS2026</span>. We&apos;ll be in touch!
+                </p>
+            ) : wasQueued ? (
                 <p className="text-white/60 text-sm leading-relaxed max-w-[280px]">
                     We'll send your photos to <span className="text-white/80">{email}</span> as soon as they're ready.
                 </p>
