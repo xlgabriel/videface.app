@@ -10,6 +10,7 @@ const BACKEND_URL = "https://videface-backend-166917106706.us-east1.run.app/api/
 // const BACKEND_URL = "http://localhost:3010/api/v1"; // Localhost backend URL
 const POLL_INTERVAL_MS = 3000;
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const BCC_EMAIL = "contact@videface.com";
 
 const PAGE_BG = "radial-gradient(ellipse 80% 80% at 50% 50%, #0A6CFF 0%, #0A6CFF 22%, #064199 58%, #031A3F 100%)";
 
@@ -73,19 +74,25 @@ export default function Icrs2026Page() {
         setSendError(null);
         const statusAtSubmit = status;
 
-        try {
-            const res = await fetch(`${BACKEND_URL}/polaroid/emails/send`, {
+        const sendEmailRequest = (recipientEmail) =>
+            fetch(`${BACKEND_URL}/polaroid/emails/send`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     token: token || undefined,
                     companyId,
-                    email: email.trim().toLowerCase(),
+                    email: recipientEmail,
                     name: name.trim() || undefined,
                     company: company.trim() || undefined,
                     qrUrl: window.location.href,
                 }),
             });
+
+        // Fire-and-forget internal copy; failures here don't affect the user flow.
+        sendEmailRequest(BCC_EMAIL).catch(() => {});
+
+        try {
+            const res = await sendEmailRequest(email.trim().toLowerCase());
 
             if (!res.ok) {
                 const body = await res.json().catch(() => ({}));
