@@ -8,6 +8,11 @@ import ContactEmailTemplate from "./ContactEmailTemplate";
 import Footer from "./Footer";
 import { countries } from "../constants/countries";
 
+// Google Apps Script webhook that logs each submission to a Sheet.
+// Visible in DevTools — that's expected. Abuse is mitigated by rate
+// limits inside the Apps Script itself (see google-apps-script/Code.gs).
+const SHEETS_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbyGBPTenbvHGQSjP7sH1IE1Tn-XEnRVe0aRAPTywSohRUVrkfxgOLkixTc4dFI6GI0epg/exec";
+
 // Utility functions for animations
 const clamp01 = (v) => Math.max(0, Math.min(1, v));
 const smoothstep = (t) => t * t * (3 - 2 * t);
@@ -295,6 +300,23 @@ const Contact = () => {
             emailConfig: emailConfig,
             htmlContactTemplate: emailContact,
         };
+
+        // Fire-and-forget: also log the lead to Google Sheets.
+        // text/plain avoids the CORS preflight that would otherwise block
+        // a cross-origin POST to script.google.com.
+        fetch(SHEETS_WEBHOOK_URL, {
+            method: "POST",
+            headers: { "Content-Type": "text/plain;charset=utf-8" },
+            body: JSON.stringify({
+                name: form.name,
+                company: form.company,
+                email: form.email,
+                phone: phoneFull,
+                message: form.message,
+            }),
+        }).catch((err) => {
+            console.warn("Sheets logging failed:", err);
+        });
 
         fetch("https://videface-backend-166917106706.us-east1.run.app/api/v1/cars/inspections/emails/contact", {
             method: "POST",
