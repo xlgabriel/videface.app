@@ -77,6 +77,12 @@ export const navigation = [
         title: "Blog",
         url: "/blog",
     },
+
+    {
+        id: "4",
+        title: "About Us",
+        url: "/about-us",
+    },
 ];
 
 export const heroIcons = [homeSmile, file02, searchMd, plusSquareWhite];
