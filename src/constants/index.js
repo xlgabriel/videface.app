@@ -72,12 +72,11 @@ export const navigation = [
         url: "/pricing",
     },
 
-/*                 */
-/*     {
+    {
         id: "3",
         title: "Blog",
         url: "/blog",
-    } */
+    },
 ];
 
 export const heroIcons = [homeSmile, file02, searchMd, plusSquareWhite];

@@ -12,6 +12,8 @@ import AboutUs from "./components/pages/aboutUs/AboutUs";
 import ThankYou from "./components/pages/ThankYou";
 import TermsPage from "./components/pages/terms/TermsPage";
 import Icrs2026Page from "./components/pages/Icrs2026Page";
+import Blog from "./components/pages/blog/Blog";
+import BlogPost from "./components/pages/blog/BlogPost";
 
 const App = () => {
     // Track page views at the app level. This hook is safe to call once here
@@ -35,6 +37,8 @@ const App = () => {
                     <Route path="/terms" element={<TermsPage />}></Route>
                     {/* <Route path="/form" element={<Form />}></Route> */}
                     <Route path="/thank-you" element={<ThankYou />}></Route>
+                    <Route path="/blog" element={<Blog />}></Route>
+                    <Route path="/blog/post" element={<BlogPost />}></Route>
                 </Routes>
             </div>
         </>
